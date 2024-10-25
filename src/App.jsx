@@ -1,16 +1,17 @@
 import { BrowserRouter, Routes } from 'react-router-dom'
 import './App.css'
+import AdminDashboard from './pages/Admin Pages/AdminDashboard'
 
 function App() {
   return (
     <>
-      <BrowserRouter>
+      {/* <BrowserRouter>
 
-      <Routes>
+      <Routes> */}
+      <AdminDashboard />
+      {/* </Routes>
       
-      </Routes>
-      
-      </BrowserRouter>
+      </BrowserRouter> */}
     </>
   )
 }
