@@ -5,10 +5,19 @@ import AdminSignin from "./pages/EmployeePages/AdminSignin";
 import EmployeePage from "./pages/EmployeePages/EmployeePage";
 import CreateEmployee from "./components/EmployeeComponents/CreateEmployee";
 import EmployeeDetail from "./pages/EmployeePages/EmployeeDetail";
+import './App.css'
+import AdminDashboard from './pages/Admin Pages/AdminDashboard'
 
 function App() {
   return (
     <>
+      {/* <BrowserRouter>
+
+      <Routes> */}
+      <AdminDashboard />
+      {/* </Routes>
+      
+      </BrowserRouter> */}
       <BrowserRouter>
         <Routes>
           <Route path="/admin" element={<AdminSignup/>} />
