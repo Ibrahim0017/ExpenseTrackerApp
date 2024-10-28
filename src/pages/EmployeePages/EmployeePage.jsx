@@ -124,7 +124,7 @@ const ButtonComp = () => {
         <BsThreeDots />
       </div>
       {open && (
-        <div className="absolute w-[150px] flex justify-center left-[-60px]  top-14 bg-white border rounded-sm z-20 ">
+        <div className="absolute w-[150px] flex justify-center left-[-120px]  top-14 bg-white border rounded-sm z-20 ">
           <ol className="w-full">
             <li className="w-full py-[7px] text-[14px]  text-center  border-b">
               Re-send Token
