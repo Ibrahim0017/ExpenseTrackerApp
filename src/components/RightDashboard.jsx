@@ -5,7 +5,7 @@ import DashboardOverview from "./DashboardOverview";
 const RightDashboard = () => {
   return (
     <>
-      <div className="w-[85%] h-[100%] bg-gray-5 ==
+      <div className="w-[85%]  bg-gray-5 ==
         0">
         <Header />
         <DashboardOverview />
