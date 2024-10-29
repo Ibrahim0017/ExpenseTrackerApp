@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import imageA from '../../assets/WhatsApp Image 2024-09-03 at 10.04.20.jpeg'
 import TableComponent from '../../components/EmployeeComponents/TableComponent'
 
 const EmployeeDetail = () => {
 
-    const data = [
-        {image: imageA}
-    ]
+  
 
    const [toggle, setToggle] = useState(false)
 
@@ -82,11 +80,11 @@ const EmployeeDetail = () => {
                 <div className=' w-full flex justify-between mt-2'>
                 <div className=' w-full '>
                 <b className='text-[#7d7e83]'>Total Expenses</b>
-                <p>Uchechi</p>
+                <p>20</p>
                 </div>
                 <div className=' w-full'>
                 <b className='text-[#7d7e83]'>Joined Company</b>
-                <p>Uchechi</p>
+                <p>12/03/2021</p>
                 </div>
                 </div>
                 </div>  
