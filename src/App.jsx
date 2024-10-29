@@ -7,6 +7,9 @@ import CreateEmployee from "./components/EmployeeComponents/CreateEmployee";
 import EmployeeDetail from "./pages/EmployeePages/EmployeeDetail";
 import './App.css'
 import AdminDashboard from './pages/Admin Pages/AdminDashboard'
+import BranchPage from "./pages/EmployeePages/BranchPage";
+import CreateBranch from "./components/EmployeeComponents/CreateBranch";
+import BranchDetail from "./pages/EmployeePages/BranchDetail";
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
           <Route path="/employee" element={<EmployeePage />} />
           <Route path="/createemployee" element={<CreateEmployee />} />
           <Route path="/employeedetail" element={<EmployeeDetail />} />
+          <Route path="/branchpage" element={<BranchPage />} />
+          <Route path="/createbranch" element={<CreateBranch />} />
+          <Route path="/branchdetail" element={<BranchDetail />} />
         </Routes>
       </BrowserRouter>
     </>
