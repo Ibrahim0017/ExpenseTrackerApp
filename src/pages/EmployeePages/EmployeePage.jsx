@@ -33,7 +33,9 @@ const EmployeePage = () => {
 
   return (
     <>
-      <div className="w-full flex justify-between items-center ">
+      <div className="w-full bg-white flex justify-center py-3">
+        <div className="w-[95%]">
+        <div className="w-full flex justify-between items-center bg-white ">
         <div className="flex gap-5 items-center">
           <p className="text-2xl font-semibold">Employees</p>
           <div className="relative">
@@ -55,7 +57,7 @@ const EmployeePage = () => {
         </button>
       </div>
       <div className="overflow-x-auto mt-6">
-        <table className="w-full table-auto overflow-x-scroll text-left border border-[#BBBEC8] ">
+        <table className="w-full table-auto overflow-x-scroll  text-left border border-[#BBBEC8] ">
           <thead>
             <tr className="border border-[#BBBEC8] ">
               <th className="px-4 py-3 font-[calibri] text-[17px]">Date Created</th>
@@ -99,9 +101,12 @@ const EmployeePage = () => {
           </tbody>
         </table>
       </div>
+        </div>
+     
+      </div>
 
       <div
-        className={`bg-bgTrans top-0 justify-center ${
+        className={`bg-bgTrans top-0 justify-center left-0 ${
           isOpen ? "flex" : "hidden"
         }  absolute h-[100vh]  w-full`}
       >
