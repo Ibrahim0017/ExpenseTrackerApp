@@ -15,28 +15,21 @@ import BranchDetail from "./pages/EmployeePages/BranchDetail";
 function App() {
   return (
     <>
-      {/* <BrowserRouter>
-
-      <Routes> */}
-      <AdminDashboard />
-      {/* </Routes>
-      
-      </BrowserRouter> */}
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
-          <Route path="/admin" element={<AdminSignup/>} />
+          <Route path="/adminsignup" element={<AdminSignup />} />
           <Route path="/adminsignin" element={<AdminSignin />} />
-          <Route path="/employee" element={<EmployeePage />} />
-          <Route path="/createemployee" element={<CreateEmployee />} />
-          <Route path="/employeedetail" element={<EmployeeDetail />} />
-          <Route path="*" element={<NotFound />} />
+
+          {/* <Route path="*" element={<NotFound />} /> */}
           <Route path="/branchpage" element={<BranchPage />} />
           <Route path="/createbranch" element={<CreateBranch />} />
           <Route path="/branchdetail" element={<BranchDetail />} />
+          <Route path="/admin/*" element={<AdminDashboard />} />
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </>
   );
 }
 
 export default App;
+

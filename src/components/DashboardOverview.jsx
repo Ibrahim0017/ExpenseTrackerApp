@@ -8,12 +8,10 @@ const DashboardOverview = () => {
   return (
     <>
     <div className='p-5  bg-[#f9f9f9]  gap-4 justify-between'> 
-    <BrowserRouter>
     <Routes>
         <Route path='/expenseTrack' element={<EspenseTrack/>} />
         <Route path='/employee' element={<EmployeePage/>} />
     </Routes>
-    </BrowserRouter>
     </div>
     </>
   )
