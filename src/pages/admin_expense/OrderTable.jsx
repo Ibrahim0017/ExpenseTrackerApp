@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import image from "../assets/young-handsome-man-posing-with-hat_23-2148884336.jpg";
-import ViewMore from "../components/ViewMore";
+import image from "../../assets/young-handsome-man-posing-with-hat_23-2148884336.jpg";
+import ViewMore from "../../components/ViewMore";
 import axios from "axios";
 import Pagination from './adminexpensedetail/Pagination';
 import Posts from "./adminexpensedetail/Posts";
@@ -31,7 +31,7 @@ const OrderTable = () => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="w-full mt-[20px] flex items-center justify-center">
+    <div className="w-full mt-[20px] flex flex-col items-center justify-center">
       <table className="min-w-[70rem]">
         <thead className="text-[15px] bg-gray-50">
           <tr className="text-left rounded-sm">
