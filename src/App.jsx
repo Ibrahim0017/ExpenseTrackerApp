@@ -6,14 +6,13 @@ import AdminSignin from "./pages/EmployeePages/AdminSignin";
 import EmployeePage from "./pages/EmployeePages/EmployeePage";
 import CreateEmployee from "./components/EmployeeComponents/CreateEmployee";
 import EmployeeDetail from "./pages/EmployeePages/EmployeeDetail";
-import './App.css'
-import AdminDashboard from './pages/Admin Pages/AdminDashboard'
+import AdminDashboard from './pages/Admin Pages/AdminDashboard';
 import BranchPage from "./pages/EmployeePages/BranchPage";
 import CreateBranch from "./components/EmployeeComponents/CreateBranch";
 import BranchDetail from "./pages/EmployeePages/BranchDetail";
-import File from './service/File'
-import AdminExpensePage from './pages/admin_expense/AdminExpensePage'
-import ExpenseDetail from './pages/admin_expense/adminexpensedetail/ExpenseDetail'
+import File from './service/File';
+import AdminExpensePage from './pages/admin_expense/AdminExpensePage';
+import ExpenseDetail from './pages/admin_expense/adminexpensedetail/ExpenseDetail';
 >>>>>>> 21ddea97b514fa5e6e60bcdde87c77f3d6245ba5
 
 function App() {
@@ -21,10 +20,6 @@ function App() {
     <>
       
       <AdminDashboard />
-      {/* </Routes>
->>>>>>> 21ddea97b514fa5e6e60bcdde87c77f3d6245ba5
-      
-      </BrowserRouter> */}
       <BrowserRouter>
         <Routes>
           <Route path="/admin" element={<AdminSignup/>} />
@@ -44,3 +39,4 @@ function App() {
   );
 }
 
+export default App;

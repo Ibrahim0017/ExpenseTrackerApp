@@ -13,7 +13,7 @@ const ExpenseDetail = () => {
                 <div className='text-[15px]'>House Z, Oluwale, Chevron drive, Lekki-Lagos.</div>
             </div>
         </div>
-        <div className='w-[90%] gap-6 flex '>
+        <div className='w-[90%] gap-6 flex overflow-y-scroll scrollbar-hide'>
             <div className='w-[65%] py-[10px] '>
                 <div className='font-medium mb-[10px]'>Expense Information</div>
                 <table className='min-w-[43rem] '>
