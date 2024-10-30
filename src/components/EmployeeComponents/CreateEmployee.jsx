@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { TbLetterX } from "react-icons/tb";
-import EmployeePage from "../../pages/EmployeePages/EmployeePage";
 
 const CreateEmployee = ({ handleButtonOpen }) => {
   return (
     <>
-      <div className="w-[80%] bg-white border flex flex-col items-center py-6">
+      <div className="w-[60%] bg-white border flex flex-col items-center py-6">
         <div className="w-full flex justify-center pb-3  border-b border-[#BBBEC8] ">
           <div className="w-[95%]  flex justify-between">
             <div className="text-[20px] font-semibold">Add New Employee</div>
