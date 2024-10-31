@@ -58,7 +58,7 @@ const AdminSignin = () => {
             <p className="text-[14px] text-[#a0a2a8] ">
               Don't have an account?
             </p>{" "}
-            <Link to="/admin">
+            <Link to="/adminsignup">
               <p className="font-medium text-[15px] cursor-pointer">Register</p>
             </Link>
           </div>
