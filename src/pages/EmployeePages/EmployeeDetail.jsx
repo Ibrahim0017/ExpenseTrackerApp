@@ -73,7 +73,7 @@ const EmployeeDetail = () => {
                 <p>Uchechi</p>
                 </div>
                 <div className=' w-full'>
-                <b className='text-[#7d7e83]'>Staus</b>
+                <b className='text-[#7d7e83]'>Status</b>
                 <p>Uchechi</p>
                 </div>
                 </div>
