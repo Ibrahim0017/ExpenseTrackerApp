@@ -10,7 +10,7 @@ import BranchDetail from "./pages/EmployeePages/BranchDetail";
 const DashboardOverview = () => {
   return (
     <>
-      <div className="p-5  bg-[#f9f9f9]  gap-4 justify-between">
+      <div className="p-5 mt-16 bg-[#f9f9f9] w-[85%] absolute right-0  gap-4 justify-between">
         <Routes>
           <Route path="/expenseTrack" element={<EspenseTrack />} />
           <Route path="/employee" element={<EmployeePage />} />

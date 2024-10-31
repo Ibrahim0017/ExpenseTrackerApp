@@ -11,6 +11,7 @@ import OtpInput from "./components/EmployeeComponents/OtpInput";
 function App() {
   return (
     <>
+   
       <BrowserRouter>
         <Routes>
           <Route path="*" element={<AdminSignup />} />
@@ -20,6 +21,7 @@ function App() {
           {/* <Route path="*" element={<NotFound />} /> */}
         
           <Route path="/admin/*" element={<AdminDashboard />} />
+          <Route path="/employeesdash/*" element={<EmployeesDashboard />} />
         </Routes>
       </BrowserRouter>
     </>
