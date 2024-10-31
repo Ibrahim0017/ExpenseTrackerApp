@@ -6,7 +6,6 @@ import CreateEmployee from "./components/EmployeeComponents/CreateEmployee";
 import EmployeeDetail from "./pages/EmployeePages/EmployeeDetail";
 import AdminDashboard from "./pages/Admin Pages/AdminDashboard";
 import NotFound from "./pages/Admin Pages/NotFound";
-import BranchPage from "./pages/EmployeePages/BranchPage";
 import CreateBranch from "./components/EmployeeComponents/CreateBranch";
 import BranchDetail from "./pages/EmployeePages/BranchDetail";
 import File from "./service/File";

@@ -33,6 +33,7 @@ const EmployeePage = () => {
 
   return (
     <>
+      <div className="w-full bg bg-white py-3 px-4">
       <div className="w-full flex justify-between items-center ">
         <div className="flex gap-5 items-center">
           <p className="text-2xl font-semibold">Employees</p>
@@ -51,7 +52,7 @@ const EmployeePage = () => {
           onClick={handleButtonOpen}
           className="px-4 py-[10px] border-none bg-blue-700 text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white"
         >
-          Add Employee
+         + Add Employee
         </button>
       </div>
       <div className="overflow-x-auto mt-6">
@@ -99,9 +100,10 @@ const EmployeePage = () => {
           </tbody>
         </table>
       </div>
+      </div>
 
       <div
-        className={`bg-bgTrans top-0 justify-center ${
+        className={`bg-bgTrans top-0 justify-center items-center left-0 ${
           isOpen ? "flex" : "hidden"
         }  absolute h-[100vh]  w-full`}
       >
