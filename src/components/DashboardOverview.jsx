@@ -3,6 +3,8 @@ import EspenseTrack from './EspenseTrack'
 import Cartegory from './Cartegory'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import EmployeePage from '../pages/EmployeePages/EmployeePage'
+import BranchPage from '../pages/EmployeePages/BranchPage'
+import BranchDetail from '../pages/EmployeePages/BranchDetail'
 
 const DashboardOverview = () => {
   return (
@@ -12,6 +14,8 @@ const DashboardOverview = () => {
     <Routes>
         <Route path='/expenseTrack' element={<EspenseTrack/>} />
         <Route path='/employee' element={<EmployeePage/>} />
+        <Route path="/branchpage" element={<BranchPage />} />
+        <Route path="/branchdetail" element={<BranchDetail />} />
     </Routes>
     </BrowserRouter>
     </div>
