@@ -72,7 +72,7 @@ const BranchPage = () => {
                 <p className=' font-medium'>23</p>
                 </div>
                </div>
-              <Link className='w-full' to = '/branchdetail' ><p className='bg-gray-800 w-full text-center font-medium text-white text-[17px] py-2 cursor-pointer rounded-b-md'>See more...</p> </Link>
+              <Link className='w-full' to = '/admin/branchdetail' ><p className='bg-gray-800 w-full text-center font-medium text-white text-[17px] py-2 cursor-pointer rounded-b-md'>See more...</p> </Link>
               </div>
           ))}
         </div>

@@ -16,8 +16,8 @@ const EmployeeDetail = () => {
 
   return (
     <div>
-        <div>
-        <div className='w-full h-[150px] bg-red-100 rounded-t-md'></div>
+        <div className='bg-white'>
+        <div className='w-full h-[150px] bg-gray-800 rounded-t-md'></div>
         <div className='w-full flex justify-center'>
         <div className='w-[90%]'>
             <div><img src={imageA} className='size-[150px] border rounded-full mt-[-60px]' /></div>
@@ -38,27 +38,27 @@ const EmployeeDetail = () => {
             </div>
 
             {toggle?
-            <div className='w-full  mt-4 border border-[#BBBEC8]'>
+            <div className='w-full  mt-4 border border-[#BBBEC8] py-4'>
                 <div className='w-full flex flex-col items-center justify-end'>
                    <div className='w-[98%] mt-2'>
-                <b className='pt-2'>Personal Information</b>
+                <b className='pt-2 text-[#BBBEC8]'>Personal Information</b>
                 <div className=' w-full flex justify-between mt-1'>
                 <div className=' w-full'>
-                <b className='text-[#7d7e83]'>First Name</b>
+                <b className='text-gray-800'>First Name</b>
                 <p>Uchechi</p>
                 </div>
                 <div className=' w-full'>
-                <b className='text-[#7d7e83]'>Last Name</b>
+                <b className='text-gray-800'>Last Name</b>
                 <p>Uchechi</p>
                 </div>
                 </div>
                 <div className=' w-full flex justify-between mt-2'>
                 <div className=' w-full '>
-                <b className='text-[#7d7e83]'>Email Address</b>
+                <b className='text-gray-800'>Email Address</b>
                 <p>Uchechi</p>
                 </div>
                 <div className=' w-full'>
-                <b className='text-[#7d7e83]'>Phone</b>
+                <b className='text-gray-800'>Phone</b>
                 <p>Uchechi</p>
                 </div>
                 </div>
@@ -66,24 +66,24 @@ const EmployeeDetail = () => {
 
 
                 <div className='w-[98%] mt-2'>
-                <b className='pt-2'>Other Information</b>
+                <b className='pt-2 text-[#BBBEC8]'>Other Information</b>
                 <div className=' w-full flex justify-between mt-1'>
                 <div className=' w-full'>
-                <b className='text-[#7d7e83]'>Branch</b>
+                <b className='text-gray-800'>Branch</b>
                 <p>Uchechi</p>
                 </div>
                 <div className=' w-full'>
-                <b className='text-[#7d7e83]'>Status</b>
+                <b className='text-gray-800'>Status</b>
                 <p>Uchechi</p>
                 </div>
                 </div>
                 <div className=' w-full flex justify-between mt-2'>
                 <div className=' w-full '>
-                <b className='text-[#7d7e83]'>Total Expenses</b>
+                <b className='text-gray-800'>Total Expenses</b>
                 <p>20</p>
                 </div>
                 <div className=' w-full'>
-                <b className='text-[#7d7e83]'>Joined Company</b>
+                <b className='text-gray-800'>Joined Company</b>
                 <p>12/03/2021</p>
                 </div>
                 </div>

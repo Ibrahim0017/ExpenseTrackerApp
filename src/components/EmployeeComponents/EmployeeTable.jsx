@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { BsThreeDots } from "react-icons/bs";
 import imagea from "../../assets/WhatsApp Image 2024-09-03 at 10.04.20.jpeg";
+import { Link } from 'react-router-dom';
 
 const EmployeeTable = () => {
 
@@ -13,11 +14,11 @@ const EmployeeTable = () => {
           expense: 10,
           email:'uccynnorom@gmail.com'
         },
-        { id: "3/04/2019", name: "Deborah Iwuanyawu", age: 24, expense: 20, email:'uccynnorom@gmail.com' },
-        { id: "3/04/2019", name: "Uche", age: 24, expense: 12, email:'uccynnorom@gmail.com' },
-        { id: "3/04/2019", name: "Uche", age: 24, expense: 50, email:'uccynnorom@gmail.com' },
-        { id: "3/04/2019", name: "Uche", age: 24, expense: 10, email:'uccynnorom@gmail.com' },
-        { id: "3/04/2019", name: "Uche", age: 24, expense: 20, email:'uccynnorom@gmail.com' },
+        { id: "3/04/2019", name: "Deborah Iwuanyawu", age: "Agboju Branch ", expense: 20, email:'uccynnorom@gmail.com' },
+        { id: "3/04/2019", name: "Uche", age: "Agboju Branch ", expense: 12, email:'uccynnorom@gmail.com' },
+        { id: "3/04/2019", name: "Uche", age: "Agboju Branch ", expense: 50, email:'uccynnorom@gmail.com' },
+        { id: "3/04/2019", name: "Uche", age: "Agboju Branch ", expense: 10, email:'uccynnorom@gmail.com' },
+        { id: "3/04/2019", name: "Uche", age: "Agboju Branch ", expense: 20, email:'uccynnorom@gmail.com' },
       ];
 
 
@@ -38,7 +39,7 @@ const EmployeeTable = () => {
             {data.map((value, index) => (
               <tr
                 className={`border border-[#BBBEC8] ${
-                  index % 2 === 0 ? "bg-[#dfe3f0]" : "bg-white"
+                  index % 2 === 0 ? "bg-[#d6d8dd]" : "bg-white"
                 } `}
                 key={value}
               >
@@ -52,12 +53,14 @@ const EmployeeTable = () => {
                       <p>{value.name.charAt(0)}</p>
                     )}
                   </div>
-                  <p className="font-[calibri] font-medium">
+                 <Link to='/employeedetail'>
+                 <p className="font-[calibri] font-medium cursor-pointer">
                     {value.name.toUpperCase()}
                   </p>
+                  </Link>
                 </td>
-                <td className=" px-4 py-3 font-[calibri]">{value.email}</td>
-                <td className=" px-4 py-3 font-[calibri]">{value.age}</td>
+                <td className=" px-4 py-4 font-[calibri]">{value.email}</td>
+                <td className=" px-4 py-4 font-[calibri]">{value.age}</td>
                 <td className=" py-4  px-4  font-[calibri]">{value.expense}</td>
                 <td className=" py-4  px-4   cursor-pointer relative">
                   <ButtonComp />

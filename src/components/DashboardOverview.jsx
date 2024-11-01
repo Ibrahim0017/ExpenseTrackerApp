@@ -9,19 +9,24 @@ import AdminDashboard from "./AdminDashboard";
 import EmployeeDetail from "../pages/EmployeePages/EmployeeDetail";
 import BranchPage from "../pages/EmployeePages/BranchPage";
 import ExpenseDetail from "../pages/admin_expense/adminexpensedetail/ExpenseDetail";
-import UploadExpense from "../components/UploadExpense"
+import UploadExpense from "../components/UploadExpense";
+import CreateBranch from "../components/EmployeeComponents/CreateBranch";
+import BranchDetail from "../pages/EmployeePages/BranchDetail";
+import EmployeeDetail from "../pages/EmployeePages/EmployeeDetail";
 
 const DashboardOverview = () => {
-  return (  
+  return (
     <>
       <div className="p-5 mt-16 bg-[#f9f9f9] w-[85%] absolute right-0  gap-4 justify-between">
         <Routes>
           <Route path="/admin_dashboard" element={<AdminDashboard />} />
           <Route path="/expenseTrack" element={<EspenseTrack />} />
           <Route path="/employee" element={<EmployeePage />} />
+          <Route path="/employeedetail" element={<EmployeeDetail />} />
+          <Route path="/branchpage" element={<BranchPage />} />
           <Route path="/expense" element={<AdminExpensePage />} />
-          <Route path="/settings" element={<Profile />} />
-          <Route path="/employee/detail" element={<EmployeeDetail />} />
+          <Route path="/createbranch" element={<CreateBranch />} />
+          <Route path="/branchdetail" element={<BranchDetail />} />
           <Route path="/branches" element={<BranchPage />} />
           <Route path="/expense/detail" element={<ExpenseDetail />} />
         </Routes>
