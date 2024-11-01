@@ -24,7 +24,7 @@ const EmployeePage = () => {
       expense: 10,
       email:'uccynnorom@gmail.com'
     },
-    { id: "3/04/2019", name: "Deborah Iwuanyawu", age: 24, expense: 20, email:'uccynnorom@gmail.com' },
+    { id: "3/04/2019", name: "Debofrah Iwuanyawu", age: 24, expense: 20, email:'uccynnorom@gmail.com' },
     { id: "3/04/2019", name: "Uche", age: 24, expense: 12, email:'uccynnorom@gmail.com' },
     { id: "3/04/2019", name: "Uche", age: 24, expense: 50, email:'uccynnorom@gmail.com' },
     { id: "3/04/2019", name: "Uche", age: 24, expense: 10, email:'uccynnorom@gmail.com' },

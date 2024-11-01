@@ -1,6 +1,7 @@
 import React from 'react';
 import SelectMenu from './SelectMenu';
 import { FiHome, FiUsers, FiDollarSign, FiFileText, FiSettings } from 'react-icons/fi'; // Import icons
+import { IoGitBranchOutline } from 'react-icons/io5';
 
 const Menudiv = () => {
   return (
@@ -10,6 +11,7 @@ const Menudiv = () => {
         <SelectMenu text='Dashboard' path='/admin/admin_dashboard' Icon={FiHome} />
         <SelectMenu text='Employee' path='/admin/employee' Icon={FiUsers} />
         <SelectMenu text='Expense' path='/admin/expense' Icon={FiDollarSign} />
+        <SelectMenu text='Branches' path='/admin/branches' Icon={IoGitBranchOutline} />
         {/* <SelectMenu text='Transaction' path='/admin/transaction' Icon={FiFileText} />
         <SelectMenu text='Reports' path='/admin/reports' Icon={FiFileText} /> */}
         <div className='border border-white my-3'></div>

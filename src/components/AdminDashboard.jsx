@@ -13,15 +13,15 @@ const AdminDashboard = () => {
       data: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
         datasets: [
-          {
-            label: 'Income',
-            data: [12, 19, 3, 5, 2, 3, 7],
-            backgroundColor: '#4CAF50',
-          },
+        //   {
+        //     label: 'Income',
+        //     data: [12, 19, 3, 5, 2, 3, 7],
+        //     backgroundColor: '#4CAF50',
+        //   },
           {
             label: 'Expenses',
             data: [5, 10, 7, 8, 12, 15, 10],
-            backgroundColor: '#8BC34A',
+            backgroundColor: '#ff4141',
           },
         ],
       },
@@ -75,12 +75,12 @@ const AdminDashboard = () => {
         bgGradient="bg-gradient-to-r from-blue-500 to-blue-700" 
       />
       <StatsCard 
-        title="Job Applicants" 
-        value="1,839" 
+        title="Branches" 
+        value="5" 
         bgGradient="bg-gradient-to-r from-purple-500 to-purple-700" 
       />
       <StatsCard 
-        title="Total Payroll" 
+        title="Total Expense" 
         value="$324,920.83" 
         bgGradient="bg-gradient-to-r from-green-500 to-green-700" 
       />
@@ -111,7 +111,7 @@ const AdminDashboard = () => {
   </div>
 
   {/* Revenue Section */}
-  <div className="w-full md:w-2/5 lg:w-1/3 bg-white p-4 rounded-lg shadow-md">
+  <div className="w-full md:w-2/5 lg:w-[360px] bg-white p-4 rounded-lg shadow-md">
     <h2 className="text-lg font-semibold mb-4">Revenue</h2>
     <div className="text-center mb-4">
       <h3 className="text-3xl font-bold">$193.000</h3>
