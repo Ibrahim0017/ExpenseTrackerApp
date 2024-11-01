@@ -7,8 +7,7 @@ import NotFound from "./pages/Admin Pages/NotFound";
 import CreateBranch from "./components/EmployeeComponents/CreateBranch";
 import BranchDetail from "./pages/EmployeePages/BranchDetail";
 import File from "./service/File";
-import AdminExpensePage from "./pages/admin_expense/AdminExpensePage";
-import ExpenseDetail from "./pages/admin_expense/adminexpensedetail/ExpenseDetail";
+import SignIn from "./service/SignIn";
 import Profile from "./pages/Admin Pages/Profile";
 import EmployeesDashboard from "./pages/EmployeesDashboard/EmployeesDashboard";
 import OtpInput from "./components/EmployeeComponents/OtpInput";
@@ -34,6 +33,8 @@ function App() {
           <Route path="/admin/*" element={<AdminDashboard />} />
           <Route path="/employeesdash/*" element={<EmployeesDashboard />} />
           {/* <Route path="/otp" element={<OtpInput />} /> */}
+          <Route path="/signUp" element={<File/>} />
+          <Route path="/signIn" element={<SignIn/>} />
         </Routes>
       </BrowserRouter>
     </>

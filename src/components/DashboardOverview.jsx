@@ -6,9 +6,11 @@ import EmployeePage from "../pages/EmployeePages/EmployeePage";
 import AdminExpensePage from "../pages/admin_expense/AdminExpensePage";
 import Profile from "../pages/Admin Pages/Profile";
 import AdminDashboard from "./AdminDashboard";
+import ExpenseDetail from "../pages/admin_expense/adminexpensedetail/ExpenseDetail";
+import UploadExpense from "../components/UploadExpense"
 
 const DashboardOverview = () => {
-  return (
+  return (  
     <>
       <div className="p-5 mt-16 bg-[#f9f9f9] w-[85%] absolute right-0  gap-4 justify-between">
         <Routes>
@@ -17,6 +19,8 @@ const DashboardOverview = () => {
           <Route path="/employee" element={<EmployeePage />} />
           <Route path="/expense" element={<AdminExpensePage />} />
           <Route path="/settings" element={<Profile />} />
+          <Route path="/expense_detail" element={<ExpenseDetail />} />
+          <Route path="/upload_expense" element={<UploadExpense />} />
         </Routes>
       </div>
     </>
