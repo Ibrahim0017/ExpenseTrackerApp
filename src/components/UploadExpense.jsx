@@ -3,11 +3,11 @@ import { X } from 'lucide-react';
 
 const UploadExpense = ({onClose}) => {
   return (
-    <div className='fixed inset-0 h-screen p-6 bg-black bg-opacity-30 backdrop-blur-sm flex flex-col justify-center'>
+    <div className='fixed mt-[50px] inset-0  p-6 bg-gray-500 bg-opacity-30 backdrop-blur-sm flex flex-col justify-center'>
         <div className='w-full flex flex-col gap-10 text-white'><button onClick={onClose} className='place-self-end hover:scale-125 hover:transition-transform hover:ease-in-out hover:'><X/></button></div>
-        <div className='font-medium mb-[20px] text-white'>Employee Expense</div>
+        <div className='font-medium mb-[20px] text-[20px] text-white'>Employee Expense</div>
      
-      <div className='w-full overflow-y-scroll'>
+      <div className='w-full overflow-y-scroll mb-[10px]'>
 <div className='w-full  p-5 bg-white rounded-md '>
     <div>
         <label htmlFor="" className='text-[14px] font-medium'>Expense name</label>

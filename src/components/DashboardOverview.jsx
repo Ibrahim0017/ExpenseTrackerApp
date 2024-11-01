@@ -23,6 +23,7 @@ const DashboardOverview = () => {
           <Route path="/settings" element={<Profile />} />
           <Route path="/employee/detail" element={<EmployeeDetail />} />
           <Route path="/branches" element={<BranchPage />} />
+          <Route path="/expense/detail" element={<ExpenseDetail />} />
         </Routes>
       </div>
     </>

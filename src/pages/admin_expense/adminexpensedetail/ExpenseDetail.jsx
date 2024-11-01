@@ -5,7 +5,7 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 const ExpenseDetail = () => {
   return (
     <div className='w-full  flex items-center flex-col justify-center'>
-        <div className='w-full h-[100px]  bg-gradient-to-r from-blue-900 to-black'></div>
+   <div className='w-full h-[100px]  bg-gradient-to-r from-gray-200 to-yellow-500'></div>
         <div className='w-full pl-5 relative bottom-8 flex items-end gap-2'>
             <div className='size-28 rounded-full '><img className='rounded-full size-full' src={image} /></div>
             <div className='flex flex-col justify-center'>

@@ -4,6 +4,7 @@ import ViewMore from "../../components/ViewMore";
 import axios from "axios";
 import Pagination from './adminexpensedetail/Pagination';
 import Posts from "./adminexpensedetail/Posts";
+import ExpenseDetail from './adminexpensedetail/ExpenseDetail';
 
 
 
@@ -34,7 +35,7 @@ const OrderTable = () => {
   return (
     <div className="w-full mt-[20px]  flex flex-col items-center justify-center overflow-x-auto">
       <table className="w-full min-w-[50rem] ">
-        <thead className="text-[15px] bg-gray-50">
+        <thead className="text-[15px] bg-gray-100">
           <tr className="text-left rounded-sm">
             <th className="font-medium px-3 py-3">Staff name</th>
             <th className="font-medium px-3 py-3">Expense name</th>
@@ -47,7 +48,27 @@ const OrderTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="text-[14px] font-medium hover:cursor-pointer hover:transition-all hover:duration-500 ">
+          <tr className="text-[14px] border-b hover:border-none font-medium hover:cursor-pointer hover:shadow-md transition-all duration-300 ease-in-out hover:bg-gray-50">
+            <td className="text-[14px] flex gap-2 items-center font-medium px-3 py-3 ">
+              <div className="size-10 rounded-full">
+                <img className="rounded-full size-full" src={image} />
+              </div>
+              <div>Sophia Brown</div>
+            </td>
+
+            <td className="px-3 py-3">Accessories</td>
+            <td className="px-3 py-3">3</td>
+            <td className="px-3 py-3">$320.00</td>
+            <td className="px-3 py-3">Faulty</td>
+            <td className="px-3 py-3">Chevron</td>
+            <td className="px-3 py-3">10/may/2023</td>
+            <td className="px-3 py-3">
+                <ViewMore />
+            </td>
+          </tr>
+
+          <tr className="text-[14px] border-b rounded-lg hover:shadow-md transition-all duration-300 ease-in-out hover:bg-gray-50
+           font-medium hover:cursor-pointer hover:transition-all hover:duration-500 hover:border-none">
             <td className="text-[14px] flex gap-2 items-center font-medium px-3 py-3">
               <div className="size-10 rounded-full">
                 <img className="rounded-full size-full" src={image} />
