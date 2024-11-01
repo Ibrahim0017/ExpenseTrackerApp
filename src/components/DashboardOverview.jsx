@@ -1,10 +1,11 @@
-
+import React from "react";
 import EspenseTrack from "./EspenseTrack";
-import {  Route, Routes } from "react-router-dom";
+import Cartegory from "./Cartegory";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import EmployeePage from "../pages/EmployeePages/EmployeePage";
 import AdminExpensePage from "../pages/admin_expense/AdminExpensePage";
+import Profile from "../pages/Admin Pages/Profile";
 import AdminDashboard from "./AdminDashboard";
-import CreateBranch from "./EmployeeComponents/CreateBranch";
 
 const DashboardOverview = () => {
   return (
@@ -15,7 +16,7 @@ const DashboardOverview = () => {
           <Route path="/expenseTrack" element={<EspenseTrack />} />
           <Route path="/employee" element={<EmployeePage />} />
           <Route path="/expense" element={<AdminExpensePage />} />
-          <Route path="/createbranch" element={<CreateBranch />} />
+          <Route path="/settings" element={<Profile />} />
         </Routes>
       </div>
     </>
