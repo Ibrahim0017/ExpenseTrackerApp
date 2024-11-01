@@ -8,9 +8,11 @@ import Profile from "../pages/Admin Pages/Profile";
 import AdminDashboard from "./AdminDashboard";
 import EmployeeDetail from "../pages/EmployeePages/EmployeeDetail";
 import BranchPage from "../pages/EmployeePages/BranchPage";
+import ExpenseDetail from "../pages/admin_expense/adminexpensedetail/ExpenseDetail";
+import UploadExpense from "../components/UploadExpense"
 
 const DashboardOverview = () => {
-  return (
+  return (  
     <>
       <div className="p-5 mt-16 bg-[#f9f9f9] w-[85%] absolute right-0  gap-4 justify-between">
         <Routes>
