@@ -10,6 +10,7 @@ import File from "./service/File";
 import SignIn from "./service/SignIn";
 import Profile from "./pages/Admin Pages/Profile";
 import EmployeesDashboard from "./pages/EmployeesDashboard/EmployeesDashboard";
+// import NotFound from "./pages/Admin Pages/NotFound";n
 import OtpInput from "./components/EmployeeComponents/OtpInput";
 
 
@@ -31,6 +32,7 @@ function App() {
           {/* <Route path="*" element={<NotFound />} /> */}
         
           <Route path="/admin/*" element={<AdminDashboard />} />
+          {/* <Route path="/employeesdash/*" element={<EmployeesDashboard />} /> */}
           <Route path="/employeesdash/*" element={<EmployeesDashboard />} />
           {/* <Route path="/otp" element={<OtpInput />} /> */}
           <Route path="/signUp" element={<File/>} />
