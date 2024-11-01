@@ -3,7 +3,7 @@ import AdminSignup from "./pages/EmployeePages/AdminSignup";
 import AdminSignin from "./pages/EmployeePages/AdminSignin";
 
 import AdminDashboard from "./pages/Admin Pages/AdminDashboard";
-import NotFound from "./pages/Admin Pages/NotFound";
+// import NotFound from "./pages/Admin Pages/NotFound";n
 import OtpInput from "./components/EmployeeComponents/OtpInput";
 
 
@@ -21,7 +21,7 @@ function App() {
           {/* <Route path="*" element={<NotFound />} /> */}
         
           <Route path="/admin/*" element={<AdminDashboard />} />
-          <Route path="/employeesdash/*" element={<EmployeesDashboard />} />
+          {/* <Route path="/employeesdash/*" element={<EmployeesDashboard />} /> */}
         </Routes>
       </BrowserRouter>
     </>

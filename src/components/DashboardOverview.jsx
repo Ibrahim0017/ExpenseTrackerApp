@@ -4,8 +4,9 @@ import {  Route, Routes } from "react-router-dom";
 import EmployeePage from "../pages/EmployeePages/EmployeePage";
 import AdminExpensePage from "../pages/admin_expense/AdminExpensePage";
 import BranchPage from "../pages/EmployeePages/BranchPage";
-import CreateBranch from "./components/EmployeeComponents/CreateBranch";
-import BranchDetail from "./pages/EmployeePages/BranchDetail";
+import CreateBranch from "../components/EmployeeComponents/CreateBranch";
+import BranchDetail from "../pages/EmployeePages/BranchDetail";
+import EmployeeDetail from "../pages/EmployeePages/EmployeeDetail";
 
 const DashboardOverview = () => {
   return (
@@ -14,6 +15,7 @@ const DashboardOverview = () => {
         <Routes>
           <Route path="/expenseTrack" element={<EspenseTrack />} />
           <Route path="/employee" element={<EmployeePage />} />
+          <Route path="/employeedetail" element={<EmployeeDetail />} />
           <Route path="/branchpage" element={<BranchPage />} />
           <Route path="/expense" element={<AdminExpensePage />} />
           <Route path="/createbranch" element={<CreateBranch />} />

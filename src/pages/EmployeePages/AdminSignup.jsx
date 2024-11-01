@@ -8,6 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addOtpId } from "../../service/userReducer";
+import imageA from '../../assets/2d35b83df65a5b188eed0847f0cabdc5.jpg'
  
 
 const AdminSignup = () => {
@@ -31,7 +32,7 @@ const AdminSignup = () => {
         console.log(res)
         navigate("otpinput/");
         console.log(res.data.data)
-        dispatch(addOtpId.data.data)
+        dispatch(addOtpId(res.data.data))
         
       } catch (error) {
         console.log(error)
@@ -138,7 +139,9 @@ const AdminSignup = () => {
           </div>
         </form>
       </div>
-      <div className="w-full h-full bg-green-500 max-sm:hidden"></div>
+      <div className="w-full h-full max-sm:hidden">
+      <img src={imageA} className="w-full h-full object-cover" />
+      </div>
     </div>
   );
 };

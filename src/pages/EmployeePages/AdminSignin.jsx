@@ -3,6 +3,7 @@ import InputAdmin from "../../components/EmployeeComponents/InputAdmin";
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
+import imageA from '../../assets/713a2f0c10b357e06b85162bdbb9d783.jpg'
 
 const AdminSignin = () => {
   const [visiblePassword, setVisiblePassword] = useState(false);
@@ -64,7 +65,9 @@ const AdminSignin = () => {
           </div>
         </form>
       </div>
-      <div className="w-full h-full bg-green-500 max-sm:hidden"></div>
+      <div className="w-full h-full max-sm:hidden">
+        <img src={imageA} className="w-full h-full object-cover" />
+      </div>
     </div>
   );
 };

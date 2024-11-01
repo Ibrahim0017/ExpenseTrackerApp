@@ -3,6 +3,7 @@ import { IoSearch } from "react-icons/io5";
 import { BsThreeDots } from "react-icons/bs";
 import CreateEmployee from "../../components/EmployeeComponents/CreateEmployee";
 import imagea from "../../assets/WhatsApp Image 2024-09-03 at 10.04.20.jpeg";
+import { Link } from "react-router-dom";
 
 const EmployeePage = () => {
 
@@ -50,7 +51,7 @@ const EmployeePage = () => {
         </div>
         <button
           onClick={handleButtonOpen}
-          className="px-4 py-[10px] border-none bg-blue-700 text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white"
+          className="px-4 py-[10px] border-none bg-gray-800 text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white"
         >
          + Add Employee
         </button>
@@ -71,11 +72,11 @@ const EmployeePage = () => {
             {data.map((value, index) => (
               <tr
                 className={`border border-[#BBBEC8] ${
-                  index % 2 === 0 ? "bg-red-100" : "bg-white"
+                  index % 2 === 0 ? "bg-[#d6d8dd]" : "bg-white"
                 } `}
                 key={value}
               >
-                <td className="px-4  py-3 font-[calibri]">{value.id}</td>
+                <td className="px-4  py-4 font-[calibri]">{value.id}</td>
                 <td className=" py-4 flex  items-center gap-2  ">
                   <div className="size-[45px] rounded-full flex justify-center items-center font-semibold bg-blue-500">
                     {value.image ? (
@@ -85,12 +86,12 @@ const EmployeePage = () => {
                       <p>{value.name.charAt(0)}</p>
                     )}
                   </div>
-                  <p className="font-[calibri] font-medium">
+               <Link to='/admin/employeedetail'>   <p className="font-[calibri] font-medium">
                     {value.name.toUpperCase()}
-                  </p>
+                  </p></Link>
                 </td>
-                <td className=" px-2 py-3 font-[calibri]">{value.email}</td>
-                <td className=" px-5 py-3 font-[calibri]">{value.age}</td>
+                <td className=" px-2 py-4 font-[calibri]">{value.email}</td>
+                <td className=" px-5 py-4 font-[calibri]">{value.age}</td>
                 <td className=" py-4  px-5  font-[calibri]">{value.expense}</td>
                 <td className=" py-4  px-3   cursor-pointer relative">
                   <ButtonComp />
@@ -103,7 +104,7 @@ const EmployeePage = () => {
       </div>
 
       <div
-        className={`bg-bgTrans top-0 justify-center items-center left-0 ${
+        className={`bg-bgTrans top-0 justify-center items-center left-0 w-full h-[100vh] ${
           isOpen ? "flex" : "hidden"
         }  absolute h-[100vh]  w-full`}
       >
@@ -126,7 +127,7 @@ const ButtonComp = () => {
         <BsThreeDots />
       </div>
       {open && (
-        <div className="absolute w-[150px] flex justify-center left-[-60px]  top-14 bg-white border rounded-sm z-20 ">
+        <div className="absolute w-[150px] flex justify-center left-[-120px]  top-14 bg-white border rounded-sm z-20 ">
           <ol className="w-full">
             <li className="w-full py-[7px] text-[14px]  text-center  border-b">
               Re-send Token

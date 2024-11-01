@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { BsThreeDots } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 
 const TableComponent = () => {
   
@@ -7,15 +8,15 @@ const TableComponent = () => {
       {
         id: "12/03/2020",
         expenseName: "Egg",
-        age: 24,
+        age: "Agboju Branch",
         expense: 10,
         email:'uccynnorom@gmail.com'
       },
-      { id: "3/04/2019", expenseName: "Rice", age: 24, expense: 20, email:'uccynnorom@gmail.com' },
-      { id: "3/04/2019", expenseName: "Salary", age: 24, expense: 12, email:'uccynnorom@gmail.com' },
-      { id: "3/04/2019", expenseName: "Uche", age: 24, expense: 50, email:'uccynnorom@gmail.com' },
-      { id: "3/04/2019", expenseName: "Uche", age: 24, expense: 10, email:'uccynnorom@gmail.com' },
-      { id: "3/04/2019", expenseName: "Uche", age: 24, expense: 20, email:'uccynnorom@gmail.com' },
+      { id: "3/04/2019", expenseName: "Rice", age: "Agboju Branch", expense: 20, email:'uccynnorom@gmail.com' },
+      { id: "3/04/2019", expenseName: "Salary", age: "Agboju Branch", expense: 12, email:'uccynnorom@gmail.com' },
+      { id: "3/04/2019", expenseName: "Uche", age: "Agboju Branch", expense: 50, email:'uccynnorom@gmail.com' },
+      { id: "3/04/2019", expenseName: "Uche", age: "Agboju Branch", expense: 10, email:'uccynnorom@gmail.com' },
+      { id: "3/04/2019", expenseName: "Uche", age: "Agboju Branch", expense: 20, email:'uccynnorom@gmail.com' },
     ];
 
 
@@ -26,7 +27,7 @@ const TableComponent = () => {
         <tr className="border border-[#BBBEC8]">
           <th className="px-4 py-3 font-[calibri] text-[17px]">Date Created</th>
           <th className="px-4 py-3 font-[calibri] text-[17px]"> Expense Name</th>
-          <th className="px-4 py-3 font-[calibri] text-[17px]"> Quantity </th>
+          <th className="px-4 py-3 font-[calibri] text-[17px]"> Email </th>
           <th className="px-4 py-3 font-[calibri] text-[17px]">Branch Name</th>
           <th className="px-4 py-3 font-[calibri] text-[17px]">Quantity</th>
           <th className="px-4 py-3 font-[calibri] text-[17px]"> </th>
@@ -36,14 +37,14 @@ const TableComponent = () => {
         {data.map((value, index) => (
           <tr
             className={`border border-[#BBBEC8] ${
-              index % 2 === 0 ? "bg-[#dfe3f0]" : "bg-white"
+              index % 2 === 0 ? "bg-[#d6d8dd]" : "bg-white"
             } `}
             key={value}
           >
-            <td className="px-4  py-3 font-[calibri]">{value.id}</td>
+            <td className="px-4  py-4 font-[calibri]">{value.id}</td>
             <td className=" py-4 px-4 flex  items-center gap-2 ">{value.expenseName}</td>
-            <td className=" px-2 py-3 font-[calibri]">{value.email}</td>
-            <td className=" px-5 py-3 font-[calibri]">{value.age}</td>
+            <td className=" px-2 py-4 font-[calibri]">{value.email}</td>
+            <td className=" px-5 py-4 font-[calibri]">{value.age}</td>
             <td className=" py-4  px-5  font-[calibri]">{value.expense}</td>
             <td className=" py-4  px-3   cursor-pointer relative">
               <ButtonComp />
