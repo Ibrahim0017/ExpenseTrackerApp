@@ -13,6 +13,7 @@ import AdminExpensePage from "./pages/admin_expense/AdminExpensePage";
 import ExpenseDetail from "./pages/admin_expense/adminexpensedetail/ExpenseDetail";
 import Profile from "./pages/Admin Pages/Profile";
 import EmployeesDashboard from "./pages/EmployeesDashboard/EmployeesDashboard";
+import OtpInput from "./components/EmployeeComponents/OtpInput";
 
 function App() {
   return (
@@ -25,11 +26,12 @@ function App() {
           <Route path="/adminsignin" element={<AdminSignin />} />
 
           <Route path="*" element={<NotFound />} />
-          <Route path="/branchpage" element={<BranchPage />} />
+          {/* <Route path="/branchpage" element={<BranchPage />} /> */}
           <Route path="/createbranch" element={<CreateBranch />} />
           <Route path="/branchdetail" element={<BranchDetail />} />
           <Route path="/admin/*" element={<AdminDashboard />} />
           <Route path="/employeesdash/*" element={<EmployeesDashboard />} />
+          {/* <Route path="/otp" element={<OtpInput />} /> */}
         </Routes>
       </BrowserRouter>
     </>

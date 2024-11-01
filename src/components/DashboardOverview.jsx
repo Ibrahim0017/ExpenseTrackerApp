@@ -5,12 +5,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import EmployeePage from "../pages/EmployeePages/EmployeePage";
 import AdminExpensePage from "../pages/admin_expense/AdminExpensePage";
 import Profile from "../pages/Admin Pages/Profile";
+import AdminDashboard from "./AdminDashboard";
 
 const DashboardOverview = () => {
   return (
     <>
       <div className="p-5 mt-16 bg-[#f9f9f9] w-[85%] absolute right-0  gap-4 justify-between">
         <Routes>
+          <Route path="/admin_dashboard" element={<AdminDashboard />} />
           <Route path="/expenseTrack" element={<EspenseTrack />} />
           <Route path="/employee" element={<EmployeePage />} />
           <Route path="/expense" element={<AdminExpensePage />} />
