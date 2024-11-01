@@ -46,7 +46,7 @@ const Header = () => {
           <div className='text-white text-[15px]'>
             <LuBellRing />
           </div>
-          <div className='bg-green-400 rounded-sm p-1 text-[10px] text-white'>2 New</div>
+          <div className='bg-gradient-to-r from-green-400 to-green-700 rounded-sm p-1 text-[10px] text-white'>2 New</div>
         </div>
       </div>
 
