@@ -30,18 +30,19 @@ const OrderTable = () => {
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+    
   return (
-    <div className="w-full mt-[20px] flex flex-col items-center justify-center">
-      <table className="min-w-[60rem]">
+    <div className="w-full mt-[20px]  flex flex-col items-center justify-center overflow-x-auto">
+      <table className="w-full min-w-[50rem] ">
         <thead className="text-[15px] bg-gray-50">
           <tr className="text-left rounded-sm">
             <th className="font-medium px-3 py-3">Staff name</th>
             <th className="font-medium px-3 py-3">Expense name</th>
             <th className="font-medium px-3 py-3">Quantity</th>
             <th className="font-medium px-3 py-3">Price</th>
-            <th className="font-medium px-3 py-3">Reason</th>
+            <th className="font-medium px-3 py-3">Reason for Expense</th>
             <th className="font-medium px-3 py-3">Branch </th>
-            <th className="font-medium px-3 py-3">Date Added</th>
+            <th className="font-medium px-3 py-3">Expense Date</th>
             <th className="font-medium px-3 py-3"></th>
           </tr>
         </thead>

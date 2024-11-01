@@ -10,8 +10,7 @@ import BranchPage from "./pages/EmployeePages/BranchPage";
 import CreateBranch from "./components/EmployeeComponents/CreateBranch";
 import BranchDetail from "./pages/EmployeePages/BranchDetail";
 import File from "./service/File";
-import AdminExpensePage from "./pages/admin_expense/AdminExpensePage";
-import ExpenseDetail from "./pages/admin_expense/adminexpensedetail/ExpenseDetail";
+import SignIn from "./service/SignIn";
 
 function App() {
   return (
@@ -26,6 +25,8 @@ function App() {
           <Route path="/createbranch" element={<CreateBranch />} />
           <Route path="/branchdetail" element={<BranchDetail />} />
           <Route path="/admin/*" element={<AdminDashboard />} />
+          <Route path="/signUp" element={<File/>} />
+          <Route path="/signIn" element={<SignIn/>} />
         </Routes>
       </BrowserRouter>
     </>
