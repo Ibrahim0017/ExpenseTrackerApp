@@ -36,7 +36,7 @@ const TableComponent = () => {
         {data.map((value, index) => (
           <tr
             className={`border border-[#BBBEC8] ${
-              index % 2 === 0 ? "bg-red-100" : "bg-white"
+              index % 2 === 0 ? "bg-[#dfe3f0]" : "bg-white"
             } `}
             key={value}
           >

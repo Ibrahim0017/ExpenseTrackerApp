@@ -4,7 +4,7 @@ import { TbLetterX } from "react-icons/tb";
 const CreateEmployee = ({ handleButtonOpen }) => {
   return (
     <>
-      <div className="w-[60%] bg-white border flex flex-col items-center py-6">
+      <div className="w-[60%] h-[450px] bg-white border flex flex-col items-center pt-6">
         <div className="w-full flex justify-center pb-3  border-b border-[#BBBEC8] ">
           <div className="w-[95%]  flex justify-between">
             <div className="text-[20px] font-semibold">Add New Employee</div>
@@ -70,16 +70,18 @@ const CreateEmployee = ({ handleButtonOpen }) => {
             <div className="w-full">
               <p>Branch</p>
               <div>
-                <input
-                  type="text"
-                  className="py-2 mt-1 focus:outline-[#BBBEC8] rounded-sm px-2 w-full border"
-                />
+                <select className="py-2 mt-1 focus:outline-[#BBBEC8] rounded-sm px-2 w-full border">
+                  <option selected disabled>~select branch~</option>
+                  <option>Rainfall Branch</option>
+                  <option>Coup Branch</option>
+                  <option>Gaol</option>
+                </select>
               </div>
             </div>
           </div>
           <div className="mt-3">
-            <button className="px-4 py-[10px] border-none bg-blue-700  text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white">
-              Add Employee
+            <button className="px-4 py-[10px] border-none bg-gray-800  text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white">
+             + Add Employee
             </button>
           </div>
         </form>

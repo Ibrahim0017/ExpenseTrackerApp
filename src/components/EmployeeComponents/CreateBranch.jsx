@@ -30,8 +30,8 @@ const CreateBranch = ({handleButtonOpen}) => {
                     </div>
                 </div>
             </div>
-            <button className="px-4 py-[10px] border-none bg-blue-700  text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white mt-4">
-              Create Branch
+            <button className="px-4 py-[10px] border-none bg-gray-800  text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white mt-4">
+               Create Branch
             </button>
         </form>
     </div>

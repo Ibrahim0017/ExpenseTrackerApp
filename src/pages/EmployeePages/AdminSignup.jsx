@@ -4,17 +4,39 @@ import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
 import useForm from "../../handler/useForm";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addOtpId } from "../../service/userReducer";
+ 
 
 const AdminSignup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { handleChange, values, errors } = useForm();
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+
 
   console.log(errors);
   console.log(values);
 
-  const handleSubmit = () => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setIsLoading(true);
+
+    setTimeout(async () => {
+      try { 
+        let res = await axios.post("https://expense-tracker-ruug.onrender.com/api/organisation/register", values)
+        setIsLoading(res.values)
+        console.log(res)
+        navigate("otpinput/");
+        console.log(res.data.data)
+        dispatch(addOtpId.data.data)
+        
+      } catch (error) {
+        console.log(error)
+      }
+    })
   };
   console.log(isLoading);
 
@@ -25,6 +47,8 @@ const AdminSignup = () => {
     setOpen(!open);
     setVisiblePassword(!visiblePassword);
   };
+
+ 
 
   return (
     <div className="w-full flex justify-center items-center h-[100vh] ">
@@ -59,7 +83,7 @@ const AdminSignup = () => {
               placeholder="Enter your phone-number"
               type="text"
               handleChange={handleChange}
-              name="phoneNumber"
+              name="phone"
               error={errors?.phoneNumber}
             />
             <InputAdmin
@@ -78,6 +102,7 @@ const AdminSignup = () => {
               <div className="w-full relative">
                 <input
                   onChange={handleChange}
+                  
                   className="pl-[15px] w-full py-[9px] focus:outline-[#BBBEC8] font-[calibri] rounded-md border border-[#BBBEC8] mt-1"
                   type={visiblePassword ? "text" : "password"}
                   placeholder="Enter your password"

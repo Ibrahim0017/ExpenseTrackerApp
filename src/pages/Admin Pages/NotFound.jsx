@@ -14,7 +14,7 @@ const NotFound = () => {
         </div>   
     </div>
 </section>
-<Link to="/admin"> <button to='./Admin.jsx' className='p-3 bg-blue-600 rounded-md w-[100px] text-white' >Go home</button> </Link>
+<Link to="/adminsignup"> <button to='./Admin.jsx' className='p-3 bg-blue-600 rounded-md w-[100px] text-white' >Go home</button> </Link>
     </div>
   )
 }

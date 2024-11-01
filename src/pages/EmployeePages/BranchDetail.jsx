@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import CreateEmployee from '../../components/EmployeeComponents/CreateEmployee'
 import TableComponent from '../../components/EmployeeComponents/TableComponent'
 import EmployeeTable from '../../components/EmployeeComponents/EmployeeTable'
+import BranchDescription from '../../components/EmployeeComponents/BranchDescription'
 
 const BranchDetail = () => {
 
@@ -29,10 +29,10 @@ const BranchDetail = () => {
 
   return (
         <>
-    <div className='w-full h-[150px] bg-blue-700 rounded-t-md'></div>
-    <div className='w-full flex justify-center'>
-    <div className='w-[90%]'>
-        <div className='size-[150px] flex items-center justify-center border rounded-full mt-[-60px] text-[30px] font-medium text-white bg-blue-700'>AB</div>
+    <div className='w-full h-[150px] bg-gray-800 rounded-t-md'></div>
+    <div className='w-full flex justify-center bg-white h-[100vh]'>
+    <div className='w-[90%] '>
+        <div className='size-[150px] flex items-center justify-center border rounded-full mt-[-60px] text-[30px] font-medium text-white bg-gray-800'>AB</div>
         <div>
             <p className='text-[25px] font-semibold'>Agboju Branch</p>
             <p className='text-[15px] '>No 44, old Ojo Road Agboju Lagos</p>
@@ -53,7 +53,7 @@ const BranchDetail = () => {
                 </div>
         </div>
         
-        {toggle === 'Detail' && <CreateEmployee />}
+        {toggle === 'Detail' && <BranchDescription />}
         {toggle === 'Employee' && <EmployeeTable/>}
         {toggle === 'Expense' && <TableComponent />}
         

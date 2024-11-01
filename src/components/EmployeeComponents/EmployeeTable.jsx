@@ -38,16 +38,16 @@ const EmployeeTable = () => {
             {data.map((value, index) => (
               <tr
                 className={`border border-[#BBBEC8] ${
-                  index % 2 === 0 ? "bg-red-100" : "bg-white"
+                  index % 2 === 0 ? "bg-[#dfe3f0]" : "bg-white"
                 } `}
                 key={value}
               >
                 <td className="px-4  py-4 font-[calibri]">{value.id}</td>
                 <td className=" py-4 flex px-4 items-center gap-2  ">
-                  <div className="size-[45px] rounded-full flex justify-center items-center font-semibold bg-blue-500">
+                  <div className="size-[35px] rounded-full flex justify-center items-center font-semibold bg-gray-500">
                     {value.image ? (
                       <img
-                        className="size-[45px] flex justify-center items-center rounded-full bg-blue-400"
+                        className="size-[100%] flex justify-center items-center rounded-full bg-blue-400"
                         src={value.image} />) : (
                       <p>{value.name.charAt(0)}</p>
                     )}
