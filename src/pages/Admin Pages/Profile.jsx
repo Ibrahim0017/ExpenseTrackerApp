@@ -8,7 +8,7 @@ const Profile = () => {
 
   // Function to handle image upload
   const handleImageUpload = (event) => {
-    event.preventDefault(); // Corrected preventDefaults
+    event.preventDefault();
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -25,15 +25,15 @@ const Profile = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex flex-col items-center">
-          <div className="relative w-24 h-24 rounded-full overflow-hidden">
+    <div className="max-w-3xl mx-auto bg-white p-4 md:p-8 rounded-lg shadow-md">
+      <div className="flex flex-col md:flex-row items-center md:justify-between mb-6">
+        <div className="flex flex-col items-center mb-4 md:mb-0">
+          <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden">
             <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
           </div>
           <div className="flex space-x-2 mt-2">
             {/* Image upload button */}
-            <label htmlFor="upload-button" className="bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer">
+            <label htmlFor="upload-button" className="bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer text-sm md:text-base">
               Upload New
             </label>
             <input
@@ -45,7 +45,7 @@ const Profile = () => {
             />
             {/* Delete image button */}
             <button
-              className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg"
+              className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm md:text-base"
               onClick={handleDeleteImage}
             >
               Delete Avatar
@@ -54,7 +54,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-gray-700 font-medium">First Name <span className="text-red-500">*</span></label>
           <input type="text" placeholder="First name" className="w-full border-gray-300 rounded-lg p-2 mt-1" />
@@ -94,11 +94,11 @@ const Profile = () => {
           <label className="block text-gray-700 font-medium">ID</label>
           <input type="text" placeholder="1559 000 7788 8DER" className="w-full border-gray-300 bg-gray-100 rounded-lg p-2 mt-1" disabled />
         </div>
-        <div className="col-span-2">
+        <div className="col-span-1 sm:col-span-2">
           <label className="block text-gray-700 font-medium">Residential Address</label>
           <input type="text" placeholder="Ib street orogun ibadan" className="w-full border-gray-300 rounded-lg p-2 mt-1" />
         </div>
-        <div className="col-span-2">
+        <div className="col-span-1 sm:col-span-2">
           <button className="bg-blue-600 text-white w-full md:w-auto px-4 py-2 mt-4 rounded-lg hover:bg-blue-700 transition-colors">
             Save Changes
           </button>

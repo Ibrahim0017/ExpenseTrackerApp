@@ -11,6 +11,9 @@ export default {
         InfoGrid: "repeat(auto-fill, minmax(200px, 1fr))",
         mediaGrid: "repeat(auto-fill, minmax(250px, 1fr))",
       },
+      textclamp: {
+        reponsiveText: "clamp(12px,2vw,15px)"
+      },
     },
   },
   
