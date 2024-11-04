@@ -35,17 +35,17 @@ const BranchPage = () => {
         <div className='w-[95%]'>
         <div className="w-full flex justify-between items-center py-5 ">
         <div className=" flex ">
-          <p className="text-2xl font-semibold flex gap-2 items-center"> <p><IoIosGitBranch /></p>Branches </p>
+          <p className="text-2xl font-semibold flex gap-2 items-center max-md:text-xl"> <p><IoIosGitBranch /></p>Branches </p>
         </div>
         <div className='flex gap-5 items-center'>
         <div className="relative">
-            <p className="absolute left-3 top-3 text-[#BBBEC8]">
+            <p className="absolute left-3 top-3 max-md:cursor-pointer text-[#BBBEC8] max-md:left-[-10px] max-md:top-[-5px] max-md:text-xl">
               <IoSearch />
             </p>
             <input
               type="text"
               placeholder="search branch"
-              className=" px-[30px] w-[100%] py-2   border-[#BBBEC8] border bg-[#ffff] focus:outline-[#BBBEC8] text-[14px] rounded-sm"
+              className=" px-[30px] w-[100%] py-2   border-[#BBBEC8] border bg-[#ffff] focus:outline-[#BBBEC8] text-[14px] rounded-sm max-md:hidden"
             />
           </div>
         <button onClick={handleButtonOpen} className="px-4 py-[10px] border-none bg-gray-800 text-[17px] tetx-white font-semibold font-[calibri]  rounded-md text-white">+ Add Branch </button>

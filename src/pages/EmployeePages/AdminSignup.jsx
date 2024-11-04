@@ -123,7 +123,7 @@ const AdminSignup = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3 bg-blue-700 mt-3 font-medium text-white rounded-md"
+            className="w-full py-3 bg-gray-800 mt-3 font-medium text-white rounded-md"
           >
             {isLoading ? "Loading..." : "Create Account"}
           </button>
