@@ -5,11 +5,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const OtpInput = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const [otp, setOtp] = useState(new Array(6).fill(""));
   const [focusIndex, setFocusIndex] = useState(0);
   const navigate = useNavigate();
   // const dispatch = useDispatch();
-  const id = useSelector((state) => state.user_reducer.otpId);
+  const id = useSelector((state) => state.user_reducer?.otpId);
   console.log(id);
 
   const handleChange = (e, index) => {
@@ -44,8 +45,9 @@ const OtpInput = () => {
 
   const handleSubmitOtp = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
-    const otpHolder = parseInt(otp?.join(""));
+    const otpHolder = otp?.join("")
     console.log(otpHolder)
 
     try {
@@ -53,8 +55,8 @@ const OtpInput = () => {
         `https://expense-tracker-ruug.onrender.com/api/organisation/${id}`,
         { otp: otpHolder }
       );
-      setOtp(res.data.data);
-      navigate("adminsignin/");
+      console.log(res)
+      navigate("/adminsignin/");
       console.log(otpHolder);
     } catch (error) {
       console.log(error);
@@ -89,9 +91,10 @@ const OtpInput = () => {
 
           <button
             type="submit"
-            className="mt-4 w-[150px] px-4 py-[10px] border-none bg-gray-800  text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white"
+            disabled={isLoading}
+            className="w-[80%] py-3 bg-gray-800 mt-3 font-medium text-white rounded-md"
           >
-            Submit
+            {isLoading ? "Loading..." : "Submit"}
           </button>
         </div>
       </form>

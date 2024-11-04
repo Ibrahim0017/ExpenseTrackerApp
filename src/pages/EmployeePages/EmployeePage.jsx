@@ -25,7 +25,7 @@ const EmployeePage = () => {
       expense: 10,
       email:'uccynnorom@gmail.com'
     },
-    { id: "3/04/2019", name: "Debofrah Iwuanyawu", age: 24, expense: 20, email:'uccynnorom@gmail.com' },
+    { id: "3/04/2019", name: "Deborah Iwuanyawu", age: 24, expense: 20, email:'uccynnorom@gmail.com' },
     { id: "3/04/2019", name: "Uche", age: 24, expense: 12, email:'uccynnorom@gmail.com' },
     { id: "3/04/2019", name: "Uche", age: 24, expense: 50, email:'uccynnorom@gmail.com' },
     { id: "3/04/2019", name: "Uche", age: 24, expense: 10, email:'uccynnorom@gmail.com' },
@@ -34,18 +34,18 @@ const EmployeePage = () => {
 
   return (
     <>
-      <div className="w-full bg bg-white py-3 px-4">
+      <div className="w-full bg bg-white py-3 px-4 ">
       <div className="w-full flex justify-between items-center ">
         <div className="flex gap-5 items-center">
-          <p className="text-2xl font-semibold">Employees</p>
+          <p className="text-2xl font-semibold max-md:text-xl">Employees</p>
           <div className="relative">
-            <p className="absolute left-3 top-3 text-[#BBBEC8]">
+            <p className="absolute left-3 top-3 text-[#BBBEC8] max-md:top-[-6px] max-md:left-0 max-md:text-xl">
               <IoSearch />
             </p>
             <input
               type="text"
               placeholder="search employee"
-              className=" px-[40px] py-2   border-[#BBBEC8] border bg-[#ffff] focus:outline-[#BBBEC8] text-[14px] rounded-sm"
+              className=" px-[40px] py-2   border-[#BBBEC8] border bg-[#ffff] focus:outline-[#BBBEC8] text-[14px] rounded-sm max-md:hidden"
             />
           </div>
         </div>
@@ -76,23 +76,25 @@ const EmployeePage = () => {
                 } `}
                 key={value}
               >
-                <td className="px-4  py-4 font-[calibri]">{value.id}</td>
-                <td className=" py-4 flex  items-center gap-2  ">
-                  <div className="size-[45px] rounded-full flex justify-center items-center font-semibold bg-blue-500">
+                <td className="px-4  py-4 font-[calibri] max-md:text-[15px]">{value.id}</td>
+                <td className=" py-4 px-4  ">
+                 <div className='w-full flex gap-2 items-center'>
+                 <div className="size-[45px] max-md:size-[30px] rounded-full flex justify-center items-center font-semibold bg-blue-500">
                     {value.image ? (
                       <img
-                        className="size-[45px] flex justify-center items-center rounded-full bg-blue-400"
+                        className="size-[45px] max-md:size-[30px] flex justify-center items-center rounded-full bg-blue-400"
                         src={value.image} />) : (
                       <p>{value.name.charAt(0)}</p>
                     )}
                   </div>
-               <Link to='/admin/employeedetail'>   <p className="font-[calibri] font-medium">
+               <Link to='/admin/employeedetail'>   <p className="w-full font-[calibri] font-medium max-md:text-[15px]">
                     {value.name.toUpperCase()}
                   </p></Link>
+                 </div>
                 </td>
-                <td className=" px-2 py-4 font-[calibri]">{value.email}</td>
-                <td className=" px-5 py-4 font-[calibri]">{value.age}</td>
-                <td className=" py-4  px-5  font-[calibri]">{value.expense}</td>
+                <td className=" px-2 py-4 font-[calibri] max-md:text-[15px]">{value.email}</td>
+                <td className=" px-5 py-4 font-[calibri] max-md:text-[15px]">{value.age}</td>
+                <td className=" py-4  px-5  font-[calibri] max-md:text-[15px]">{value.expense}</td>
                 <td className=" py-4  px-3   cursor-pointer relative">
                   <ButtonComp />
                 </td>
@@ -104,7 +106,7 @@ const EmployeePage = () => {
       </div>
 
       <div
-        className={`bg-bgTrans top-0 justify-center items-center left-0 w-full h-[100vh] ${
+        className={`bg-bgTrans justify-center items-center w-full max-md:h-full ${
           isOpen ? "flex" : "hidden"
         }  absolute h-[100vh]  w-full`}
       >

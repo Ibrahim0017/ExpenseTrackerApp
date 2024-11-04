@@ -12,7 +12,6 @@ import ExpenseDetail from "../pages/admin_expense/adminexpensedetail/ExpenseDeta
 import UploadExpense from "../components/UploadExpense";
 import CreateBranch from "../components/EmployeeComponents/CreateBranch";
 import BranchDetail from "../pages/EmployeePages/BranchDetail";
-import EmployeeDetail from "../pages/EmployeePages/EmployeeDetail";
 
 const DashboardOverview = () => {
   return (
