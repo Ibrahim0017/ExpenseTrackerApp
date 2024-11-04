@@ -8,7 +8,7 @@ const Profile = () => {
 
   // Function to handle image upload
   const handleImageUpload = (event) => {
-    event.preventDefault(); // Corrected preventDefault
+    event.preventDefault(); // Corrected preventDefaults
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
