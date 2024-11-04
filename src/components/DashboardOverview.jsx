@@ -4,14 +4,13 @@ import Cartegory from "./Cartegory";
 import { Route, Routes } from "react-router-dom";
 import EmployeePage from "../pages/EmployeePages/EmployeePage";
 import AdminExpensePage from "../pages/admin_expense/AdminExpensePage";
-import Profile from "../pages/Admin Pages/Profile";
 import AdminDashboard from "./AdminDashboard";
 import EmployeeDetail from "../pages/EmployeePages/EmployeeDetail";
 import BranchPage from "../pages/EmployeePages/BranchPage";
 import ExpenseDetail from "../pages/admin_expense/adminexpensedetail/ExpenseDetail";
-import UploadExpense from "../components/UploadExpense";
 import CreateBranch from "../components/EmployeeComponents/CreateBranch";
 import BranchDetail from "../pages/EmployeePages/BranchDetail";
+import Profile from "../pages/Admin Pages/Profile";
 
 const DashboardOverview = () => {
   return (
@@ -27,6 +26,8 @@ const DashboardOverview = () => {
           <Route path="/createbranch" element={<CreateBranch />} />
           <Route path="/branchdetail" element={<BranchDetail />} />
           <Route path="/branches" element={<BranchPage />} />
+          <Route path="/expense/detail" element={<ExpenseDetail />} />
+          <Route path="/settings" element={<Profile />} />
         </Routes>
       </div>
     </>
