@@ -6,12 +6,18 @@ import { Link } from "react-router-dom";
 import imageA from '../../assets/713a2f0c10b357e06b85162bdbb9d783.jpg'
 
 const AdminSignin = () => {
+  const [submit, setSubmit] = useState(false)
   const [visiblePassword, setVisiblePassword] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
     setVisiblePassword(!visiblePassword);
   };
+
+  const handleSubmitSignin = () =>{
+
+    const res = await axios.patch('')
+  }
 
   return (
     <div className="w-full flex justify-center items-center h-[100vh] ">
