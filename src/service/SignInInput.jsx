@@ -11,7 +11,7 @@ const SignInInput = () => {
   }
 
   return (
-    <div className='w-[50%] h-full py-[30px] outline-none gap-6 flex flex-col items-center justify-around'>
+    <div className='w-[50%] h-full py-[30px] outline-none gap-6 flex flex-col items-center justify-around sm:hidden'>
            <div className='w-[76%]'>
           <div className='font-semibold'>eXpenseTracker</div>
           </div>
