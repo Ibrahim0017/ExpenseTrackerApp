@@ -4,25 +4,52 @@ import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
 import imageA from '../../assets/713a2f0c10b357e06b85162bdbb9d783.jpg'
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { UserLogin } from "../../service/userReducer";
+import useForm from "../../handler/useForm";
 
 const AdminSignin = () => {
-  const [submit, setSubmit] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const { handleChange, values, errors } = useForm();
   const [visiblePassword, setVisiblePassword] = useState(false);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+
   const handleOpen = () => {
     setOpen(!open);
     setVisiblePassword(!visiblePassword);
   };
+  console.log("dd" ,values);
+  console.log(errors);
 
-  const handleSubmitSignin = () =>{
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
 
-    const res = await axios.patch('')
-  }
+    setTimeout( async() => {
+      try { 
+        let res = await axios.post("https://expense-tracker-ruug.onrender.com/api/organisation/login", values)
+        setIsLoading(res.values)
+        console.log(res)
+      
+        navigate("/admin/admin_dashboard");
+        dispatch(UserLogin(res.data.data))
+        setIsLoading(false)
+        
+      } catch (error) {
+        console.log("error", error)
+        setIsLoading(false)
+      }
+    })
+  };
 
   return (
     <div className="w-full flex justify-center items-center h-[100vh] ">
       <div className="w-full flex justify-center items-center">
-        <form className="w-[70%]">
+        <form className="w-[70%]" onSubmit={handleSubmit}>
           <p>Logo</p>
           <h1 className="font-bold text-[30px] font-[calibri]">
             Welcome to DIU
@@ -35,6 +62,8 @@ const AdminSignin = () => {
               Title="Email"
               placeholder="Enter your email-address"
               type="email"
+              name="email"
+              handleChange={handleChange}
               required
             />
             <div className="mt-2 ">
@@ -46,7 +75,8 @@ const AdminSignin = () => {
                   className="pl-[15px] w-full py-[9px] focus:outline-[#BBBEC8] font-[calibri] rounded-md border border-[#BBBEC8] mt-1"
                   type={visiblePassword ? "text" : "password"}
                   placeholder="Enter your password"
-                  name="name"
+                  name="password"
+                  onChange={handleChange}
                   required
                 />
                 <span
@@ -58,8 +88,12 @@ const AdminSignin = () => {
               </div>
             </div>
           </div>
-          <button className="w-full py-3 bg-blue-700 mt-3 font-medium text-white rounded-md">
-            Create Account
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full py-3 bg-gray-800 mt-3 font-medium text-white rounded-md"
+          >
+            {isLoading ? "Loading..." : "Login"}
           </button>
           <div className="flex gap-2 items-center mt-2">
             <p className="text-[14px] text-[#a0a2a8] ">
