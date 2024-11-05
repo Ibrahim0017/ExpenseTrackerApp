@@ -11,6 +11,25 @@ export default {
         InfoGrid: "repeat(auto-fill, minmax(200px, 1fr))",
         mediaGrid: "repeat(auto-fill, minmax(250px, 1fr))",
       },
+      textclamp: {
+        reponsiveText: "clamp(12px,2vw,15px)"
+      },
+      screens: {
+        'sm': '640px',
+        // => @media (min-width: 640px) { ... }
+  
+        'md': '768px',
+        // => @media (min-width: 768px) { ... }
+  
+        'lg': '1024px',
+        // => @media (min-width: 1024px) { ... }
+  
+        'xl': '1280px',
+        // => @media (min-width: 1280px) { ... }
+  
+        '2xl': '1536px',
+        // => @media (min-width: 1536px) { ... }
+      }
     },
   },
   

@@ -1,12 +1,12 @@
 import React from 'react'
-import logo from '../assets/react.svg'
+import logo from '../assets/trackfunds-high-resolution-logo-transparent.png'
 
 const LogoDiv = () => {
   return (
     <div className='w-full h-[10%] bg-gray-900 border-grey border flex justify-center items-center '>
 
-        <div className='' >
-            <img src={logo}/>
+        <div className='w-[100px] h-[25px] ' >
+            <img className='w-full h-[100%]' src={logo}/>
         </div>
     </div>
   )
