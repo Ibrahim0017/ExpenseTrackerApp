@@ -6,7 +6,7 @@ const SignIn = () => {
   return (
     <div className='w-full h-[100svh] flex flex-row-reverse'>
         <SignInInput/>
-        <Slider/>
+        <Slider className=' sm-hidden'/>
     </div>
   )
 
