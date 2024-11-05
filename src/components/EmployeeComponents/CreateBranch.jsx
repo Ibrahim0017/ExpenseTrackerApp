@@ -3,7 +3,8 @@ import { TbLetterX } from "react-icons/tb";
 
 const CreateBranch = ({handleButtonOpen}) => {
   return (
-    <div className='w-[50%]  flex justify-center flex-col items-center py-2 bg-white h-[300px] max-sm:w-[80%]'>
+    <div className="fixed inset-0 h-screen max-md:py-2 max-md:px-6 bg-bgTrans flex items-center justify-center max-md:z-50 ">
+      <div className='w-[50%]  flex justify-center flex-col items-center py-2 bg-white h-[300px] max-md:w-[100%]'>
         <div className='w-full flex justify-center pb-3 border-b border-[#BBBEC8] '>
             <div className="w-[95%]  flex justify-between">
             <div className="text-[20px] font-semibold">Add New Branch</div>
@@ -34,6 +35,7 @@ const CreateBranch = ({handleButtonOpen}) => {
                Create Branch
             </button>
         </form>
+    </div>
     </div>
   )
 }
