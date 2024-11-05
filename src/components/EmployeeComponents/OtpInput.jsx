@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { addOtpId } from "../../service/userReducer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert'
 
 const OtpInput = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -55,11 +56,13 @@ const OtpInput = () => {
         `https://expense-tracker-ruug.onrender.com/api/organisation/${id}`,
         { otp: otpHolder }
       );
+      swal("Successsful!", "OTP successful", "success");
       console.log(res)
       navigate("/adminsignin/");
       console.log(otpHolder);
     } catch (error) {
       console.log(error);
+      swal("Failed!", "Incorrect OTP", "error");
     }
   };
 
