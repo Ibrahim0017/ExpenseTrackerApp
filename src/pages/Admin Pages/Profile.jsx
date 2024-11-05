@@ -19,10 +19,7 @@ const Profile = () => {
     }
   };
 
-  // Function to delete the uploaded image
-  const handleDeleteImage = () => {
-    setProfileImage("https://via.placeholder.com/150");
-  };
+  
 
   return (
     <div className="max-w-3xl mx-auto bg-white p-4 md:p-8 rounded-lg shadow-md">
@@ -43,25 +40,14 @@ const Profile = () => {
               accept="image/*"
               onChange={handleImageUpload}
             />
-            {/* Delete image button */}
-            <button
-              className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm md:text-base"
-              onClick={handleDeleteImage}
-            >
-              Delete Avatar
-            </button>
           </div>
         </div>
       </div>
 
       <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-gray-700 font-medium">First Name <span className="text-red-500">*</span></label>
+          <label className="block text-gray-700 font-medium">Full Name <span className="text-red-500">*</span></label>
           <input type="text" placeholder="First name" className="w-full border-gray-300 rounded-lg p-2 mt-1" />
-        </div>
-        <div>
-          <label className="block text-gray-700 font-medium">Last Name <span className="text-red-500">*</span></label>
-          <input type="text" placeholder="Last name" className="w-full border-gray-300 rounded-lg p-2 mt-1" />
         </div>
         <div>
           <label className="block text-gray-700 font-medium">Email</label>
@@ -76,23 +62,6 @@ const Profile = () => {
             onChange={setValue}
             className="w-full border-gray-300 rounded-lg p-2 mt-1"
           />
-        </div>
-        <div>
-          <label className="block text-gray-700 font-medium">Gender</label>
-          <div className="flex items-center space-x-4 mt-1">
-            <label className="flex items-center space-x-2">
-              <input type="radio" name="gender" className="text-blue-500" />
-              <span>Male</span>
-            </label>
-            <label className="flex items-center space-x-2">
-              <input type="radio" name="gender" className="text-blue-500" />
-              <span>Female</span>
-            </label>
-          </div>
-        </div>
-        <div>
-          <label className="block text-gray-700 font-medium">ID</label>
-          <input type="text" placeholder="1559 000 7788 8DER" className="w-full border-gray-300 bg-gray-100 rounded-lg p-2 mt-1" disabled />
         </div>
         <div className="col-span-1 sm:col-span-2">
           <label className="block text-gray-700 font-medium">Residential Address</label>
