@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from '../service/userReducer'
+import { employeeRTK } from "./employee/EmployeeRTK";
 import {
   persistReducer,
   FLUSH,
@@ -21,7 +22,8 @@ const user_reducer = persistReducer(persistConfig, userReducer);
 
 const store = configureStore({
     reducer: {
-        user_reducer
+        user_reducer,
+        [employeeRTK.reducerPath]: employeeRTK.reducer
     },
 
   middleware: (getDefaultMiddleware) =>
@@ -29,7 +31,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(employeeRTK.middleware)
 });
 
 export default store;

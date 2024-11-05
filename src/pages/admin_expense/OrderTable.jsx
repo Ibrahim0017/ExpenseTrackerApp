@@ -9,33 +9,33 @@ import ExpenseDetail from './adminexpensedetail/ExpenseDetail';
 
 
 const OrderTable = () => {
-    const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(10);
+    // const [posts, setPosts] = useState([]);
+    // const [loading, setLoading] = useState(false);
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [postsPerPage] = useState(10);
 
-    useEffect(() => {
-        const fetchPosts = async () => {
-            setLoading(true);
-            const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-            setPosts(res.data);
-            setLoading(false);
-        }
+    // useEffect(() => {
+    //     const fetchPosts = async () => {
+    //         setLoading(true);
+    //         const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+    //         setPosts(res.data);
+    //         setLoading(false);
+    //     }
 
-        fetchPosts();
-    }, []);
+    //     fetchPosts();
+    // }, []);
 
-    const indexOfLastPost = currentPage + postsPerPage
-    const indexOfFirstPost = indexOfLastPost - postsPerPage
-    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
+    // const indexOfLastPost = currentPage + postsPerPage
+    // const indexOfFirstPost = indexOfLastPost - postsPerPage
+    // const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    // const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     
   return (
-    <div className="w-full mt-[20px]  flex flex-col items-center justify-center overflow-x-auto">
-      <table className="w-full min-w-[50rem] ">
-        <thead className="text-[15px] bg-gray-100">
+    <div className="w-full mt-[20px] overflow-x-auto">
+      <table className="w-full min-w-[55rem]">
+        <thead className="w-full text-[15px] bg-gray-100">
           <tr className="text-left rounded-sm">
             <th className="font-medium px-3 py-3">Staff name</th>
             <th className="font-medium px-3 py-3">Expense name</th>
@@ -67,22 +67,22 @@ const OrderTable = () => {
             </td>
           </tr>
 
-          <tr className="text-[14px] border-b rounded-lg hover:shadow-md transition-all duration-300 ease-in-out hover:bg-gray-50
+          <tr className="sm:text-[14px] border-b rounded-lg hover:shadow-md transition-all duration-300 ease-in-out hover:bg-gray-50
            font-medium hover:cursor-pointer hover:transition-all hover:duration-500 hover:border-none">
             <td className="text-[14px] flex gap-2 items-center font-medium px-3 py-3">
               <div className="size-10 rounded-full">
                 <img className="rounded-full size-full" src={image} />
               </div>
-              <div>Sophia Brown</div>
+              <div>Vodka Woods</div>
             </td>
 
-            <td className="px-3 py-3">Accessories</td>
-            <td className="px-3 py-3">3</td>
-            <td className="px-3 py-3">$320.00</td>
-            <td className="px-3 py-3">Faulty</td>
-            <td className="px-3 py-3">Chevron</td>
-            <td className="px-3 py-3">10/may/2023</td>
-            <td className="px-3 py-3">
+            <td className="px-3 py-3 text-[14px]">Accessories</td>
+            <td className="px-3 py-3 text-[14px]">3</td>
+            <td className="px-3 py-3 text-[14px]">$320.00</td>
+            <td className="px-3 py-3 text-[14px]">Faulty</td>
+            <td className="px-3 py-3 text-[14px]">Chevron</td>
+            <td className="px-3 py-3 text-[14px]">10/may/2023</td>
+            <td className="px-3 py-3 text-[14px]">
                 <ViewMore />
             </td>
           </tr>

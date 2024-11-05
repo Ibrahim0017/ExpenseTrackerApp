@@ -19,7 +19,7 @@ import image from "../assets/2d35b83df65a5b188eed0847f0cabdc5.jpg"
 
 const Slider = () => {
     return(
-        <div className='w-[50%] select-none relative h-[100svh] bg-blue-200'>
+        <div className='w-[50%] select-none relative h-[100svh] bg-blue-200 tablet:hidden'>
              <img src={image} className="w-full h-full "/>
         </div>
     )
