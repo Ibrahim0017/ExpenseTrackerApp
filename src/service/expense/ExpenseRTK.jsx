@@ -1,22 +1,15 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
-import { useSelector } from "react-redux";
-
-export const getToken = ()=>{
-    const token = useSelector((state) => state.user_reducer.users);
-
-    return token
-}
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const expenseRTK = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://expense-tracker-ruug.onrender.com/api",
+    prepareHeaders: (headers, { getState }) => {
+        const token = getState().users;
+        if (token) {
+          headers.set("Authorization", `Bearer ${token}`);
+        }
+      },
   }),
-  prepareHeaders: (headers) => {
-
-    if (getToken()) {
-      headers.set("Authorization", `Bearer ${getToken()}`);
-    }
-  },
   reducerPath: "expense",
   endpoints: (builder) => ({
     addExpense: builder.mutation({
@@ -28,3 +21,5 @@ export const expenseRTK = createApi({
     }),
   }),
 });
+
+export const { useAddExpenseMutation } = expenseRTK;
