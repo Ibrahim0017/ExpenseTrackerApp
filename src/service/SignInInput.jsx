@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSignInEmployeeMutation } from "./employee/EmployeeRTK";
 import { useDispatch } from "react-redux";
 import { UserLogin } from "./userReducer";
+import Swal from 'sweetalert2'
 
 const SignInInput = () => {
   const navigate = useNavigate();
@@ -28,9 +29,28 @@ const SignInInput = () => {
 
   console.log(values);
   if (isSuccess) {
+    
     navigate("/employeesdash");
+  
+
     dispatch(UserLogin(data.data));
+  
+    
+    Swal.fire({
+      title: "Welcome back, [user name]!", 
+      text: "Your money is safe and sound.", 
+      icon: 'success', 
+    });
+  } else {
+    
+    Swal.fire({
+      title: "Login Failed",
+      text: "There was an error logging in. Please try again.",
+      icon: 'error',
+    });
   }
+
+
   if (error) {
     console.log(error);
   }
