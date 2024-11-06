@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSignInEmployeeMutation } from "./employee/EmployeeRTK";
 import { useDispatch } from "react-redux";
 import { UserLogin } from "./userReducer";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 const SignInInput = () => {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const SignInInput = () => {
   
     
     Swal.fire({
-      title: "Welcome back, [user name]!", 
+      title: "Welcome back!", 
       text: "Your money is safe and sound.", 
       icon: 'success', 
     });
