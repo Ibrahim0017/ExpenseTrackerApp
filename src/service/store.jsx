@@ -11,6 +11,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { expenseRTK } from "./expense/ExpenseRTK";
 
 const persistConfig = {
   key: "root",
@@ -23,7 +24,8 @@ const user_reducer = persistReducer(persistConfig, userReducer);
 const store = configureStore({
     reducer: {
         user_reducer,
-        [employeeRTK.reducerPath]: employeeRTK.reducer
+        [employeeRTK.reducerPath]: employeeRTK.reducer,
+        [expenseRTK.reducerPath]: expenseRTK.reducer
     },
 
   middleware: (getDefaultMiddleware) =>
@@ -31,7 +33,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(employeeRTK.middleware)
+    }).concat(employeeRTK.middleware,expenseRTK.middleware)
 });
 
 export default store;

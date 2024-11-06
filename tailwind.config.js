@@ -11,25 +11,23 @@ export default {
         InfoGrid: "repeat(auto-fill, minmax(200px, 1fr))",
         mediaGrid: "repeat(auto-fill, minmax(250px, 1fr))",
       },
-        screens: {
-          pc: { max: '906px' },
-          tablet: { max: '768px' },
-          mobileTab: { max: '620px' },
-          mobile: { max: '425px' },
-          phone: { max: '375px' },
-          radio: { max: '320px' },
-          sm: '640px',
-          md: '768px',
-          lg: '1024px',
-          xl: '1280px',
-        },
+      screens: {
+        pc: { max: "906px" },
+        tablet: { max: "768px" },
+        mobileTab: { max: "620px" },
+        mobile: { max: "425px" },
+        phone: { max: "375px" },
+        radio: { max: "320px" },
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+      },
       fontSize: {
-        reponsiveText: "clamp(12px,2vw,15px)"
+        reponsiveText: "clamp(12px,2vw,15px)",
       },
     },
   },
-  
-  plugins: [
-    require('@tailwindcss/forms')
-  ],
+
+  plugins: [],
 };

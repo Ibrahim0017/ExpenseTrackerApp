@@ -4,11 +4,12 @@ export const expenseRTK = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://expense-tracker-ruug.onrender.com/api",
     prepareHeaders: (headers, { getState }) => {
-        const token = getState().users;
-        if (token) {
-          headers.set("Authorization", `Bearer ${token}`);
-        }
-      },
+      const token = getState()?.user_reducer.users;
+      console.log(token);
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+    },
   }),
   reducerPath: "expense",
   endpoints: (builder) => ({
@@ -19,7 +20,13 @@ export const expenseRTK = createApi({
         body,
       }),
     }),
+    getAllExpenses: builder.query({
+      query: () => ({
+        url: "/expense",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useAddExpenseMutation } = expenseRTK;
+export const { useAddExpenseMutation,useGetAllExpensesQuery } = expenseRTK;
