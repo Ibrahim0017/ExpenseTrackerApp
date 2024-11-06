@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,  } from "react";
 import { IoSearch } from "react-icons/io5";
 import { IoBagOutline } from "react-icons/io5";
 import { CiEdit } from "react-icons/ci";
@@ -8,7 +8,8 @@ import { IoMdMore } from "react-icons/io";
 import { Link } from "react-router-dom";
 import CreateEmployee from "../../components/EmployeeComponents/CreateEmployee";
 // import imagea from "../../assets/WhatsApp Image 2024-09-03 at 10.04.20.jpeg";
-import { usegetAllEmployeequery } from "../../service/employee/EmployeeRTK";
+import { useGetAllEmployeeQuery } from "../../service/employee/EmployeeRTK";
+import {useSelector} from "react-redux";
 
 
 const EmployeePage = () => {
@@ -16,9 +17,11 @@ const EmployeePage = () => {
 
 
   const [isOpen, setIsOpen] = useState(false);
+  const tokenHolder = useSelector((state) => state.user_reducer?.users);
 
-  // const [ { data, error, isLoading, isSuccess }] =
-  // usegetAllEmployeequery();
+  const { data, error, isLoading } = useGetAllEmployeeQuery({headers: {
+    Authorization: `Bearer ${tokenHolder}`}});
+  
 
   const handleButtonOpen = () => {
     setIsOpen(!isOpen);
@@ -78,7 +81,7 @@ const EmployeePage = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((value, index) => (
+            {data?.map((value, index) => (
               <tr
                 className={`border border-[#BBBEC8] ${
                   index % 2 === 0 ? "bg-gray-50" : "bg-white"
@@ -97,12 +100,12 @@ const EmployeePage = () => {
                     )}
                   </div>
                <Link to='/admin/employeedetail'>   <p className="w-full font-[calibri] font-medium max-md:text-[15px]">
-                    {value.name.toUpperCase()}
+                    {value.firstName}{value.LastName}
                   </p></Link>
                  </div>
                 </td>
                 <td className=" px-3 py-3 font-[calibri] max-md:text-[15px]">{value.email}</td>
-                <td className=" px-3 py-3 font-[calibri] max-md:text-[15px]">{value.age}</td>
+                <td className=" px-3 py-3 font-[calibri] max-md:text-[15px]">{value.name}</td>
                 <td className=" px-3 py-3  font-[calibri] max-md:text-[15px]">{value.expense}</td>
                 <td className=" px-3 py-3  cursor-pointer relative">
                   <ButtonComp />
