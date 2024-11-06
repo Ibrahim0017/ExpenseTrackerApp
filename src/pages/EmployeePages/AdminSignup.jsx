@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addOtpId } from "../../service/userReducer";
 import imageA from '../../assets/2d35b83df65a5b188eed0847f0cabdc5.jpg'
-import swal from 'sweetalert'
+import Swal from 'sweetalert2'
  
 
 const AdminSignup = () => {
@@ -34,11 +34,19 @@ const AdminSignup = () => {
         navigate("otpinput/");
         console.log(res.data.data)
         dispatch(addOtpId(res.data.data))
-        swal("Successsful!", "Check your mail for verification OTP", "success");
+        Swal.fire({
+          title: "Successful!",
+          text: "Check your email for OTP verification",
+          icon: "success"
+        });
         
       } catch (error) {
         console.log(error)
-        swal("Failed!", "SignUp Failed", "error");
+        Swal.fire({
+          title: "Oops!",
+          text: "Registration Failed",
+          icon: "error"
+        });
       }
     })
   };
