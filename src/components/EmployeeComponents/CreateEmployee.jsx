@@ -78,7 +78,7 @@ console.log(values)
   return (
     <>
     <div className="fixed inset-0 h-screen max-md:py-2 max-md:px-6 bg-bgTrans flex items-center justify-center max-md:z-50 ">
-    <div className="w-[60%] h-[450px] overflow-y-scroll bg-white border flex flex-col items-center pt-6 max-md:w-full max-md:h-full">
+    <div className="w-[60%] h-[450px] max-md:overflow-y-scroll bg-white border flex flex-col items-center pt-6 max-md:w-full max-md:h-full">
         <div className="w-full flex justify-center pb-3 max-md:pb-0  border-b border-[#BBBEC8] ">
           <div className="w-[95%]  flex justify-between">
             <div className="text-[20px] font-semibold">Add New Employee</div>

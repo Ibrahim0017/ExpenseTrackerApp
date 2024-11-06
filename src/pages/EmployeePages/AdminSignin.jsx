@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { UserLogin } from "../../service/userReducer";
 import useForm from "../../handler/useForm";
-import swal from 'sweetalert'
+import Swal from 'sweetalert2'
 
 const AdminSignin = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,12 +39,20 @@ const AdminSignin = () => {
         navigate("/admin/admin_dashboard");
         dispatch(UserLogin(res.data.data))
         setIsLoading(false)
-        swal("Successsful!", "Welcome to Xpense Traka", "success");
+        Swal.fire({
+          title: "Successful!",
+          text: "Welcome to Xpense Traka",
+          icon: "success"
+        });
         
       } catch (error) {
         console.log("error", error)
         setIsLoading(false)
-        swal("Failed!", "Incorrect e-mail or password", "error");
+        Swal.fire({
+          title: "Failed!",
+          text: "Incorrect e-mail or password",
+          icon: "error"
+        });
       }
     })
   };
