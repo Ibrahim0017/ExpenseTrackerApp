@@ -1,10 +1,9 @@
-import React from 'react'
-import { X } from 'lucide-react';
+// import { X } from 'lucide-react';
 
 const UploadExpense = ({onClose}) => {
   return (
     <div className='fixed mt-[63px] inset-0  p-6 bg-gray-500 bg-opacity-30 backdrop-blur-sm flex flex-col justify-center'>
-        <div className='w-full flex flex-col gap-10 text-white'><button onClick={onClose} className='place-self-end hover:scale-125 hover:transition-transform hover:ease-in-out hover:'><X/></button></div>
+        <div className='w-full flex flex-col gap-10 text-white'><button onClick={onClose} className='place-self-end hover:scale-125 hover:transition-transform hover:ease-in-out hover:'>X</button></div>
         <div className='font-medium mb-[20px] text-[20px] text-white'>Employee Expense</div>
      
       <div className='w-full overflow-y-scroll mb-[10px]'>
