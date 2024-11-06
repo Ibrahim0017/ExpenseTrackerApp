@@ -116,8 +116,8 @@ const AdminSignin = () => {
           </div>
         </form>
       </div>
-      <div className="w-full h-full max-sm:hidden">
-        <img src={imageA} className="w-full h-full object-cover" />
+      <div className="w-full h-full mobileTab:hidden">
+        <img src={imageA} className="w-full h-full object-cover mobileTab:hidden" />
       </div>
     </div>
   );
