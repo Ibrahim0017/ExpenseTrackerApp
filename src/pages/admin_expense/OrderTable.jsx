@@ -5,6 +5,7 @@ import axios from "axios";
 import Pagination from './adminexpensedetail/Pagination';
 import Posts from "./adminexpensedetail/Posts";
 import ExpenseDetail from './adminexpensedetail/ExpenseDetail';
+import { useGetAllExpensesQuery } from '../../service/expense/ExpenseRTK';
 
 
 
@@ -30,8 +31,10 @@ const OrderTable = () => {
     // const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
     // const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const {data,isLoading,error} = useGetAllExpensesQuery()
 
-    
+    console.log(data)
+    console.log(error)
   return (
     <div className="w-full mt-[20px] overflow-x-auto">
       <table className="w-full min-w-[55rem]">

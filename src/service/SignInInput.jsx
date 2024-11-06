@@ -28,7 +28,7 @@ const SignInInput = () => {
 
   console.log(values);
   if (isSuccess) {
-    navigate("/employeesdash");
+    navigate("/employeesdash/expense");
     dispatch(UserLogin(data.data));
   }
   if (error) {
