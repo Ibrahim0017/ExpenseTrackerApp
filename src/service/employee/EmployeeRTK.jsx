@@ -4,6 +4,13 @@ import { createApi,fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const employeeRTK = createApi({
     baseQuery:fetchBaseQuery({
         baseUrl: 'https://expense-tracker-ruug.onrender.com/api',
+        prepareHeaders: (headers, { getState }) => {
+            const token = getState()?.user_reducer.users;
+            console.log(token);
+            if (token) {
+              headers.set("Authorization", `Bearer ${token}`);
+            }
+          },
     }),
     reducerPath: 'employee',
     endpoints: (builder)=>({
@@ -26,8 +33,20 @@ export const employeeRTK = createApi({
                 url: '/organisation/employee/all',
                 method: "GET"
             })
-        })
-    })
-})
+        }),
+        getOneEmployee: builder.query({
+            query: (id)=>({
+                url: `/organisation/employee/detail?id=${id}`,
+                method: "GET"
+            }),
+        }),  
+        getOneBranch: builder.query({
+            query: (id)=>({
+                url: `branch/${id}`,
+                method: "GET"
+            }),
+        }),
+    }),
+});
 
-export const {useSignUpEmployeeMutation, useSignInEmployeeMutation, useGetAllEmployeeQuery} = employeeRTK
+export const {useSignUpEmployeeMutation, useSignInEmployeeMutation, useGetAllEmployeeQuery, useGetOneEmployeeQuery, useGetOneBranchQuery} = employeeRTK

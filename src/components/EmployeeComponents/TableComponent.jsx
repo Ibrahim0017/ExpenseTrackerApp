@@ -1,52 +1,64 @@
 import React, { useState } from 'react'
-import { BsThreeDots } from "react-icons/bs";
+// import { BsThreeDots } from "react-icons/bs";
 import { Link } from 'react-router-dom';
+import imagea from "../../assets/WhatsApp Image 2024-09-03 at 10.04.20.jpeg";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { IoMdMore } from "react-icons/io";
+import { useGetAllEmployeeQuery } from "../../service/employee/EmployeeRTK";
+import moment from "moment";
 
 const TableComponent = () => {
+
+
+
+  const { data, error, isLoading } = useGetAllEmployeeQuery();
+
+  console.log(data)
+  console.log(error)
   
-    const data = [
-      {
-        id: "12/03/2020",
-        expenseName: "Egg",
-        age: "Agboju Branch",
-        expense: 10,
-        email:'uccynnorom@gmail.com'
-      },
-      { id: "3/04/2019", expenseName: "Rice", age: "Agboju Branch", expense: 20, email:'uccynnorom@gmail.com' },
-      { id: "3/04/2019", expenseName: "Salary", age: "Agboju Branch", expense: 12, email:'uccynnorom@gmail.com' },
-      { id: "3/04/2019", expenseName: "Uche", age: "Agboju Branch", expense: 50, email:'uccynnorom@gmail.com' },
-      { id: "3/04/2019", expenseName: "Uche", age: "Agboju Branch", expense: 10, email:'uccynnorom@gmail.com' },
-      { id: "3/04/2019", expenseName: "Uche", age: "Agboju Branch", expense: 20, email:'uccynnorom@gmail.com' },
-    ];
 
 
   return (
     <div className="overflow-x-auto mt-6 ">
-    <table className="w-full table-auto rounded-md overflow-x-scroll text-left border border-[#BBBEC8] ">
-      <thead>
-        <tr className="border border-[#BBBEC8]">
-          <th className="px-4 py-3 font-[calibri] text-[17px]">Date Created</th>
-          <th className="px-4 py-3 font-[calibri] text-[17px]"> Expense Name</th>
-          <th className="px-4 py-3 font-[calibri] text-[17px]"> Email </th>
-          <th className="px-4 py-3 font-[calibri] text-[17px]">Branch Name</th>
-          <th className="px-4 py-3 font-[calibri] text-[17px]">Quantity</th>
-          <th className="px-4 py-3 font-[calibri] text-[17px]"> </th>
+    <table className="w-full min-w-[55rem]  ">
+      <thead className='text-left rounded-sm'>
+        <tr className="border border-gray-50 bg-gray-50 ">
+        <th className="px-3 py-3 font-[calibri] text-[17px]">Employee Name</th>
+          <th className="px-3 py-3 font-[calibri] text-[17px]">Date Created</th>
+          <th className="px-3 py-3 font-[calibri] text-[17px]"> Expense Name</th>
+          <th className="px-3 py-3 font-[calibri] text-[17px]"> Price </th>   
+          <th className="px-3 py-3 font-[calibri] text-[17px]">Quantity</th>
+          <th className="px-3 py-3 font-[calibri] text-[17px]"> </th>
         </tr>
       </thead>
       <tbody>
-        {data.map((value, index) => (
+        {data && data.data && data.data.map((value, index) => (
           <tr
-            className={`border border-[#BBBEC8] ${
-              index % 2 === 0 ? "bg-[#d6d8dd]" : "bg-white"
-            } `}
-            key={value}
+           className={`border border-gray-50 ${
+            index % 2 !== 0 ? "bg-gray-50" : "bg-white"
+          } `}
+          key={index}
           >
-            <td className="px-4  py-4 font-[calibri]">{value.id}</td>
-            <td className=" py-4 px-4 flex  items-center gap-2 ">{value.expenseName}</td>
-            <td className=" px-2 py-4 font-[calibri]">{value.email}</td>
-            <td className=" px-5 py-4 font-[calibri]">{value.age}</td>
-            <td className=" py-4  px-5  font-[calibri]">{value.expense}</td>
-            <td className=" py-4  px-3   cursor-pointer relative">
+            <td className=" py-4 flex px-4 items-center gap-2  ">
+                  <div className="size-[35px] rounded-full flex justify-center items-center font-semibold bg-gray-500">
+                    {value.image ? (
+                      <img
+                        className="size-[100%] flex justify-center items-center rounded-full bg-blue-400"
+                        src={value.image} />) : (
+                      <p>{value.lastName?.charAt(0).toUpperCase()}</p>
+                    )}
+                  </div>
+                 <Link to='/employeedetail'>
+                 <p className="font-[calibri] font-medium cursor-pointer">
+                 {(value.firstName.slice(0, 1).toUpperCase()) + (value.firstName.slice(1))} {(value.lastName.slice(0, 1).toUpperCase()) + (value.lastName.slice(1))}
+                  </p>
+                  </Link>
+                </td>
+            <td className="px-3 py-3 font-[calibri]">{moment(value.createdAt).format('MMMM Do YYYY')}</td>
+            <td className="px-3 py-3 font-[calibri] ">girl</td>
+            <td className="px-3 py-3 font-[calibri]">{value.email}</td>
+            <td className="px-3 py-3 font-[calibri]">Girl</td>
+            <td className="px-3 py-3  cursor-pointer relative">
               <ButtonComp />
             </td>
           </tr>
@@ -70,15 +82,18 @@ const ButtonComp = () => {
     return (
       <>
         <div onClick={handleOpen}>
-          <BsThreeDots />
+          <IoMdMore />
         </div>
         {open && (
-          <div className="absolute w-[150px] flex justify-center left-[-120px]  top-10 bg-white border rounded-sm z-20 ">
-            <ol className="w-full">
-              <li className="w-full py-[7px] text-center text-[14px] ">Delete</li>
-            </ol>
-          </div>)
-          }
+         <div className="bg-white absolute right-16 w-[165px] mt-[10px] text-[13px] flex justify-between py-[7px] px-1 flex-col border border-gray-100 rounded-lg shadow-md ">
+         <div className="flex items-center gap-1 py-2 pl-1 hover:bg-gray-100 hover:rounded-md hover:cursor-pointer text-red-500">
+           <div>
+             <RiDeleteBin6Line />
+           </div>
+           <div>Delete Expense</div>
+         </div>
+       </div>
+      )}
           </>
         )
 }

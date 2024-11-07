@@ -77,8 +77,8 @@ console.log(values)
   console.log(employee)
   return (
     <>
-    <div className="fixed inset-0 h-screen max-md:py-2 max-md:px-6 bg-bgTrans flex items-center justify-center max-md:z-50 ">
-    <div className="w-[60%] h-[450px] max-md:overflow-y-scroll bg-white border flex flex-col items-center pt-6 max-md:w-full max-md:h-full">
+    <div className="fixed inset-0 h-screen tablet:py-2 z-50 max-md:px-6 bg-bgTrans flex items-center justify-center max-md:z-50 ">
+    <div className="w-[60%] h-[350px]  max-md:overflow-y-scroll bg-white border flex flex-col items-center pt-6 tablet:w-[90%] tablet:h-[500px]">
         <div className="w-full flex justify-center pb-3 max-md:pb-0  border-b border-[#BBBEC8] ">
           <div className="w-[95%]  flex justify-between">
             <div className="text-[20px] font-semibold">Add New Employee</div>
@@ -91,7 +91,7 @@ console.log(values)
           </div>
         </div>
         <form className="w-[95%]" onSubmit={handleEmployeeSubmit}>
-          <div className="w-full flex justify-between gap-4 max-sm:flex-col mt-3">
+          <div className="w-full flex justify-between gap-4 tablet:flex-col mt-3">
             <div className="w-full">
               <p>First Name</p>
               <div>
@@ -115,29 +115,7 @@ console.log(values)
               </div>
             </div>
           </div>
-          <div className="w-full flex justify-between gap-4 max-sm:flex-col max-sm:mt-2">
-            <div className="w-full">
-              <p>Company Name</p>
-              <div>
-                <input
-                  type="text"
-                  className="py-2 mt-1 focus:outline-[#BBBEC8] rounded-sm px-2 w-full border"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div className="w-full">
-              <p>Phone Number</p>
-              <div>
-                <input
-                  type="text"
-                  className="py-2 mt-1 focus:outline-[#BBBEC8] rounded-sm px-2 w-full border"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="w-full flex justify-between gap-4 max-sm:flex-col max-sm:mt-2">
+          <div className="w-full flex justify-between gap-4 tablet:flex-col tablet:mt-2">
             <div className="w-full">
               <p>E-mail</p>
               <div className="w-full">
