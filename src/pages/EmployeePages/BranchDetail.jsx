@@ -2,6 +2,8 @@ import { useState } from 'react'
 import TableComponent from '../../components/EmployeeComponents/TableComponent'
 import EmployeeTable from '../../components/EmployeeComponents/EmployeeTable'
 import BranchDescription from '../../components/EmployeeComponents/BranchDescription'
+import { useParams } from 'react-router-dom';
+import { useGetOneBranchQuery } from "../../service/employee/EmployeeRTK";
 
 const BranchDetail = () => {
 
@@ -26,16 +28,22 @@ const BranchDetail = () => {
     }
     console.log(toggle)
 
+    const {id} = useParams()
+
+  const { data, error, isLoading } = useGetOneBranchQuery(id);
+  console.log(data)
+  console.log(error)
+
 
   return (
         <>
     <div className='w-full h-[150px] bg-gray-800 rounded-t-md'></div>
     <div className='w-full flex justify-center bg-white h-[100vh]'>
     <div className='w-[90%] '>
-        <div className='size-[150px] flex items-center justify-center border rounded-full mt-[-60px] text-[30px] font-medium text-white bg-gray-800'>AB</div>
+        <div className='size-[150px] flex items-center justify-center border rounded-full mt-[-60px] text-[30px] font-medium text-white bg-gray-800'>{data?.data.name.at(0).toUpperCase()}B</div>
         <div>
-            <p className='text-[25px] font-semibold'>Agboju Branch</p>
-            <p className='text-[15px] '>No 44, old Ojo Road Agboju Lagos</p>
+            <p className='text-[25px] font-semibold'>{data?.data.name}</p>
+            <p className='text-[15px] '>{data?.data.address}</p>
             <p className='text-[17px] font-medium'>Company Ltd</p>
         </div>
         <div className=' flex mt-4'>

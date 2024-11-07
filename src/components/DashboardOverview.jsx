@@ -20,11 +20,11 @@ const DashboardOverview = () => {
           <Route path="/admin_dashboard" element={<AdminDashboard />} />
           <Route path="/expenseTrack" element={<EspenseTrack />} />
           <Route path="/employee" element={<EmployeePage />} />
-          <Route path="/employeedetail" element={<EmployeeDetail />} />
+          <Route path="/employeedetail/:id" element={<EmployeeDetail />} />
           <Route path="/branchpage" element={<BranchPage />} />
           <Route path="/expense" element={<AdminExpensePage />} />
           <Route path="/createbranch" element={<CreateBranch />} />
-          <Route path="/branchdetail" element={<BranchDetail />} />
+          <Route path="/branchdetail/:id" element={<BranchDetail />} />
           <Route path="/branches" element={<BranchPage />} />
           <Route path="/expense/detail" element={<ExpenseDetail />} />
           <Route path="/settings" element={<Profile />} />

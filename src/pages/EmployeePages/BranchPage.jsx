@@ -80,24 +80,25 @@ const BranchPage = () => {
         <p>3 Branches Found</p>
         <div className='grid gap-3 grid-cols-cardGrid mt-4'>
           {data?.map((props, index)=> (
-               <div className=' w-full bg-white flex flex-col items-center shadow-md pt-3 rounded-md' key={index}>
+            <Link to = {`/admin/branchdetail/${props._id}`} key={index} >
+               <div className=' w-full bg-white py-4 flex flex-col items-center shadow-md pt-3 rounded-md' >
                <div className='w-[90%]' >
-               <div className='flex justify-between items-center text-[20px]'><p className='flex gap-1 items-center'><p><IoIosGitBranch /></p>{props.name}</p> <p className='cursor-pointer'><DotsComponent/> </p></div>
-                <p className='mt-2 flex gap-1 items-center'> <p><IoLocationOutline /></p>{props.address}</p>
+               <div className='flex justify-between items-center text-[20px]'><p className='flex gap-1 items-center'><p><IoIosGitBranch /></p>{(props.name.slice(0, 1).toUpperCase()) + (props.name.slice(1))}</p> <p className='cursor-pointer'><DotsComponent/> </p></div>
+                <p className='mt-2 flex gap-1 items-center'> <p><IoLocationOutline /></p>{props.address.slice(0, 30)}...</p>
                </div>
                <div className='border-t w-full mt-2'></div>
                <div className='w-[90%] mt-2'>
-               <div className='w-full flex justify-between'>
-                <p className=' font-medium text-[#aaacb3] text-[17px]'>No of Employees: 20 </p>
+               <div className='w-full flex justify-between mt-2'>
+                <p className=' font-medium text-gray-800 text-[17px]'>No of Employees: 20 </p>
                 <p className='font-medium'>3</p>
                 </div>
-                <div className='flex justify-between'>
-                <p className=' font-medium text-[#aaacb3] text-[17px]'>No of Expense: 10</p>
+                <div className='flex justify-between mt-2'>
+                <p className=' font-medium text-gray-800 text-[17px]'>No of Expense: 10</p>
                 <p className=' font-medium'>23</p>
                 </div>
-               </div>
-              <Link className='w-full' to = '/admin/branchdetail' ><p className='bg-gray-800 w-full text-center font-medium text-white text-[17px] py-2 cursor-pointer rounded-b-md'>See more...</p> </Link>
+               </div> 
               </div>
+              </Link>
           ))}
         </div>
       </div>
