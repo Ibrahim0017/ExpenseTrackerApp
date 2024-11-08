@@ -8,7 +8,7 @@ import { useGetAllExpensesQuery } from "../../service/expense/ExpenseRTK";
 import moment from "moment";
 import { useParams } from 'react-router-dom';
 
-const TableComponent = () => {
+const OneEmployeeExpense = () => {
 
 
 
@@ -105,4 +105,4 @@ const ButtonComp = () => {
         )
 }
 
-export default TableComponent
+export default OneEmployeeExpense

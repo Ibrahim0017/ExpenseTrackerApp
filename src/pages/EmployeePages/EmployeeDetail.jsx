@@ -1,9 +1,8 @@
 import  { useState } from 'react'
-import imageA from '../../assets/WhatsApp Image 2024-09-03 at 10.04.20.jpeg'
-import TableComponent from '../../components/EmployeeComponents/TableComponent'
 import { useGetOneEmployeeQuery } from "../../service/employee/EmployeeRTK";
 import { useParams } from 'react-router-dom';
 import moment from "moment";
+import OneEmployeeExpense from '../../components/EmployeeComponents/OneEmployeeExpense';
 
 const EmployeeDetail = () => {
 
@@ -38,7 +37,7 @@ const EmployeeDetail = () => {
               }
                 </div>
             <div>
-                <p className='text-[25px] font-semibold'>{(data?.data.firstName.slice(0, 1).toUpperCase()) + (data?.data.firstName.slice(1))} {(data?.data.lastName.slice(0, 1).toUpperCase()) + (data?.data.lastName.slice(1))}</p>
+                <p className='text-[25px] font-semibold'> {(data?.data.lastName.slice(0, 1).toUpperCase()) + (data?.data.lastName.slice(1))} {(data?.data.firstName.at(0).toUpperCase()) + (data?.data.firstName.slice(1))} </p>
                 <p className='text-[15px] '>Purchasing Manager</p>
                 <p className='text-[17px] font-medium'>Company Lyd</p>
             </div>
@@ -54,6 +53,11 @@ const EmployeeDetail = () => {
             </div>
 
             {toggle?
+
+                <div>
+                <OneEmployeeExpense />
+                </div>:
+                
             <div className='w-full  mt-4 border border-[#BBBEC8] py-4'>
                     <div className='w-full flex flex-col items-center justify-end '>
                     <div className='w-[98%] mt-2'>
@@ -75,7 +79,7 @@ const EmployeeDetail = () => {
                  </div>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Phone</b>
-                 <p>Uchechi</p>
+                 <p>{data?.data.phone}</p>
                  </div>
                  </div>
                  </div>
@@ -86,17 +90,17 @@ const EmployeeDetail = () => {
                  <div className=' w-full flex justify-between mt-1'>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Branch</b>
-                 <p>{`${data?.data.branch?.name}`}</p>
+                 <p>{data?.data.branch?.name}</p>
                  </div>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Status</b>
-                 <p>Uchechi</p>
+                 <p>Activw</p>
                  </div>
                  </div>
                  <div className=' w-full flex justify-between mt-2'>
                  <div className=' w-full '>
                  <b className='text-gray-800'>Total Expenses</b>
-                 <p>20</p>
+                 <p>{data?.data.expense?.length}</p>
                  </div>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Joined Company</b>
@@ -107,10 +111,8 @@ const EmployeeDetail = () => {
  
                  </div>
                 
-            </div>:
-            <div>
-                <TableComponent />
             </div>
+            
             
         }
             </div>
