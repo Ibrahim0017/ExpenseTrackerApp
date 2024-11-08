@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
+import imageA from "../../assets/Otp2.jpg"
 
 const OtpInput = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -109,7 +110,9 @@ const OtpInput = () => {
           </button>
         </div>
       </form>
-      <div className="w-full h-full bg-green-500 max-sm:hidden">juju</div>
+      <div className="w-full h-full mobileTab:hidden">
+        <img src={imageA} className="w-full h-full object-cover mobileTab:hidden" />
+      </div>
     </div>
   );
 };
