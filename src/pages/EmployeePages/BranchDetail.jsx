@@ -37,12 +37,13 @@ const BranchDetail = () => {
 
   return (
         <>
+    <div className='w-full h-full py-3'>
     <div className='w-full h-[150px] bg-gray-800 rounded-t-md'></div>
-    <div className='w-full flex justify-center bg-white h-[100vh]'>
+    <div className='w-full flex justify-center bg-white pb-3'>
     <div className='w-[90%] '>
         <div className='size-[150px] flex items-center justify-center border rounded-full mt-[-60px] text-[30px] font-medium text-white bg-gray-800'>{data?.data.name.at(0).toUpperCase()}B</div>
         <div>
-            <p className='text-[25px] font-semibold'>{data?.data.name}</p>
+            <p className='text-[25px] font-semibold'>{(data?.data.name.at(0).toUpperCase()) + (data?.data.name.slice(1))} Branch</p>
             <p className='text-[15px] '>{data?.data.address}</p>
             <p className='text-[17px] font-medium'>Company Ltd</p>
         </div>
@@ -65,6 +66,7 @@ const BranchDetail = () => {
         {toggle === 'Employee' && <EmployeeTable/>}
         {toggle === 'Expense' && <TableComponent />}
         
+        </div>
         </div>
         </div>
         </>

@@ -25,6 +25,7 @@ export default {
       },
       fontSize: {
         reponsiveText: "clamp(12px,2vw,15px)",
+        reponsiveText2: "clamp(17px,2vw,24px)",
       },
     },
   },

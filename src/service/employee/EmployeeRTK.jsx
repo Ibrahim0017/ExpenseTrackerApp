@@ -46,7 +46,14 @@ export const employeeRTK = createApi({
                 method: "GET"
             }),
         }),
+        deleteOneEmployee: builder.mutation({
+            query: (employeeId, branchId)=>({
+                url: `/organisation/employee/delete?
+                id=${employeeId}&branchId=${branchId}`,
+                method: "DELETE"
+            }),
+        }),
     }),
 });
 
-export const {useSignUpEmployeeMutation, useSignInEmployeeMutation, useGetAllEmployeeQuery, useGetOneEmployeeQuery, useGetOneBranchQuery} = employeeRTK
+export const {useSignUpEmployeeMutation, useSignInEmployeeMutation, useGetAllEmployeeQuery, useGetOneEmployeeQuery, useGetOneBranchQuery, useDeleteOneEmployeeMutation} = employeeRTK

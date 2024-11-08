@@ -1,6 +1,7 @@
 import React from 'react'
 import { useGetOneBranchQuery } from "../../service/employee/EmployeeRTK";
 import { useParams } from 'react-router-dom';
+import moment from "moment";
 
 const BranchDescription = () => {
   
@@ -30,7 +31,7 @@ const BranchDescription = () => {
                  <div className=' w-full flex justify-between mt-2'>
                  <div className=' w-full '>
                  <b className='text-gray-800'>Total Expense</b>
-                 <p>50</p>
+                 <p>{data?.data.expense?.length}</p>
                  </div>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Total Amount</b>
@@ -45,11 +46,11 @@ const BranchDescription = () => {
                  <div className=' w-full flex justify-between mt-1'>
                  <div className=' w-full'>
                  <b className='text-gray-800'> No of Staffs</b>
-                 <p>50</p>
+                 <p>{data?.data.employee?.length}</p> 
                  </div>
                  <div className=' w-full '>
                  <b className='text-gray-800'>No of Suspended staffs</b>
-                 <p>10</p>
+                 <p>Nil</p>
                  </div>
                  </div>
                  <div className=' w-full flex justify-between mt-2'>
@@ -59,7 +60,7 @@ const BranchDescription = () => {
                  </div>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Joined Company</b>
-                 <p>12/03/2021</p>
+                 <p>{moment(data?.data.createdAt).format('MMMM Do YYYY')}</p>
                  </div>
                  </div>
                  </div>  

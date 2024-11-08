@@ -4,18 +4,13 @@ import {useSelector} from "react-redux";
 import axios from 'axios';
 
 const CreateEmployee = ({ handleButtonOpen }) => {
-  // const data = [
-  //   {branch : 'Agboju',id:'2345yuyuhjyu'},
-  //   {branch : 'Alakija',id:'2345yuyuhjyu'},
-  //   {branch : 'Ikotun',id:'2345yuyuhjyu'},
-  //   {branch : 'Ijesha',id:'2345yuyuhjyu'},
-  //   {branch : 'Ikorodu',id:'2345yuyuhjyu'},
-  // ]
+
 
   const [employee, setEmployee] = useState(false)
   const [values, setValues] = useState()
   const [data, setData] = useState()
   const tokenHolder = useSelector((state) => state.user_reducer?.users);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (event) =>{
     const {name, value} = event.target
@@ -23,11 +18,9 @@ const CreateEmployee = ({ handleButtonOpen }) => {
 }
 console.log(values)
 
-// getAllBranches()
 
   const handleEmployeeSubmit = (e) =>{
     e.preventDefault()
-    // setBranch(true);
     // handleButtonOpen()
 
 
@@ -38,9 +31,9 @@ console.log(values)
         values,
         {headers: {
           Authorization: `Bearer ${tokenHolder}`
-        }},
-      
+        }}, 
       )
+      setIsLoading(true)
       
       console.log(createEmployee)
       setEmployee(createEmployee)
@@ -77,7 +70,7 @@ console.log(values)
   console.log(employee)
   return (
     <>
-    <div className="fixed inset-0 h-screen tablet:py-2 z-50 max-md:px-6 bg-bgTrans flex items-center justify-center max-md:z-50 ">
+    <div className="fixed inset-0 h-screen tablet:py-2 z-50 max-md:px-6 bg-bgTrans flex items-center justify-center mobileTab:z-50 ">
     <div className="w-[60%] h-[350px]  max-md:overflow-y-scroll bg-white border flex flex-col items-center pt-6 tablet:w-[90%] tablet:h-[500px]">
         <div className="w-full flex justify-center pb-3 max-md:pb-0  border-b border-[#BBBEC8] ">
           <div className="w-[95%]  flex justify-between">
@@ -131,9 +124,12 @@ console.log(values)
               <p>Branch</p>
               <div>
                 
-                  <select name='branchId' className="py-2 mt-1 focus:outline-[#BBBEC8] rounded-sm px-2 w-full border" onChange={handleChange} >
+                  <select name='branchId' className= {`py-2 mt-1 focus:outline-[#BBBEC8] rounded-sm px-2 w-full border  ` }onChange={handleChange}  >
+                  <option selected disabled>~Selected~</option>
                   {data?.map((value, index) => (
-                  <option key={index} value={value._id} >{value.name}</option>
+                  <option key={index} value={value._id}>{value.name}</option>
+                  
+              
                 ))}
                 </select>
                
@@ -142,7 +138,7 @@ console.log(values)
           </div>
           <div className="mt-3">
             <button className="px-4 py-[10px] border-none bg-gray-800  text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white">
-             + Add Employee
+            {isLoading? "Loading.." : "Add Employee"}
             </button>
           </div>
         </form>
