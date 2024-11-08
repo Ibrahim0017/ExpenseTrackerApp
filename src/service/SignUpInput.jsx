@@ -32,14 +32,15 @@ const SignUpInput = () => {
   }
   return (
     <div className="w-[50%] h-full py-[30px] gap-6 flex flex-col items-center justify-around tablet:w-full">
-      <div className="w-[76%]">
-        <div className="font-semibold">eXpenseTracker</div>
-      </div>
+    
       <form
         action=""
         onSubmit={signUp}
-        className="w-[90%] h-full flex items-center justify-center"
+        className="w-[90%] h-full flex items-center justify-center gap-[25px] flex-col"
       >
+          <div className="w-[85%]">
+        <div className="font-semibold">XpenseTrakaa</div>
+      </div>
         <div className="w-[85%] flex flex-col ">
           {" "}
           <div className="font-semibold text-2xl">
@@ -91,7 +92,7 @@ const SignUpInput = () => {
                 />
               </div>
             </div>
-            <button disabled={isLoading} className="w-full py-2 rounded-[5px] bg-slate-800 text-white text-[14px] font-medium">
+            <button disabled={isLoading} className="w-full py-2 rounded-[5px] bg-slate-800 text-white text-[14px] font-medium hover:bg-slate-900">
               {isLoading? 'Loading...': 'Create Account'}
             </button>
        

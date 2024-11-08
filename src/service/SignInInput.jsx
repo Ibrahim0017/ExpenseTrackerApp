@@ -30,7 +30,7 @@ const SignInInput = () => {
   console.log(values);
   if (isSuccess) {
     
-    navigate("/employeesdash");
+    navigate("/employeesdash/expense");
   
 
     dispatch(UserLogin(data.data));
@@ -38,7 +38,7 @@ const SignInInput = () => {
     
     Swal.fire({
       title: "Welcome back!", 
-      text: "Your money is safe and sound.", 
+      text: "XpenseTrakaa like no other", 
       icon: 'success', 
     });
   } else {
@@ -62,15 +62,16 @@ const SignInInput = () => {
   };
 
   return (
-    <div className="w-[50%] tablet:w-full h-full py-[30px] outline-none gap-6 flex flex-col items-center justify-around ">
-      <div className="w-[76%]">
-        <div className="font-semibold">eXpenseTracker</div>
-      </div>
+    <div className="w-[50%] tablet:w-full h-full py-[30px] outline-none flex flex-col items-center justify-around ">
+      
       <form
         action=""
         onSubmit={signIn}
-        className="w-[90%] h-full flex items-center justify-center"
+        className="w-full h-full flex items-center justify-center gap-[25px] flex-col"
       >
+        <div className="w-[85%]">
+        <div className="font-semibold">XpenseTrakaa</div>
+      </div>
         <div className="w-[85%] flex flex-col ">
           {" "}
           <div className="font-semibold text-2xl flex-wrap">
@@ -99,7 +100,8 @@ const SignInInput = () => {
               <label id="name" className="text-[14px] font-medium w-full">
                 Password
               </label>
-              <div className=" flex items-center ">
+              <div className=" flex w-full items-center ">
+              
                 <input
                   onChange={handleChange}
                   name="password"
@@ -107,15 +109,17 @@ const SignInInput = () => {
                   placeholder="Enter password"
                   className="w-full border border-gray-500 rounded-[5px] shadow-sm py-2 text-[14px] pl-[10px] "
                 />
-              </div>
-
-              <div className="flex absolute right-20 bottom-52 text-[18px] cursor-pointer mb-[3px]">
+                  {/* <div className="flex text-[18px] cursor-pointer">
                 {Open === false ? (
                   <IoMdEye onClick={toggle} />
                 ) : (
                   <IoMdEyeOff onClick={toggle} />
                 )}
+              </div> */}
+
               </div>
+
+            
             </div>
             <button
               disabled={isLoading}

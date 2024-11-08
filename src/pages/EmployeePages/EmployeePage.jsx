@@ -1,36 +1,48 @@
-import { useState } from "react";
+import { useState,  } from "react";
 import { IoSearch } from "react-icons/io5";
-import { BsThreeDots } from "react-icons/bs";
-import CreateEmployee from "../../components/EmployeeComponents/CreateEmployee";
-import imagea from "../../assets/WhatsApp Image 2024-09-03 at 10.04.20.jpeg";
+import { IoBagOutline } from "react-icons/io5";
+import { CiEdit } from "react-icons/ci";
+import { IoKeyOutline } from "react-icons/io5";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { IoMdMore } from "react-icons/io";
 import { Link } from "react-router-dom";
+import CreateEmployee from "../../components/EmployeeComponents/CreateEmployee";
+// import imagea from "../../assets/WhatsApp Image 2024-09-03 at 10.04.20.jpeg";
+import { useGetAllEmployeeQuery } from "../../service/employee/EmployeeRTK";
+import {useSelector} from "react-redux";
+
 
 const EmployeePage = () => {
 
 
 
   const [isOpen, setIsOpen] = useState(false);
+  const tokenHolder = useSelector((state) => state.user_reducer?.users);
+
+  const { data, error, isLoading } = useGetAllEmployeeQuery({headers: {
+    Authorization: `Bearer ${tokenHolder}`}});
+  
 
   const handleButtonOpen = () => {
     setIsOpen(!isOpen);
   };
   console.log(isOpen);
 
-  const data = [
-    {
-      id: "12/03/2020",
-      name: "Uche Nnorom",
-      age: 24,
-      image: imagea,
-      expense: 10,
-      email:'uccynnorom@gmail.com'
-    },
-    { id: "3/04/2019", name: "Deborah Iwuanyawu", age: 24, expense: 20, email:'uccynnorom@gmail.com' },
-    { id: "3/04/2019", name: "Uche", age: 24, expense: 12, email:'uccynnorom@gmail.com' },
-    { id: "3/04/2019", name: "Uche", age: 24, expense: 50, email:'uccynnorom@gmail.com' },
-    { id: "3/04/2019", name: "Uche", age: 24, expense: 10, email:'uccynnorom@gmail.com' },
-    { id: "3/04/2019", name: "Uche", age: 24, expense: 20, email:'uccynnorom@gmail.com' },
-  ];
+  // const data = [
+  //   {
+  //     id: "12/03/2020",
+  //     name: "Uche Nnorom",
+  //     age: 24,
+  //     image: imagea,
+  //     expense: 10,
+  //     email:'uccynnorom@gmail.com'
+  //   },
+  //   { id: "3/04/2019", name: "Deborah Iwuanyawu", age: 24, expense: 20, email:'uccynnorom@gmail.com' },
+  //   { id: "3/04/2019", name: "Uche", age: 24, expense: 12, email:'uccynnorom@gmail.com' },
+  //   { id: "3/04/2019", name: "Uche", age: 24, expense: 50, email:'uccynnorom@gmail.com' },
+  //   { id: "3/04/2019", name: "Uche", age: 24, expense: 10, email:'uccynnorom@gmail.com' },
+  //   { id: "3/04/2019", name: "Uche", age: 24, expense: 20, email:'uccynnorom@gmail.com' },
+  // ];
 
   return (
     <>
@@ -57,45 +69,45 @@ const EmployeePage = () => {
         </button>
       </div>
       <div className="overflow-x-auto mt-6">
-        <table className="w-full table-auto overflow-x-scroll text-left border border-[#BBBEC8] ">
-          <thead>
+        <table className="text-[14px] border-b hover:border-none font-medium bg-white w-full ">
+          <thead className="text-left rounded-sm">
             <tr className="border border-[#BBBEC8] ">
-              <th className="px-4 py-3 font-[calibri] text-[17px]">Date Created</th>
-              <th className="px-4 py-3 font-[calibri] text-[17px]"> Employee Name</th>
-              <th className="px-4 py-3 font-[calibri] text-[17px]"> Email </th>
-              <th className="px-4 py-3 font-[calibri] text-[17px]">Branch Name</th>
-              <th className="px-4 py-3 font-[calibri] text-[17px]">Expense</th>
-              <th className="px-4 py-3 font-[calibri] text-[17px]"> </th>
+              <th className="px-3 py-3 font-[calibri] text-[17px]">Date Created</th>
+              <th className="px-3 py-3 font-[calibri] text-[17px]"> Employee Name</th>
+              <th className="px-3 py-3 font-[calibri] text-[17px]"> Email </th>
+              <th className="px-3 py-3 font-[calibri] text-[17px]">Branch Name</th>
+              <th className="px-3 py-3 font-[calibri] text-[17px]">Expense</th>
+              <th className="px-3 py-3 font-[calibri] text-[17px]"> </th>
             </tr>
           </thead>
           <tbody>
-            {data.map((value, index) => (
+            {data?.map((value, index) => (
               <tr
                 className={`border border-[#BBBEC8] ${
-                  index % 2 === 0 ? "bg-[#d6d8dd]" : "bg-white"
+                  index % 2 === 0 ? "bg-gray-50" : "bg-white"
                 } `}
                 key={value}
               >
-                <td className="px-4  py-4 font-[calibri] max-md:text-[15px]">{value.id}</td>
-                <td className=" py-4 px-4  ">
+                <td className="px-3 py-3 font-[calibri] max-md:text-[15px]">{value.id}</td>
+                <td className=" text-[14px] flex gap-2 items-center font-medium px-3 py-3 ">
                  <div className='w-full flex gap-2 items-center'>
-                 <div className="size-[45px] max-md:size-[30px] rounded-full flex justify-center items-center font-semibold bg-blue-500">
+                 <div className="size-10  max-md:size-[30px] rounded-full flex justify-center items-center font-semibold bg-blue-500">
                     {value.image ? (
                       <img
-                        className="size-[45px] max-md:size-[30px] flex justify-center items-center rounded-full bg-blue-400"
+                        className="size-full max-md:size-9 flex justify-center items-center rounded-full bg-blue-400"
                         src={value.image} />) : (
                       <p>{value.name.charAt(0)}</p>
                     )}
                   </div>
                <Link to='/admin/employeedetail'>   <p className="w-full font-[calibri] font-medium max-md:text-[15px]">
-                    {value.name.toUpperCase()}
+                    {value.firstName}{value.LastName}
                   </p></Link>
                  </div>
                 </td>
-                <td className=" px-2 py-4 font-[calibri] max-md:text-[15px]">{value.email}</td>
-                <td className=" px-5 py-4 font-[calibri] max-md:text-[15px]">{value.age}</td>
-                <td className=" py-4  px-5  font-[calibri] max-md:text-[15px]">{value.expense}</td>
-                <td className=" py-4  px-3   cursor-pointer relative">
+                <td className=" px-3 py-3 font-[calibri] max-md:text-[15px]">{value.email}</td>
+                <td className=" px-3 py-3 font-[calibri] max-md:text-[15px]">{value.name}</td>
+                <td className=" px-3 py-3  font-[calibri] max-md:text-[15px]">{value.expense}</td>
+                <td className=" px-3 py-3  cursor-pointer relative">
                   <ButtonComp />
                 </td>
               </tr>
@@ -126,20 +138,35 @@ const ButtonComp = () => {
   return (
     <>
       <div onClick={handleOpen}>
-        <BsThreeDots />
+        <IoMdMore />
       </div>
       {open && (
-        <div className="absolute w-[150px] flex justify-center left-[-120px]  top-14 bg-white border rounded-sm z-20 ">
-          <ol className="w-full">
-            <li className="w-full py-[7px] text-[14px]  text-center  border-b">
-              Re-send Token
-            </li>
-            <li className="w-full py-[7px] text-center text-[14px]  border-b">
-              Suspend
-            </li>
-            <li className="w-full py-[7px] text-center text-[14px] ">Delete</li>
-          </ol>
-        </div>
+         <div className="bg-white absolute right-16 size-[165px] mt-[10px] text-[13px] flex justify-between py-[7px] px-1 flex-col border border-gray-100 rounded-lg shadow-md ">
+         <div className="flex items-center gap-1 py-2 pl-1 w-full hover:bg-gray-100 hover:rounded-[5px] hover:cursor-pointer hover:">
+           <div>
+           <IoBagOutline />
+           </div>
+           <Link to='/admin/expense/detail'><div >View detail</div></Link>
+         </div>
+         <div className="flex items-center gap-1 py-2 pl-1 hover:bg-gray-100 hover:rounded-md hover:cursor-pointer">
+           <div>
+             <CiEdit />
+           </div>
+           <div>Suspend </div>
+         </div>
+         <div className="flex items-center gap-1 py-2 pl-1 hover:bg-gray-100 hover:rounded-md hover:cursor-pointer">
+           <div>
+             <IoKeyOutline />
+           </div>
+           <div>Re-send Token</div>
+         </div>
+         <div className="flex items-center gap-1 py-2 pl-1 hover:bg-gray-100 hover:rounded-md hover:cursor-pointer text-red-500">
+           <div>
+             <RiDeleteBin6Line />
+           </div>
+           <div>Delete user</div>
+         </div>
+       </div>
       )}
     </>
   );

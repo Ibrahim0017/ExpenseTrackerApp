@@ -1,37 +1,61 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoSearch } from "react-icons/io5";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import CreateBranch from '../../components/EmployeeComponents/CreateBranch';
 import { Link } from 'react-router-dom';
 import { IoIosGitBranch } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
+import axios from 'axios';
+import {useSelector} from "react-redux";
 
 const BranchPage = () => {
 
-  const data = [
-    {branch: 'Agboju Branch', address: "No 2, old Ojo Road", employess: '20', expenses: "10"},
-    {branch: 'Alakija Branch', address: "No 2, old Ojo Road", employess: '20', expenses: "10"},
-    {branch: 'Festac Branch', address: "No 2, old Ojo Road", employess: '20', expenses: "10"},
+  // const data = [
+  //   {branch: 'Agboju Branch', address: "No 2, old Ojo Road", employess: '20', expenses: "10"},
+  //   {branch: 'Alakija Branch', address: "No 2, old Ojo Road", employess: '20', expenses: "10"},
+  //   {branch: 'Festac Branch', address: "No 2, old Ojo Road", employess: '20', expenses: "10"},
     // {branch: 'Agboju', address: "No 2, old Ojo Road", employess: '20', expenses: "10"},
     // {branch: 'Agboju', address: "No 2, old Ojo Road", employess: '20', expenses: "10"},
     // {branch: 'Agboju', address: "No 2, old Ojo Road", employess: '20', expenses: "10"},
     // {branch: 'Agboju', address: "No 2, old Ojo Road", employess: '20', expenses: "10"},
-  ]
+  // ]
 
 
     const [isOpen, setIsOpen] = useState(false);
+    const [data, setData] = useState()
+    const tokenHolder = useSelector((state) => state.user_reducer?.users);
 
     const handleButtonOpen = () => {
       setIsOpen(!isOpen);
     };
     console.log(isOpen);
 
+    const getAllBranches = async() =>{
+
+      try{
+      const res = await axios.get('https://expense-tracker-ruug.onrender.com/api/branch', 
+        {headers: {
+          Authorization: `Bearer ${tokenHolder}`
+        }},
+      )
+      console.log(res)
+      setData(res.data.data)
+    }
+      catch(errors){
+          console.log(errors)
+      }
+    }
+
+    useEffect(() =>{
+      getAllBranches()
+    }, [])
+
 
 
 
   return (
     <>
-    <div className='w-full flex justify-center  h-[100vh]'>
+    <div className='w-full flex justify-center'>
         <div className='w-[95%]'>
         <div className="w-full flex justify-between items-center py-5 ">
         <div className=" flex ">
@@ -55,20 +79,20 @@ const BranchPage = () => {
       <div>
         <p>3 Branches Found</p>
         <div className='grid gap-3 grid-cols-cardGrid mt-4'>
-          {data.map((value)=> (
-               <div className=' w-full bg-white flex flex-col items-center shadow-md pt-3 rounded-md' key={value}>
+          {data?.map((props, index)=> (
+               <div className=' w-full bg-white flex flex-col items-center shadow-md pt-3 rounded-md' key={index}>
                <div className='w-[90%]' >
-               <div className='flex justify-between items-center text-[20px]'><p className='flex gap-1 items-center'><p><IoIosGitBranch /></p>{value.branch}</p> <p className='cursor-pointer'><DotsComponent/> </p></div>
-                <p className='mt-2 flex gap-1 items-center'> <p><IoLocationOutline /></p>{value.address}</p>
+               <div className='flex justify-between items-center text-[20px]'><p className='flex gap-1 items-center'><p><IoIosGitBranch /></p>{props.name}</p> <p className='cursor-pointer'><DotsComponent/> </p></div>
+                <p className='mt-2 flex gap-1 items-center'> <p><IoLocationOutline /></p>{props.address}</p>
                </div>
                <div className='border-t w-full mt-2'></div>
                <div className='w-[90%] mt-2'>
                <div className='w-full flex justify-between'>
-                <p className=' font-medium text-[#aaacb3] text-[17px]'>No of Employees: </p>
+                <p className=' font-medium text-[#aaacb3] text-[17px]'>No of Employees: 20 </p>
                 <p className='font-medium'>3</p>
                 </div>
                 <div className='flex justify-between'>
-                <p className=' font-medium text-[#aaacb3] text-[17px]'>No of Expense: </p>
+                <p className=' font-medium text-[#aaacb3] text-[17px]'>No of Expense: 10</p>
                 <p className=' font-medium'>23</p>
                 </div>
                </div>

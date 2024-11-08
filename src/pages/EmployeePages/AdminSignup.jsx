@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addOtpId } from "../../service/userReducer";
 import imageA from '../../assets/2d35b83df65a5b188eed0847f0cabdc5.jpg'
+import Swal from 'sweetalert2'
  
 
 const AdminSignup = () => {
@@ -33,9 +34,19 @@ const AdminSignup = () => {
         navigate("otpinput/");
         console.log(res.data.data)
         dispatch(addOtpId(res.data.data))
+        Swal.fire({
+          title: "Successful!",
+          text: "Check your email for OTP verification",
+          icon: "success"
+        });
         
       } catch (error) {
         console.log(error)
+        Swal.fire({
+          title: "Oops!",
+          text: "Registration Failed",
+          icon: "error"
+        });
       }
     })
   };
@@ -96,11 +107,11 @@ const AdminSignup = () => {
               required
             />
             {/* password Input */}
-            <div className="mt-2 ">
+            <div className="mt-2 w-full ">
               <label className=" w-full font-[calibri] font-medium text-[17px]">
                 Password
               </label>
-              <div className="w-full relative">
+              <div className="w-full relative flex items-center ">
                 <input
                   onChange={handleChange}
                   
@@ -111,13 +122,15 @@ const AdminSignup = () => {
                   required
                 />
                 <span
-                  className="text-[20px] absolute bottom-[10px] right-4 text-[#a0a2a8] cursor-pointer"
+                  className="text-[20px] ml-[-27px] text-[#a0a2a8] cursor-pointer"
                   onClick={handleOpen}
                 >
                   {open ? <IoMdEye /> : <IoMdEyeOff />}
                 </span>
+                
               </div>
-              {/* {errors && <div className='text-red-500 text-[12px]'>{errors} </div>} */}
+              {errors?.password && <div className='text-red-500 text-[12px]'>{errors.password} </div>}
+              
             </div>
           </div>
           <button
@@ -139,8 +152,8 @@ const AdminSignup = () => {
           </div>
         </form>
       </div>
-      <div className="w-full h-full max-sm:hidden">
-      <img src={imageA} className="w-full h-full object-cover" />
+      <div className="w-full h-full mobileTab:hidden">
+      <img src={imageA} className="w-full h-full object-cover mobileTab:hidden" />
       </div>
     </div>
   );

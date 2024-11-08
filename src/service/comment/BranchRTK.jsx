@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const expenseRTK = createApi({
+export const commentRTK = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://expense-tracker-ruug.onrender.com/api",
     prepareHeaders: (headers, { getState }) => {
@@ -13,26 +13,20 @@ export const expenseRTK = createApi({
   }),
   reducerPath: "expense",
   endpoints: (builder) => ({
-    addExpense: builder.mutation({
+    comment: builder.mutation({
       query: (body) => ({
-        url: "/expense/create",
+        url: `/comment/${body.id}/create`,
         method: "POST",
         body,
       }),
     }),
-    getAllExpenses: builder.query({
+    getAllComment: builder.query({
       query: () => ({
-        url: "/expense",
-        method: "GET",
-      }),
-    }),
-    getOneExpenses: builder.query({
-      query: (id) => ({
-        url: `/expense/${id}`,
+        url: "/comment",
         method: "GET",
       }),
     }),
   }),
 });
 
-export const { useAddExpenseMutation,useGetAllExpensesQuery,useGetOneExpensesQuery } = expenseRTK;
+export const { useCommentMutation,useGetAllCommentQuery } = commentRTK;

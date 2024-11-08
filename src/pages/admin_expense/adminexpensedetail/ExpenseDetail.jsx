@@ -1,87 +1,137 @@
-import React from 'react' 
 import image from "../../../assets/young-handsome-man-posing-with-hat_23-2148884336.jpg";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import { useGetOneExpensesQuery } from "../../../service/expense/ExpenseRTK";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useCommentMutation, useGetAllCommentQuery } from "../../../service/comment/BranchRTK";
 
 const ExpenseDetail = () => {
+
+  const [message, setMessage] = useState()
+  const {id} = useParams()
+  console.log(id)
+  const {data,error} = useGetOneExpensesQuery(id)
+  const [comment,{ isLoading}] = useCommentMutation()
+  const {data:commentData,error:isError} = useGetAllCommentQuery()
+  console.log(commentData)
+  console.log(isError)
+
+  const createComment = ()=>{
+    comment({message,id })
+  }
+
+
   return (
-    <div className='w-full  flex items-center flex-col justify-center'>
-   <div className='w-full h-[100px]  bg-gradient-to-r from-gray-200 to-yellow-500'></div>
-        <div className='w-full pl-5 relative bottom-8 flex items-end gap-2'>
-            <div className='size-28 rounded-full '><img className='rounded-full size-full' src={image} /></div>
-            <div className='flex flex-col justify-center'>
-                <div className='font-medium text-lg'>James Moore</div>
-                <div className='text-[15px]'>House Z, Oluwale, Chevron drive, Lekki-Lagos.</div>
-            </div>
+    <div className="w-full flex my-[20px] flex-col justify-center bg-white p-5">
+      <div className="w-full h-[100px]  bg-gradient-to-r from-gray-200 to-yellow-500"></div>
+      <div className="w-full pl-5 relative bottom-8 flex items-end gap-2 tablet:mt-[35px]">
+        <div className="size-28 rounded-full tablet:hidden">
+          <img
+            className="rounded-full size-full tablet:size-full"
+            src={image}
+          />
         </div>
-        <div className='w-full p-5 gap-6 flex flex-col overflow-y-scroll scrollbar-hide'>
-            <div className='w-full '>
-                <div className='font-medium mb-[10px]'>Expense Information</div>
-                <table className='w-full min-w-[50rem] '>
-                 
-                    <tbody>
-                        <tr className='text-center'>
-                            <td className='font-medium py-5 border'>Expense item</td>
-                            <td className='border'>Office new printer</td>
-                        </tr>
-                        <tr className='text-center'>
-                            <td className='border font-medium py-6 '>Quantity</td>
-                            <td className='border'>2</td>
-                        </tr>
-                        <tr className='text-center'>
-                            <td className='border font-medium py-6'>Amount</td>
-                            <td className='border'>$420.00</td>
-                        </tr>
-                        <tr className='text-center'>
-                            <td className='border font-medium py-6'>Date Added</td>
-                            <td className='border'>23/oct/2024</td>
-                        </tr>
-                        <tr className='text-center'>
-                            <td className='border font-medium py-5'>Reason</td>
-                            <td className='border'>The last one was faulty</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div className='w-full py-[10px] '>
-                <div className='w-full rounded-[10px] overflow-y-scroll  scrollbar-hide bg-white'>
-              <div className='flex w-full p-[10px] justify-between border-b items-center'>
-              <div className='font-medium'>Comment</div>
-                <div className='text-[18px] font-medium hover:cursor-pointer'>x</div>
+        <div className="flex flex-col justify-center">
+          <div className="font-medium text-lg ">{`${data?.data.employee?.firstName } ${data?.data.employee?.lastName}`}</div>
+          <div className="text-[15px] tablet:w-full">
+            {`${data?.data.branch?.address}`}
+          </div>
+        </div>
+      </div>
+      <div className="w-full p-5 gap-6 flex flex-col">
+        <div className="w-full ">
+          <div className="font-medium mb-[10px]">Expense Information</div>
+          <div className="w-full mt-[10px] overflow-x-auto">
+            <table className="w-full mx-auto max-w-screen-2xl">
+              <tbody>
+                <tr className="text-center">
+                  <td className="font-medium py-5 border">Expense item</td>
+                  <td className="border">{`${data?.data.price}`}</td>
+                </tr>
+                <tr className="text-center">
+                  <td className="border font-medium py-6">Quantity</td>
+                  <td className="border">{`${data?.data.quantity}`}</td>
+                </tr>
+                <tr className="text-center">
+                  <td className="border font-medium py-6">Price</td>
+                  <td className="border">₦{`${data?.data.price}`}</td>
+                </tr>
+                <tr className="text-center">
+                  <td className="border font-medium py-6">Date Added</td>
+                  <td className="border">23/oct/2024</td>
+                </tr>
+                <tr className="text-center">
+                  <td className="border font-medium py-5">Reason for Expense</td>
+                  <td className="border">{`${data?.data.reason}`}</td>
+                </tr>
+                <tr className="text-center">
+                  <td className="border font-medium py-5">Branch</td>
+                  <td className="border">{`${data?.data.branch?.name}`}</td>
+                </tr>
+                <tr className="text-center">
+                  <td className="border font-medium py-5">Expense Date</td>
+                  <td className="border">date</td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="w-full py-[10px] tablet:w-full">
+          <div className="w-full rounded-[10px] overflow-y-auto scrollbar-hide bg-white">
+            <div className="flex w-full justify-between pb-2 border-b items-center">
+              <div className="font-medium">Comment</div>
+              <div className="text-[18px] font-medium hover:cursor-pointer">
+                x
               </div>
-              <div className='p-[20px]  '>
-                <div className='flex justify-between'>
-                  <div className='flex justify-center gap-3 items-center'>
-                  <div className='size-10 rounded-full '><img className='size-full rounded-full' src={image} /></div>
-                    <div className='flex flex-col justify-center'>
-                        <div className='text-[14px] font-medium'>Liam Reuben</div>
-                        <div className='text-[12px]'>27 minutes ago</div>
-                    </div>
-                  </div>
-                    <div><HiOutlineDotsHorizontal /></div>
-                </div>
-
-<div className='w-[100%] flex items-center justify-center'>
-<div className='text-[14px] w-[88%] text-gray-600 mt-[10px]'>A better understanding of usage can aid in priortizing future efforts I'm sorry I replied to your emails after only three weeks</div>
-
-</div>
-                <div className='mt-[30px]'>
-
-                    <div className=' text-gray-700  text-[13px] font-medium'> <span className='border-b border-gray-400'>REPLY</span></div>
-                    <textarea placeholder='Enter your comment...' className='pt-[3px] pb-[3px] mt-[10px] pl-[10px] prvg-[10px] w-full h-[100px] rounded-bl-xl text-[14px] rounded-br-xl bg-gray-50 outline-none placeholder:text-[14px] cursor-pointer'>
-                      
-                    </textarea>
-                    <div className='w-full flex justify-end'><button className='text-[14px] text-white font-medium border bg-blue-700 px-5 py-1 hover:bg-blue-800 rounded-md'>Send</button></div>
-
-                </div>
-
-</div>
-                </div>
-
-               
             </div>
-        </div>
-    </div>
-  )
-}
+            <div className="py-[20px] tablet:w-full">
+              <div className="flex justify-between">
+                <div className="flex justify-center gap-3 items-center">
+                  <div className="size-10 rounded-full ">
+                    <img className="size-full rounded-full" src={image} />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <div className="text-[14px] font-medium">Liam Reuben</div>
+                    <div className="text-[12px]">27 minutes ago</div>
+                  </div>
+                </div>
+                <div>
+                  <HiOutlineDotsHorizontal />
+                </div>
+              </div>
 
-export default ExpenseDetail
+              <div className="w-[100%] flex items-center justify-center">
+               <div className="w-[100%] flex mt-[10px] pl-[53px]">
+               <div className="text-[14px] text-gray-600 ">
+                  A better understanding of usage can aid in priortizing future
+                  efforts Im sorry I replied to your emails after only three
+                  weeks
+                </div>
+               </div>
+              </div>
+              <div className="mt-[30px]">
+                <div className=" text-gray-700  text-[13px] font-medium">
+                  {" "}
+                  <span className="border-b border-gray-400">REPLY</span>
+                </div>
+                <textarea
+                  onChange={(e)=>setMessage(e.target.value)}
+                  placeholder="Enter your comment..."
+                  className="pt-[3px] pb-[3px] mt-[10px] pl-[10px] prvg-[10px] w-full h-[100px] rounded-bl-xl text-[14px] rounded-br-xl bg-gray-50 outline-none placeholder:text-[14px] cursor-pointer"
+                ></textarea>
+                <div className="w-full flex justify-end">
+                  <button onClick={createComment} className="text-[14px] text-white font-medium border bg-blue-700 px-5 py-1 hover:bg-blue-800 rounded-md">
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ExpenseDetail;

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { UserLogin } from "../../service/userReducer";
 import useForm from "../../handler/useForm";
+import Swal from 'sweetalert2'
 
 const AdminSignin = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +23,7 @@ const AdminSignin = () => {
     setOpen(!open);
     setVisiblePassword(!visiblePassword);
   };
-  console.log("dd" ,values);
+  console.log(values);
   console.log(errors);
 
   const handleSubmit = (e) => {
@@ -38,10 +39,20 @@ const AdminSignin = () => {
         navigate("/admin/admin_dashboard");
         dispatch(UserLogin(res.data.data))
         setIsLoading(false)
+        Swal.fire({
+          title: "Successful!",
+          text: "Welcome to Xpense Traka",
+          icon: "success"
+        });
         
       } catch (error) {
         console.log("error", error)
         setIsLoading(false)
+        Swal.fire({
+          title: "Failed!",
+          text: "Incorrect e-mail or password",
+          icon: "error"
+        });
       }
     })
   };
@@ -66,11 +77,11 @@ const AdminSignin = () => {
               handleChange={handleChange}
               required
             />
-            <div className="mt-2 ">
+            <div className="mt-2 w-full ">
               <label className=" w-full font-[calibri] font-medium text-[17px]">
                 Password
               </label>
-              <div className="w-full relative">
+              <div className="w-full relative flex items-center">
                 <input
                   className="pl-[15px] w-full py-[9px] focus:outline-[#BBBEC8] font-[calibri] rounded-md border border-[#BBBEC8] mt-1"
                   type={visiblePassword ? "text" : "password"}
@@ -105,8 +116,8 @@ const AdminSignin = () => {
           </div>
         </form>
       </div>
-      <div className="w-full h-full max-sm:hidden">
-        <img src={imageA} className="w-full h-full object-cover" />
+      <div className="w-full h-full mobileTab:hidden">
+        <img src={imageA} className="w-full h-full object-cover mobileTab:hidden" />
       </div>
     </div>
   );
