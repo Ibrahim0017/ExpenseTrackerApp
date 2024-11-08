@@ -11,6 +11,7 @@ import ExpenseDetail from "../pages/admin_expense/adminexpensedetail/ExpenseDeta
 import CreateBranch from "../components/EmployeeComponents/CreateBranch";
 import BranchDetail from "../pages/EmployeePages/BranchDetail";
 import Profile from "../pages/Admin Pages/Profile";
+import EmployeeExpenseTable from "../pages/admin_expense/EmployeeExpenseTable"
 
 const DashboardOverview = () => {
   return (
@@ -26,8 +27,9 @@ const DashboardOverview = () => {
           <Route path="/createbranch" element={<CreateBranch />} />
           <Route path="/branchdetail/:id" element={<BranchDetail />} />
           <Route path="/branches" element={<BranchPage />} />
-          <Route path="/expense/detail" element={<ExpenseDetail />} />
+          <Route path="/expense/detail/:id" element={<ExpenseDetail />} />
           <Route path="/settings" element={<Profile />} />
+          <Route path="/employeeexpense" element={<EmployeeExpenseTable />} />
         </Routes>
       </div>
     </>
