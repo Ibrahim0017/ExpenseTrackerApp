@@ -1,11 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LuBellRing } from "react-icons/lu";
-import { Link } from 'react-router-dom';
-import Profile from '../pages/Admin Pages/Profile';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
   const [isNotificationPopupVisible, setIsNotificationPopupVisible] = useState(false);
   const [isProfilePopupVisible, setIsProfilePopupVisible] = useState(false);
+  const [profileData, setProfileData] = useState(null);
+  const tokenHolder = useSelector((state) => state.user_reducer?.users);
+
+  // Fetch latest profile data
+  const fetchProfileData = async () => {
+    try {
+      const res = await axios.get(
+        'https://expense-tracker-ruug.onrender.com/api/employee/profile', // Replace with your actual endpoint
+        {
+          headers: {
+            Authorization: `Bearer ${tokenHolder}`,
+          },
+        }
+      );
+      console.log('Profile data response:', res.data); // Check the API response in the console
+      setProfileData(res.data); // Assuming res.data contains the profile data
+    } catch (error) {
+      console.error('Error fetching profile data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfileData();
+  }, []);
 
   // Toggle notification popup
   const toggleNotificationPopup = () => {
@@ -22,7 +46,9 @@ const Header = () => {
       <div className='h-[100%] flex gap-2 items-center cursor-pointer' onClick={toggleProfilePopup}>
         <div className='w-8 h-8 bg-slate-400 rounded-full'></div>
         <div>
-          <div className='text-sm md:text-base text-white'>Ibrahim Shobo</div>
+          <div className='text-sm md:text-base text-white'>
+            {profileData ? profileData.firstName : 'Loading...'}
+          </div>
           <div className='text-xs md:text-sm text-gray-50'>Hello, Welcome back</div>
         </div>
       </div>
@@ -65,21 +91,23 @@ const Header = () => {
       )}
 
       {/* Profile Popup */}
-      {isProfilePopupVisible && (
+      {isProfilePopupVisible && profileData && (
         <div className='absolute top-12 left-1/2 transform -translate-x-1/2 w-[90%] md:max-w-lg bg-white rounded-lg shadow-2xl p-6 z-30'>
           <div className='text-gray-800 font-semibold text-lg mb-4'>User Profile</div>
           <div className='flex gap-4'>
             <div className='w-16 h-16 md:w-24 md:h-24 bg-slate-400 rounded-full'></div>
             <div>
-              <div className='text-gray-800 font-semibold text-md:text-base'>Ibrahim Shobo</div>
-              <div className='text-gray-500 text-xs md:text-sm'>ibrahim.shobo@example.com</div>
-              <div className='text-gray-500 text-xs md:text-sm'>Joined: January 2023</div>
+              <div className='text-gray-800 font-semibold text-md:text-base'>
+                {profileData.firstName} {profileData.lastName}
+              </div>
+              <div className='text-gray-500 text-xs md:text-sm'>{profileData.email}</div>
+              <div className='text-gray-500 text-xs md:text-sm'>Joined: {profileData.joinDate}</div>
             </div>
           </div>
           <div className='mt-4 text-gray-700 text-sm'>
-            <p>Hello, Ibrahim! Here’s your account summary:</p>
+            <p>Hello, {profileData.firstName}! Here’s your account summary:</p>
             <ul className='list-disc list-inside mt-2'>
-              <li>Membership: Premium</li>
+              <li>Membership: {profileData.membershipStatus}</li>
               <li>Notifications Enabled: Yes</li>
               <li>2 New Messages</li>
             </ul>

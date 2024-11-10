@@ -5,9 +5,10 @@ import axios from "axios";
 import swal from "sweetalert";
 import { useSelector } from "react-redux";
 
-const Profile = () => {
+const EmployeesProfile = () => {
   const [avatar, setAvatar] = useState("https://via.placeholder.com/150");
-  const [fullName, setFullName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [mobileNumber, setMobileNumber] = useState();
   const [address, setAddress] = useState("");
@@ -32,7 +33,8 @@ const Profile = () => {
 
     // Prepare form data
     const formData = new FormData();
-    formData.append("fullName", fullName);
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
     formData.append("email", email);
     formData.append("phone", mobileNumber);
     formData.append("address", address);
@@ -42,7 +44,7 @@ const Profile = () => {
       console.log(formData);
       // Send form data to the server
       const res = await axios.patch(
-        "https://expense-tracker-ruug.onrender.com/api/organisation/update",
+        "https://expense-tracker-ruug.onrender.com/api/employee/update",
         formData,
         {
           headers: {
@@ -100,14 +102,26 @@ const Profile = () => {
       >
         <div>
           <label className="block text-gray-700 font-medium">
-            Full Name <span className="text-red-500">*</span>
+            First Name <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
             placeholder="Full name"
             className="w-full border-gray-300 rounded-lg p-2 mt-1"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label className="block text-gray-700 font-medium">
+            Last Name <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Full name"
+            className="w-full border-gray-300 rounded-lg p-2 mt-1"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
           />
         </div>
         <div>
@@ -158,4 +172,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default EmployeesProfile
