@@ -160,7 +160,7 @@ const EmployeePage = () => {
                 <td className=" px-3 py-3 font-[calibri] [15px]"> {(value.branch?.name.at(0).toUpperCase()) + (value.branch?.name.slice(1))} Branch</td>
                 <td className=" px-3 py-3  font-[calibri] text-[15px]">0</td>
                 <td className=" px-3 py-3  cursor-pointer relative">
-                  <ButtonComp id={value._id} branchId={value.branch._id} />
+                  <ButtonComp id={value._id} branchId={value.branch} />
                 </td>
               </tr>
             ))}
