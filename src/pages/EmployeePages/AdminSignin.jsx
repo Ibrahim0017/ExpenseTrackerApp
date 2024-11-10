@@ -41,7 +41,7 @@ const AdminSignin = () => {
         setIsLoading(false)
         Swal.fire({
           title: "Successful!",
-          text: "Welcome to Xpense Traka",
+          text: "Welcome to Xpense Trakaa",
           icon: "success"
         });
         
