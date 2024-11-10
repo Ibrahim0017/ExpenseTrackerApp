@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSignInEmployeeMutation } from "./employee/EmployeeRTK";
 import { useDispatch } from "react-redux";
 import { UserLogin } from "./userReducer";
+import Swal from 'sweetalert2';
 
 const SignInInput = () => {
   const navigate = useNavigate();
@@ -28,9 +29,28 @@ const SignInInput = () => {
 
   console.log(values);
   if (isSuccess) {
+    
     navigate("/employeesdash/expense");
+  
+
     dispatch(UserLogin(data.data));
+  
+    
+    Swal.fire({
+      title: "Welcome back!", 
+      text: "XpenseTrakaa like no other", 
+      icon: 'success', 
+    });
+  } else {
+    
+    Swal.fire({
+      title: "Login Failed",
+      text: "There was an error logging in. Please try again.",
+      icon: 'error',
+    });
   }
+
+
   if (error) {
     console.log(error);
   }
@@ -80,22 +100,22 @@ const SignInInput = () => {
               <label id="name" className="text-[14px] font-medium w-full">
                 Password
               </label>
-              <div className=" flex w-full items-center border border-gray-500 rounded-[5px] bg-green-500 shadow-sm">
+              <div className=" flex w-full items-center ">
               
                 <input
                   onChange={handleChange}
                   name="password"
                   type={Open === false ? "password" : "text"}
                   placeholder="Enter password"
-                  className="w-full border-none py-2 text-[14px] pl-[10px] "
+                  className="w-full border border-gray-500 rounded-[5px] shadow-sm py-2 text-[14px] pl-[10px] "
                 />
-                  <div className="flex text-[18px] cursor-pointer ml-[-30px]">
+                  {/* <div className="flex text-[18px] cursor-pointer">
                 {Open === false ? (
                   <IoMdEye onClick={toggle} />
                 ) : (
                   <IoMdEyeOff onClick={toggle} />
                 )}
-              </div>
+              </div> */}
 
               </div>
 
