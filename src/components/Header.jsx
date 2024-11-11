@@ -21,7 +21,7 @@ const Header = () => {
         }
       );
       console.log('Profile data response:', res.data); // Check the API response in the console
-      setProfileData(res.data); // Assuming res.data contains the profile data
+      setProfileData(res.data.data); // Assuming res.data contains the profile data
     } catch (error) {
       console.error('Error fetching profile data:', error);
     }
