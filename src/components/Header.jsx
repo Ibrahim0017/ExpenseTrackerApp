@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LuBellRing } from "react-icons/lu";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { useAdminProfileQuery } from '../service/AdminProfile/AdminProfileRTK'
 
 const Header = () => {
   const [isNotificationPopupVisible, setIsNotificationPopupVisible] = useState(false);
@@ -9,27 +10,32 @@ const Header = () => {
   const [profileData, setProfileData] = useState(null);
   const tokenHolder = useSelector((state) => state.user_reducer?.users);
 
-  // Fetch latest profile data
-  const fetchProfileData = async () => {
-    try {
-      const res = await axios.get(
-        'https://expense-tracker-ruug.onrender.com/api/employee/profile', // Replace with your actual endpoint
-        {
-          headers: {
-            Authorization: `Bearer ${tokenHolder}`,
-          },
-        }
-      );
-      console.log('Profile data response:', res.data); // Check the API response in the console
-      setProfileData(res.data.data); // Assuming res.data contains the profile data
-    } catch (error) {
-      console.error('Error fetching profile data:', error);
-    }
-  };
 
-  useEffect(() => {
-    fetchProfileData();
-  }, []);
+  const { data, error, isLoading } = useAdminProfileQuery()
+  console.log(data)
+  console.log(error)
+
+  // Fetch latest profile data
+  // const fetchProfileData = async () => {
+  //   try {
+  //     const res = await axios.get(
+  //       'https://expense-tracker-ruug.onrender.com/api/employee/profile', // Replace with your actual endpoint
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${tokenHolder}`,
+  //         },
+  //       }
+  //     );
+  //     console.log('Profile data response:', res.data); // Check the API response in the console
+  //     setProfileData(res.data.data); // Assuming res.data contains the profile data
+  //   } catch (error) {
+  //     console.error('Error fetching profile data:', error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchProfileData();
+  // }, []);
 
   // Toggle notification popup
   const toggleNotificationPopup = () => {
@@ -44,10 +50,17 @@ const Header = () => {
   return (
     <div className='w-full md:w-[85%] h-[10%] bg-gray-900 border-gray-700 border-b flex justify-between px-3 fixed right-0 z-20'>
       <div className='h-[100%] flex gap-2 items-center cursor-pointer' onClick={toggleProfilePopup}>
-        <div className='w-8 h-8 bg-slate-400 rounded-full'></div>
+        <div className='w-8 h-8 bg-slate-400 rounded-full flex justify-content-center align-items-center'>
+          {data.data.avatar? (
+            <img src={data?.data.avatar} className='w-8 h-8 bg-slate-400 rounded-full' />
+
+          )
+          : <p>{data?.data.fullName.chartAt().toUpperCase}</p>
+          }
+        </div>
         <div>
           <div className='text-sm md:text-base text-white'>
-            {profileData ? profileData.firstName : 'Loading...'}
+            {data ? data?.data.fullName.toUpperCase() : 'Loading...'}
           </div>
           <div className='text-xs md:text-sm text-gray-50'>Hello, Welcome back</div>
         </div>

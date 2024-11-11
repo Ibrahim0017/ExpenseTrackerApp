@@ -3,9 +3,9 @@ import { createApi,fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const adminProfileRTK = createApi({
     baseQuery:fetchBaseQuery({
-        baseUrl: 'https://expense-tracker-ruug.onrender.com/api/organisation/profile',
+        baseUrl: 'https://expense-tracker-ruug.onrender.com/api',
         prepareHeaders: (headers, { getState }) => {
-            const token = getState().users;
+            const token = getState()?.user_reducer.users;
             if (token) {
               headers.set("Authorization", `Bearer ${token}`);
             }
@@ -13,11 +13,11 @@ export const adminProfileRTK = createApi({
     }),
     reducerPath: 'admin',
     endpoints: (builder)=>({
-        adminProfile: builder.mutation({
-            query:(body)=>({
-                url: "/admin/verify",
-                method: "PATCH",
-                body
+        adminProfile: builder.query({
+            query:()=>({
+                url: "/organisation/profile",
+                method: "GET",
+            
             })
         }),
         getAllEmployee: builder.query({
@@ -29,4 +29,4 @@ export const adminProfileRTK = createApi({
     })
 })
 
-export const {useAdminProfileMutation,useGetAllEmployeeQuery} = adminProfileRTK
+export const {useAdminProfileQuery,useGetAllEmployeeQuery} = adminProfileRTK

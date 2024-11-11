@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/trackfunds-high-resolution-logo-transparent.png'
+import logo from '../assets/Logo2.svg'
 
 const LogoDiv = () => {
   return (
