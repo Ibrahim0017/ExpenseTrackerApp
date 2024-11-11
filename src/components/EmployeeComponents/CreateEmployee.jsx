@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { TbLetterX } from "react-icons/tb";
 import {useSelector} from "react-redux";
 import axios from 'axios';
+import Swal from "sweetalert2";
 
 const CreateEmployee = ({ handleButtonOpen }) => {
 
@@ -21,26 +22,35 @@ console.log(values)
 
   const handleEmployeeSubmit = (e) =>{
     e.preventDefault()
+    setIsLoading(true)
     // handleButtonOpen()
 
 
     setTimeout( async() => {
     try{
-      let createEmployee =  axios.post(
+    
+      const createEmployee = await axios.post(
         'https://expense-tracker-ruug.onrender.com/api/organisation/employee/create',
         values,
         {headers: {
           Authorization: `Bearer ${tokenHolder}`
         }}, 
       )
-      setIsLoading(true)
+      Swal.fire({
+        title: 'Success!',
+        text: 'Employee created successfully',
+        icon: 'success',
+      });
+      setIsLoading(false)
       
       console.log(createEmployee)
       setEmployee(createEmployee)
-      // handleButtonOpen()
+      handleButtonOpen()
+    
 
     }catch(errors){
       console.log(errors)
+      setIsLoading(false)
     }
   })
     
@@ -137,7 +147,10 @@ console.log(values)
             </div>
           </div>
           <div className="mt-3">
-            <button className="px-4 py-[10px] border-none bg-gray-800  text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white">
+            <button 
+            type="submit"
+            disabled={isLoading}
+            className="px-4 py-[10px] border-none bg-gray-800  text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white">
             {isLoading? "Loading.." : "Add Employee"}
             </button>
           </div>

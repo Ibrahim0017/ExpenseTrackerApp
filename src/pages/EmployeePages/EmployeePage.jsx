@@ -160,7 +160,7 @@ const EmployeePage = () => {
                 <td className=" px-3 py-3 font-[calibri] [15px]"> {(value.branch?.name.at(0).toUpperCase()) + (value.branch?.name.slice(1))} Branch</td>
                 <td className=" px-3 py-3  font-[calibri] text-[15px]">0</td>
                 <td className=" px-3 py-3  cursor-pointer relative">
-                  <ButtonComp id={value._id} branchId={value.branch} />
+                  <ButtonComp employeeId={value?._id} branchId={value.branch?._id} />
                 </td>
               </tr>
             ))}
@@ -184,11 +184,15 @@ const EmployeePage = () => {
 const ButtonComp = ({employeeId, branchId}) => {
   const [open, setOpen] = useState(false);
 
+  console.log(branchId)
+  console.log(employeeId)
   const handleOpen = () => {
     setOpen(!open);
   };
 
-  const [ deleteEmployee, {error, isLoading }] = useDeleteOneEmployeeMutation();
+  const [ deleteEmployee, {error, isLoading,isSuccess }] = useDeleteOneEmployeeMutation();
+  console.log(error)
+  // console.log(useDeleteOneEmployeeMutation())
 
   const handleDelete = async () => {
   Swal.fire({

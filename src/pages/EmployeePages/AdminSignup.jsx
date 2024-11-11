@@ -32,7 +32,7 @@ const AdminSignup = () => {
         let res = await axios.post("https://expense-tracker-ruug.onrender.com/api/organisation/register", values)
         setIsLoading(res.values)
         console.log(res)
-        navigate("otpinput/");
+        navigate("/sign-up/admin/otpinput/");
         console.log(res.data.data)
         dispatch(addOtpId(res.data.data))
         Swal.fire({
