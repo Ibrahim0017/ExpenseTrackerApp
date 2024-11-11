@@ -14,7 +14,7 @@ const EmployeesMenu = () => {
       <SelectMenu text='Payroll' path='/employeesdash/payroll' Icon={FiHome} />
       <SelectMenu text='Reports' path='/employeesdash/reports' Icon={FiHome} /> */}
       <h1 className='text-[14px]'>Support</h1>
-      <SelectMenu text='Settings' path='/employeesdash/settings' Icon={FiSettings} />
+      <SelectMenu text='Settings' path='/employeesdash/emsettings' Icon={FiSettings} />
     </div>
   );
 };
