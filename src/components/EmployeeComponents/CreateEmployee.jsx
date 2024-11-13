@@ -44,7 +44,7 @@ console.log(values)
       setIsLoading(false)
       
       console.log(createEmployee)
-      setEmployee(createEmployee)
+      setEmployee((prevEmployee) => [...prevEmployee, createEmployee.data]);
       handleButtonOpen()
     
 
@@ -150,6 +150,7 @@ console.log(values)
             <button 
             type="submit"
             disabled={isLoading}
+          
             className="px-4 py-[10px] border-none bg-gray-800  text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white">
             {isLoading? "Loading.." : "Add Employee"}
             </button>

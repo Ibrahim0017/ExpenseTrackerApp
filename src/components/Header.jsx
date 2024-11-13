@@ -51,7 +51,7 @@ const Header = () => {
     <div className='w-full md:w-[85%] h-[10%] bg-gray-900 border-gray-700 border-b flex justify-between px-3 fixed right-0 z-20'>
       <div className='h-[100%] flex gap-2 items-center cursor-pointer' onClick={toggleProfilePopup}>
         <div className='w-8 h-8 bg-slate-400 rounded-full flex justify-content-center align-items-center'>
-          {data.data.avatar? (
+          {data?.data.avatar? (
             <img src={data?.data.avatar} className='w-8 h-8 bg-slate-400 rounded-full' />
 
           )

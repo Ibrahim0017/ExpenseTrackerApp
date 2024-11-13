@@ -190,7 +190,7 @@ const ButtonComp = ({employeeId, branchId}) => {
     setOpen(!open);
   };
 
-  const [ deleteEmployee, {error, isLoading,isSuccess }] = useDeleteOneEmployeeMutation();
+  const [ deleteEmployee, {error, isLoading, isSuccess }] = useDeleteOneEmployeeMutation();
   console.log(error)
   // console.log(useDeleteOneEmployeeMutation())
 
