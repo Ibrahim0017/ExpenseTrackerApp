@@ -45,7 +45,7 @@ const BranchDetail = () => {
         <div>
             <p className='text-[25px] font-semibold'>{(data?.data.name.at(0).toUpperCase()) + (data?.data.name.slice(1))} Branch</p>
             <p className='text-[15px] '>{data?.data.address}</p>
-            <p className='text-[17px] font-medium'>Company Ltd</p>
+            <p className='text-[17px] font-medium'>{data?.data.organisation?.companyName} </p>
         </div>
         <div className=' flex mt-4'>
             <div className='w-full'>

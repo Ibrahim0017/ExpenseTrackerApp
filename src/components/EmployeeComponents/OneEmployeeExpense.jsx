@@ -18,8 +18,9 @@ const OneEmployeeExpense = () => {
   console.log(data)
   console.log(error)
   
-  const [branchId, setBranchId] = useState(id); 
-  const filteredExpenses = data && data.data.filter((expense) => expense.branch._id === branchId);
+  console.log(isLoading)
+  // const [branchId, setBranchId] = useState(id); 
+  // const filteredExpenses = data && data?.data.filter((expense) => expense.employee._id === id);
   
 
 
@@ -37,7 +38,7 @@ const OneEmployeeExpense = () => {
         </tr>
       </thead>
       <tbody>
-        {filteredExpenses?.map((value, index) => (
+        {data?.data?.map((value, index) => (
           <tr
            className={`border border-gray-50 ${
             index % 2 !== 0 ? "bg-gray-50" : "bg-white"
