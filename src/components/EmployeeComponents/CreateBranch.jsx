@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 const CreateBranch = ({handleButtonOpen}) => {
 
   const [branch, setBranch] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const [values, setValues] = useState()
   const tokenHolder = useSelector((state) => state.user_reducer?.users);
 
@@ -17,6 +18,7 @@ console.log(values)
 
   const handleBranchSubmit = (e) =>{
     e.preventDefault()
+    setIsLoading(true);
     // setBranch(true);
 
 
@@ -32,11 +34,13 @@ console.log(values)
       
       console.log(createBranch)
       setBranch(createBranch)
-      // handleButtonOpen()
+      setIsLoading(false)
+      handleButtonOpen()
 
 
     }catch(errors){
       console.log(errors)
+      setIsLoading(false)
     }
   })
     
@@ -77,9 +81,18 @@ console.log(values)
                         <input type='text' className='py-2 mt-1 focus:outline-[#BBBEC8] rounded-sm px-2 w-full border' name='address' onChange={handleChange} />
                     </div>
                 </div>
+                <div className='w-full'>
+                    <p>Phone</p>
+                    <div>
+                        <input type='text' className='py-2 mt-1 focus:outline-[#BBBEC8] rounded-sm px-2 w-full border' name='phone' onChange={handleChange} />
+                    </div>
+                </div>
             </div>
-            <button className="px-4 py-[10px] border-none bg-gray-800  text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white mt-4">
-               Create Branch
+            <button 
+            type="submit"
+            disabled={isLoading}
+            className="px-4 py-[10px] border-none bg-gray-800  text-[17px] tetx-white font-semibold font-[calibri] rounded-md text-white mt-4">
+               {isLoading ? "Loading..." : "Create Branch"}
             </button>
         </form>
     </div>

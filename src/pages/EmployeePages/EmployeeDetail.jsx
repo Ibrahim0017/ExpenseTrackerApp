@@ -39,7 +39,7 @@ const EmployeeDetail = () => {
             <div>
                 <p className='text-[25px] font-semibold'> {(data?.data.lastName.slice(0, 1).toUpperCase()) + (data?.data.lastName.slice(1))} {(data?.data.firstName.at(0).toUpperCase()) + (data?.data.firstName.slice(1))} </p>
                 <p className='text-[15px] '>Purchasing Manager</p>
-                <p className='text-[17px] font-medium'>Company Lyd</p>
+                <p className='text-[17px] font-medium'>{data?.organisation}</p>
             </div>
             <div className=' flex mt-4'>
                 <div className='w-full'>
@@ -54,7 +54,7 @@ const EmployeeDetail = () => {
 
             {toggle?
 
-                <div>
+                <div className='pb-4'>
                 <OneEmployeeExpense />
                 </div>:
                 
@@ -94,7 +94,7 @@ const EmployeeDetail = () => {
                  </div>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Status</b>
-                 <p>Activw</p>
+                 <p>Active</p>
                  </div>
                  </div>
                  <div className=' w-full flex justify-between mt-2'>
