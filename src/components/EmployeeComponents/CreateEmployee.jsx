@@ -44,7 +44,7 @@ console.log(values)
       setIsLoading(false)
       
       console.log(createEmployee)
-      setEmployee((prevEmployee) => [...prevEmployee, createEmployee.data]);
+      setEmployee(createEmployee);
       handleButtonOpen()
     
 

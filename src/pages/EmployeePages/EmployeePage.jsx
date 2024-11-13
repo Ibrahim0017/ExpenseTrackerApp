@@ -7,12 +7,14 @@ import { IoMdMore } from "react-icons/io";
 import { Link } from "react-router-dom";
 import CreateEmployee from "../../components/EmployeeComponents/CreateEmployee";
 // import imagea from "../../assets/WhatsApp Image 2024-09-03 at 10.04.20.jpeg";
-import { useGetAllEmployeeQuery } from "../../service/employee/EmployeeRTK";
+// import { useGetAllEmployeeQuery } from "../../service/employee/EmployeeRTK";
 import { useDeleteOneEmployeeMutation } from "../../service/employee/EmployeeRTK";
 import moment from "moment";
 import Swal from "sweetalert2"
 import { IoSearchOutline } from "react-icons/io5";
 import { MdKeyboardBackspace } from "react-icons/md";
+import {useSelector} from "react-redux";
+import axios from 'axios';
 
 
 
@@ -21,9 +23,11 @@ const EmployeePage = () => {
 
 
   const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState()
   const [searchOpen, setSearchOpen] =useState(false)
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredEmployees, setFilteredEmployees] = useState([]);
+  const tokenHolder = useSelector((state) => state.user_reducer?.users);
 
 
 
@@ -33,14 +37,31 @@ const EmployeePage = () => {
     setSearchOpen(!searchOpen)
   }
  
+  const getAllEmployees = async() =>{
 
-  const { data, error, isLoading } = useGetAllEmployeeQuery();
+    try{
+    const res = await axios.get('https://expense-tracker-ruug.onrender.com/api/organisation/employee/all', 
+      {headers: {
+        Authorization: `Bearer ${tokenHolder}`
+      }},
+    )
+    console.log(res, "hh")
+    setData(res.data.data)
+  }
+    catch(errors){
+        console.log(errors)
+    }
+  }
+
+  useEffect(() =>{
+    getAllEmployees()
+  }, [])
  
 
 
   useEffect(() => {
-    if (data && data.data) {
-      setFilteredEmployees(data.data);
+    if (data) {
+      setFilteredEmployees(data);
     }
   }, [data]);
 
@@ -49,7 +70,7 @@ const EmployeePage = () => {
     setSearchTerm(searchValue);
 
     if (searchValue === "") {
-      setFilteredEmployees(data.data);
+      setFilteredEmployees(data?.data);
     } else {
       const filteredData = data.data.filter((employee) => {
         return (
@@ -59,12 +80,14 @@ const EmployeePage = () => {
         );
       });
       setFilteredEmployees(filteredData);
+      console.log(filteredData)
     }
+    
   };
   
   
   console.log(data)
-  console.log(error)
+  
   
 
   const handleButtonOpen = () => {
