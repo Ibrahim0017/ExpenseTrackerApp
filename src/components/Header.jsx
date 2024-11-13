@@ -24,6 +24,9 @@ const Header = () => {
     });
     setCurrentDate(formattedDate); // Set currentDate state
   }, []);
+  useEffect(() => {
+      data;
+  }, []);
 
   // Toggle profile popup
   const toggleProfilePopup = () => {
