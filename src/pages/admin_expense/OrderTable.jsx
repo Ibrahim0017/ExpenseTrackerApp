@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import image from "../../assets/young-handsome-man-posing-with-hat_23-2148884336.jpg";
 import ViewMore from "../../components/ViewMore";
 import axios from "axios";
@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const OrderTable = ({id}) => {
+const OrderTable = ({id,}) => {
     // const [posts, setPosts] = useState([]);
     // const [loading, setLoading] = useState(false);
     // const [currentPage, setCurrentPage] = useState(1);
@@ -32,6 +32,9 @@ const OrderTable = ({id}) => {
     // const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
     // const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredExpenses, setFilteredExpenses] = useState([]);
     const {data,isLoading,error} = useGetAllExpensesQuery()
     const [values, setValues] = useState({
       staffname: "",
@@ -57,6 +60,33 @@ const OrderTable = ({id}) => {
       data(values)
     }
 
+    useEffect(() => {
+      if (data && data.data) {
+        setFilteredExpenses(data.data);
+      }
+    }, [data]);
+  
+    const handleSearch = (e) => {
+      const searchValue = e.target.value.toLowerCase();
+      setSearchTerm(searchValue);
+  
+      if (searchValue === "") {
+        setFilteredExpenses(data.data);
+      } else {
+        const filteredData = data.data.filter((expense) => {
+          return (
+            expense.firstName.toLowerCase().includes(searchValue) ||
+            expense.lastName.toLowerCase().includes(searchValue) ||
+            expense.email.toLowerCase().includes(searchValue)
+          );
+        });
+        setFilteredExpenses(filteredData);
+      }
+    };
+
+
+
+
   return (
     <div className="w-full mt-[20px] overflow-x-auto">
       <table className="w-full min-w-[55rem]">
@@ -73,7 +103,7 @@ const OrderTable = ({id}) => {
           </tr>
         </thead>
         <tbody>
-          {data && data.data && data?.data.map((value, index) => (
+          {filteredExpenses.map((value, index) => (
             <tr className="text-[14px] border-b hover:border-none font-medium hover:cursor-pointer hover:shadow-md transition-all duration-300 ease-in-out hover:bg-gray-50" key={index}>
             <td className="text-[14px] flex gap-2 items-center font-medium px-3 py-3 ">
               <div className="size-10 rounded-full">

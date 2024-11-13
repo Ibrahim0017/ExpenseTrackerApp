@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import OrderTable from './OrderTable' 
 import UploadExpense from '../../components/UploadExpense';
 
-const AdminExpensePage = () => {
+const AdminExpensePage = ({handleSearch, searchTerm}) => {
 
   // const [popUp, setPopUp] = useState(false);
   // const toggleModal = () => {
   //   setPopUp(!popUp)
   // }
   const [showModal, setShowModal] = useState(false)
+
+  
 
 
   return (
@@ -24,7 +26,7 @@ const AdminExpensePage = () => {
         
        <div className='flex w-full h-14 gap-8 py-2'>
      <div className='w-full h-full'>
-     <input type="text" placeholder='Search staff...' className='w-full text-[14px] h-full placeholder:text-gray-500 border rounded-[5px] outline-none pl-[10px] px-[30px]' />
+     <input type="text" placeholder='Search staff...' className='w-full text-[14px] h-full placeholder:text-gray-500 border rounded-[5px] outline-none pl-[10px] px-[30px]' onChange={handleSearch} value={searchTerm}/>
      </div>
        <div className='w-full h-full flex justify-end'><button onClick={() => setShowModal(true)} className='hover:bg-blue-800 h-full rounded-md px-[20px] border-none text-[14px] flex items-center bg-blue-700  text-white font-medium '> 
         <div className='font-semibold'>+</div>

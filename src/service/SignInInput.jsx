@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSignInEmployeeMutation } from "./employee/EmployeeRTK";
 import { useDispatch } from "react-redux";
 import { UserLogin } from "./userReducer";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 const SignInInput = () => {
   const navigate = useNavigate();
@@ -29,27 +29,22 @@ const SignInInput = () => {
 
   console.log(values);
   if (isSuccess) {
-    
     navigate("/employeesdash/expense");
-  
 
     dispatch(UserLogin(data.data));
-  
-    
+
     Swal.fire({
-      title: "Welcome back!", 
-      text: "XpenseTrakaa like no other", 
-      icon: 'success', 
+      title: "Welcome back!",
+      text: "XpenseTrakaa like no other",
+      icon: "success",
     });
   } else {
-    
     Swal.fire({
       title: "Login Failed",
       text: "There was an error logging in. Please try again.",
-      icon: 'error',
+      icon: "error",
     });
   }
-
 
   if (error) {
     console.log(error);
@@ -63,15 +58,14 @@ const SignInInput = () => {
 
   return (
     <div className="w-[50%] tablet:w-full h-full py-[30px] outline-none flex flex-col items-center justify-around ">
-      
       <form
         action=""
         onSubmit={signIn}
         className="w-full h-full flex items-center justify-center gap-[25px] flex-col"
       >
         <div className="w-[85%]">
-        <div className="font-semibold">XpenseTrakaa</div>
-      </div>
+          <div className="font-semibold">XpenseTrakaa</div>
+        </div>
         <div className="w-[85%] flex flex-col ">
           {" "}
           <div className="font-semibold text-2xl flex-wrap">
@@ -101,7 +95,6 @@ const SignInInput = () => {
                 Password
               </label>
               <div className=" flex w-full items-center ">
-              
                 <input
                   onChange={handleChange}
                   name="password"
@@ -109,17 +102,14 @@ const SignInInput = () => {
                   placeholder="Enter password"
                   className="w-full border border-gray-500 rounded-[5px] shadow-sm py-2 text-[14px] pl-[10px] "
                 />
-                  {/* <div className="flex text-[18px] cursor-pointer">
+                {/* <div className="flex text-[18px] cursor-pointer">
                 {Open === false ? (
                   <IoMdEye onClick={toggle} />
                 ) : (
                   <IoMdEyeOff onClick={toggle} />
                 )}
               </div> */}
-
               </div>
-
-            
             </div>
             <button
               disabled={isLoading}
