@@ -55,7 +55,7 @@ const BranchPage = () => {
     useEffect(() => {
       if (data) {
          setFilteredBranches(data);
-      }
+      } 
     }, [data]);
   
     const handleSearch = (e) => {

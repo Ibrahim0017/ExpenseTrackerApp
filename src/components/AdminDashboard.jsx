@@ -3,30 +3,58 @@ import Chart from "chart.js/auto";
 import StatsCard from "./StatsCard";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
+// import { useGetAllEmployeeQuery } from "../service/employee/EmployeeRTK";
 
 const AdminDashboard = () => {
+  
+  // const { data, error, isLoading } = useGetAllEmployeeQuery();
+  // console.log(data)
+  // console.log(error)
   const expenseChartRef = useRef(null);
-  const [data, setData] = useState(null);
   const tokenHolder = useSelector((state) => state.user_reducer?.users);
+  const [data, setData] = useState()
+  const [branchData, setBranchData] = useState()
 
-  // Fetch Employees
-  const numEmployee = async () => {
-    try {
-      const res = await axios.get("https://expense-tracker-ruug.onrender.com/api/organisation/profile", {
-        headers: {
-          Authorization: `Bearer ${tokenHolder}`,
-        },
-      });
-      setData(res.data.data); // Assuming data is an array of employees
-    } catch (errors) {
-      console.log(errors);
+  const getAllEmployees = async() =>{
+
+    try{
+    const res = await axios.get('https://expense-tracker-ruug.onrender.com/api/organisation/employee/all', 
+      {headers: {
+        Authorization: `Bearer ${tokenHolder}`
+      }},
+    )
+    console.log(res, "hh")
+    setData(res.data.data)
+  }
+    catch(errors){
+        console.log(errors)
     }
-  };
+  }
 
-  useEffect(() => {
-    numEmployee();
-  }, []);
+  useEffect(() =>{
+    getAllEmployees()
+  }, [])
+  
+  const getAllBranches = async() =>{
 
+    try{
+    const res = await axios.get('https://expense-tracker-ruug.onrender.com/api/branch', 
+      {headers: {
+        Authorization: `Bearer ${tokenHolder}`
+      }},
+    )
+    console.log(res)
+    setBranchData(res.data.data)
+  }
+    catch(errors){
+        console.log(errors)
+    }
+  }
+
+  useEffect(() =>{
+    getAllBranches()
+  }, [])
   
 
   // Configure Expense Chart
@@ -73,18 +101,18 @@ const AdminDashboard = () => {
   return (
     <>
       <div className="bg p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <StatsCard
+       <Link to='/admin/employee'> <StatsCard
           title="Total Employees"
-          value={data?.employee?.length || 'Loading...'}
+          value={data?.length || 'Loading...'}
           bgGradient="bg-gradient-to-r from-blue-500 to-blue-700"
           margin="my-1"
-        />
-        <StatsCard
+        /></Link>
+       <Link to='/admin/branches' > <StatsCard
           title="Branches"
-          value={data?.branches?.length || 'Loading...'}
+          value={branchData?.length || 'Loading...'}
           bgGradient="bg-gradient-to-r from-purple-500 to-purple-700"
           margin="my-1"
-        />
+        /></Link>
         <StatsCard
           title="Total Expense"
           value={data?.expense?.length || 'Loading...'}
