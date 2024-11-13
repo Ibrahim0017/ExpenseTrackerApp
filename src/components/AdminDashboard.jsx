@@ -84,7 +84,7 @@ const AdminDashboard = () => {
       <div className="bg p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatsCard
           title="Total Employees"
-          value={data?.data.employee?.length || 'Loading...'}
+          value={profileData?.employee?.length || 'Loading...'}
           bgGradient="bg-gradient-to-r from-blue-500 to-blue-700"
           margin="my-1"
         />
