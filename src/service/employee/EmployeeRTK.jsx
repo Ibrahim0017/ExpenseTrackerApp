@@ -40,6 +40,12 @@ export const employeeRTK = createApi({
                 method: "GET"
             }),
         }),  
+        getAllBranch: builder.query({
+            query: ()=>({
+                url: '/branch',
+                method: "GET"
+            })
+        }),
         getOneBranch: builder.query({
             query: (id)=>({
                 url: `branch/${id}`,
@@ -56,4 +62,4 @@ export const employeeRTK = createApi({
     }),
 });
 
-export const {useSignUpEmployeeMutation, useSignInEmployeeMutation, useGetAllEmployeeQuery, useGetOneEmployeeQuery, useGetOneBranchQuery, useDeleteOneEmployeeMutation} = employeeRTK
+export const {useSignUpEmployeeMutation, useSignInEmployeeMutation, useGetAllEmployeeQuery, useGetOneEmployeeQuery, useGetOneBranchQuery,useGetAllBranchQuery, useDeleteOneEmployeeMutation} = employeeRTK

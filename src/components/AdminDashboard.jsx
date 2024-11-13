@@ -3,11 +3,16 @@ import Chart from "chart.js/auto";
 import StatsCard from "./StatsCard";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+// import { useGetAllBranchQuery } from "../service/employee/EmployeeRTK";
 
 const AdminDashboard = () => {
   const expenseChartRef = useRef(null);
-  const [data, setData] = useState(null);
+  const [profileData, setProfileData] = useState(null);
   const tokenHolder = useSelector((state) => state.user_reducer?.users);
+
+  // const { data, error, isLoading } = useGetAllBranchQuery();
+  console.log(data);
+  console.log(error);
 
   // Fetch Employees
   const numEmployee = async () => {
@@ -17,7 +22,7 @@ const AdminDashboard = () => {
           Authorization: `Bearer ${tokenHolder}`,
         },
       });
-      setData(res.data.data); // Assuming data is an array of employees
+      setProfileData(res.data.data); // Assuming data is an array of employees
     } catch (errors) {
       console.log(errors);
     }
@@ -75,19 +80,19 @@ const AdminDashboard = () => {
       <div className="bg p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatsCard
           title="Total Employees"
-          value={data?.employee?.length || 'Loading...'}
+          value={profileData?.employee?.length || 'Loading...'}
           bgGradient="bg-gradient-to-r from-blue-500 to-blue-700"
           margin="my-1"
         />
         <StatsCard
           title="Branches"
-          value={data?.branches?.length || 'Loading...'}
+          value={data?.length || 'Loading...'}
           bgGradient="bg-gradient-to-r from-purple-500 to-purple-700"
           margin="my-1"
         />
         <StatsCard
           title="Total Expense"
-          value={data?.expense?.length || 'Loading...'}
+          value='$299,494'
           bgGradient="bg-gradient-to-r from-green-500 to-green-700"
           margin="my-1"
         />
