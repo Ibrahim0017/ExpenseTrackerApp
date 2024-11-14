@@ -38,12 +38,6 @@ const SignInInput = () => {
       text: "XpenseTrakaa like no other",
       icon: "success",
     });
-  } else {
-    Swal.fire({
-      title: "Login Failed",
-      text: "There was an error logging in. Please try again.",
-      icon: "error",
-    });
   }
 
   if (error) {
