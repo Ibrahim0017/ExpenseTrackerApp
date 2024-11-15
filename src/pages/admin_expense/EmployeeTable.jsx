@@ -1,37 +1,30 @@
-import { useState } from 'react';
 import image from "../../assets/young-handsome-man-posing-with-hat_23-2148884336.jpg";
-import axios from "axios";
-import ExpenseDetail from './adminexpensedetail/ExpenseDetail';
-import { useGetAllExpensesQuery } from '../../service/expense/ExpenseRTK';
+import ViewMore from "../../components/ViewMore";
 import { Link } from 'react-router-dom';
 
 
 
-const OrderTable = ({id}) => {
-    const {data,isLoading,error} = useGetAllExpensesQuery()
-    const [values, setValues] = useState({
-      staffname: "",
-      expensename: "",
-      quantity: "",
-      price: "",
-      reasonforexpense: "",
-      branch: "",
-      expensedate: "",
-      date: ""
+const EmployeeTable = ({filteredExpenses}) => {
+    // const [posts, setPosts] = useState([]);
+    // const [loading, setLoading] = useState(false);
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [postsPerPage] = useState(10);
 
-    })
+    // useEffect(() => {
+    //     const fetchPosts = async () => {
+    //         setLoading(true);
+    //         const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+    //         setPosts(res.data);
+    //         setLoading(false);
+    //     }
 
-    console.log(data)
-    console.log(error)
+    //     fetchPosts();
+    // }, []);
 
-    const handleChange = (event) => {
-      const { name, value } = event.target
-      setValues({ ...values, [name]: value })
-    }
-    const uploadExpense = (e) => {
-      e.preventDefault()
-      data(values)
-    }
+    // const indexOfLastPost = currentPage + postsPerPage
+    // const indexOfFirstPost = indexOfLastPost - postsPerPage
+    // const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
+    
 
   return (
     <div className="w-full mt-[20px] overflow-x-auto">
@@ -45,16 +38,17 @@ const OrderTable = ({id}) => {
             <th className="font-medium px-3 py-3">Reason for Expense</th>
             <th className="font-medium px-3 py-3">Branch </th>
             <th className="font-medium px-3 py-3">Expense Date</th>
+            <th className="font-medium px-3 py-3"></th>
           </tr>
         </thead>
         <tbody>
-          {data && data.data && data?.data.map((value, index) => (
+          {filteredExpenses?.map((value, index) => (
             <tr className="text-[14px] border-b hover:border-none font-medium hover:cursor-pointer hover:shadow-md transition-all duration-300 ease-in-out hover:bg-gray-50" key={index}>
             <td className="text-[14px] flex gap-2 items-center font-medium px-3 py-3 ">
               <div className="size-10 rounded-full">
                 <img className="rounded-full size-full" src={image} />
               </div>
-              <Link to={`/admin/expense/detail/${value._id}`}>
+              <Link to={`/employeesdash/expense/detail/${value._id}`}>
               <div>{`${value?.employee?.firstName} ${value?.employee?.lastName}`}</div>
         </Link>
         </td>
@@ -66,14 +60,18 @@ const OrderTable = ({id}) => {
             <td className="px-3 py-3">{value.reason}</td>
             <td className="px-3 py-3">{value.branch?.name}</td>
             <td className="px-3 py-3">10/may/2023</td>
-         
+            <td className="px-3 py-3">
+                <ViewMore id={value._id}/>
+            </td>
           </tr>
           ))}
 
                </tbody>
       </table>
+      {/* <Posts posts={currentPosts} loading={loading}/> */}
+      {/* <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/> */}
     </div>
   );
 };
 
-export default OrderTable;
+export default EmployeeTable;
