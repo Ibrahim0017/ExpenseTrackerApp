@@ -14,6 +14,7 @@ const BranchDetail = () => {
     const [data, setData] = useState()
     const tokenHolder = useSelector((state) => state.user_reducer?.users);
 
+ 
     const handleToggle = (key) =>{
         switch (key) {
             case 'Detail':

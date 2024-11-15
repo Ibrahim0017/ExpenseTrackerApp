@@ -89,21 +89,21 @@ const EmployeeDetail = () => {
                  <div className=' w-full flex justify-between mt-1'>
                  <div className=' w-full'>
                  <b className='text-gray-800'>First Name</b>
-                 <p>{data?.data?.firstName}</p>
+                 <p className='text-reponsiveText3'>{data?.data?.firstName}</p>
                  </div>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Last Name</b>
-                 <p>{data?.data?.lastName}</p>
+                 <p className='text-reponsiveText3'>{data?.data?.lastName}</p>
                  </div>
                  </div>
                  <div className=' w-full flex justify-between mt-2'>
                  <div className=' w-full '>
                  <b className='text-gray-800'>Email Address</b>
-                 <p className='tablet:w-[200px]'>{data?.data?.email}</p>
+                 <p className='text-reponsiveText3'>{data?.data?.email}</p>
                  </div>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Phone</b>
-                 <p>{data?.data?.phone}</p>
+                 <p className='text-reponsiveText3'>{data?.data?.phone}</p>
                  </div>
                  </div>
                  </div>
@@ -114,7 +114,7 @@ const EmployeeDetail = () => {
                  <div className=' w-full flex justify-between mt-1'>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Branch</b>
-                 <p>{data?.data?.branch?.name}</p>
+                 <p className='text-reponsiveText3'>{data?.data?.branch?.name}</p>
                  </div>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Status</b>
@@ -124,11 +124,11 @@ const EmployeeDetail = () => {
                  <div className=' w-full flex justify-between mt-2'>
                  <div className=' w-full '>
                  <b className='text-gray-800'>Total Expenses</b>
-                 <p>{data?.data?.expense?.length}</p>
+                 <p className='text-reponsiveText3'>{data?.data?.expense?.length}</p>
                  </div>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Joined Company</b>
-                 <p>{moment(data?.data?.createdAt).format('MMMM Do YYYY')}</p>
+                 <p className='text-reponsiveText3'>{moment(data?.data?.createdAt).format('MMMM Do YYYY')}</p>
                  </div>
                  </div>
                  </div>  

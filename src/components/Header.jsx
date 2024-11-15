@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { LuBellRing } from "react-icons/lu";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
@@ -12,12 +12,33 @@ const Header = () => {
   const [isProfilePopupVisible, setIsProfilePopupVisible] = useState(false);
   const [currentDate, setCurrentDate] = useState(''); // Define currentDate state
   const tokenHolder = useSelector((state) => state.user_reducer?.users);
-  const [open, setOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
+  // Toggle menu open/close
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
 
-  const handleOpen = () =>{
-    setOpen(!open)
-  }
+  // Close the menu when clicking outside
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
+  };
+  console.log(isMenuOpen)
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup the event listener on unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   const { data, error, isLoading } = useAdminProfileQuery();
   console.log(data);
@@ -70,7 +91,7 @@ const Header = () => {
           aria-label='Search'
         />
       </div>
-      <div className='text-white cursor-pointer text-3xl items-center hidden mobileTab:flex ' onClick={handleOpen}>
+      <div className='text-white cursor-pointer text-3xl items-center hidden mobileTab:flex '    onClick={toggleMenu}>
       <IoIosMenu />
       </div>
       </div>
@@ -106,8 +127,8 @@ const Header = () => {
         </div>
       )}
       {
-        open && (
-          <div className='absolute top-16 left-[100px] flex-col transform hidden -translate-x-1/2 w-[200px] mobileTab:max-w-lg mobileTab:flex bg-white rounded-lg shadow-2xl p-6 z-30 h-[100vh]'>
+        isMenuOpen && (
+          <div className='absolute top-16 left-[100px] flex-col transform hidden -translate-x-1/2 w-[200px] mobileTab:max-w-lg mobileTab:flex bg-white rounded-lg shadow-2xl p-6 z-30 h-[100vh]'  ref={menuRef}>
            <h1 className='text-[14px]'>Menu</h1>
         <SelectMenu text='Dashboard' path='/admin/admin_dashboard' Icon={FiHome} />
         <SelectMenu text='Employee' path='/admin/employee' Icon={FiUsers} />

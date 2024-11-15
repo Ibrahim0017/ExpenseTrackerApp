@@ -11,6 +11,13 @@ const BranchDescription = () => {
   const tokenHolder = useSelector((state) => state.user_reducer?.users);
   const {id} = useParams()
 
+  const currencyFormatter = new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN",
+    minimumFractionDigits: 0,
+  });
+
+
 
   // const { data, error, isLoading } = useGetOneBranchQuery(id);
   const getOneBranch = async() =>{
@@ -95,7 +102,7 @@ filteredExpenses.forEach((expense) => {
                  </div>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Total Amount</b>
-                 <p> ₦ {totalAmount}</p>
+                 <p> {currencyFormatter.format(totalAmount)}</p>
                  </div>
                  </div>
                  </div>
