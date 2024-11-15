@@ -7,12 +7,15 @@ import { IoMdMore } from "react-icons/io";
 import { Link } from "react-router-dom";
 import CreateEmployee from "../../components/EmployeeComponents/CreateEmployee";
 // import imagea from "../../assets/WhatsApp Image 2024-09-03 at 10.04.20.jpeg";
-import { useGetAllEmployeeQuery } from "../../service/employee/EmployeeRTK";
+// import { useGetAllEmployeeQuery } from "../../service/employee/EmployeeRTK";
 import { useDeleteOneEmployeeMutation } from "../../service/employee/EmployeeRTK";
 import moment from "moment";
 import Swal from "sweetalert2"
 import { IoSearchOutline } from "react-icons/io5";
 import { MdKeyboardBackspace } from "react-icons/md";
+import {useSelector} from "react-redux";
+import axios from 'axios';
+import { data } from "autoprefixer";
 
 
 
@@ -21,9 +24,11 @@ const EmployeePage = () => {
 
 
   const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState()
   const [searchOpen, setSearchOpen] =useState(false)
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredEmployees, setFilteredEmployees] = useState([]);
+  const tokenHolder = useSelector((state) => state.user_reducer?.users);
 
 
 
@@ -33,14 +38,31 @@ const EmployeePage = () => {
     setSearchOpen(!searchOpen)
   }
  
+  const getAllEmployees = async() =>{
 
-  const { data, error, isLoading } = useGetAllEmployeeQuery();
+    try{
+    const res = await axios.get('https://expense-tracker-ruug.onrender.com/api/organisation/employee/all', 
+      {headers: {
+        Authorization: `Bearer ${tokenHolder}`
+      }},
+    )
+    console.log(res, "hh")
+    setData(res.data.data)
+  }
+    catch(errors){
+        console.log(errors)
+    }
+  }
+
+  useEffect(() =>{
+    getAllEmployees()
+  }, [])
  
 
 
   useEffect(() => {
-    if (data && data.data) {
-      setFilteredEmployees(data.data);
+    if (data) {
+      setFilteredEmployees(data);
     }
   }, [data]);
 
@@ -49,9 +71,9 @@ const EmployeePage = () => {
     setSearchTerm(searchValue);
 
     if (searchValue === "") {
-      setFilteredEmployees(data.data);
+      setFilteredEmployees(data);
     } else {
-      const filteredData = data.data.filter((employee) => {
+      const filteredData = data.filter((employee) => {
         return (
           employee.firstName.toLowerCase().includes(searchValue) ||
           employee.lastName.toLowerCase().includes(searchValue) ||
@@ -59,12 +81,14 @@ const EmployeePage = () => {
         );
       });
       setFilteredEmployees(filteredData);
+      console.log(filteredData)
     }
+    
   };
   
   
   console.log(data)
-  console.log(error)
+  
   
 
   const handleButtonOpen = () => {
@@ -130,7 +154,7 @@ const EmployeePage = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredEmployees.map((value, index)  => (
+            {filteredEmployees?.map((value, index)  => (
               <tr
                 className={`border border-gray-50 ${
                   index % 2 !== 0 ? "bg-gray-50" : "bg-white"
@@ -160,7 +184,7 @@ const EmployeePage = () => {
                 <td className=" px-3 py-3 font-[calibri] [15px]"> {(value.branch?.name.at(0).toUpperCase()) + (value.branch?.name.slice(1))} Branch</td>
                 <td className=" px-3 py-3  font-[calibri] text-[15px]">0</td>
                 <td className=" px-3 py-3  cursor-pointer relative">
-                  <ButtonComp id={value._id} branchId={value.branch._id} />
+                  <ButtonComp employeeId={value?._id} branchId={value.branch?._id} />
                 </td>
               </tr>
             ))}
@@ -182,13 +206,41 @@ const EmployeePage = () => {
 };
 
 const ButtonComp = ({employeeId, branchId}) => {
+
   const [open, setOpen] = useState(false);
 
+  // console.log(branchId)
+  // console.log(employeeId)
   const handleOpen = () => {
     setOpen(!open);
   };
 
-  const [ deleteEmployee, {error, isLoading }] = useDeleteOneEmployeeMutation();
+  // const [ deleteEmployee, {error, isLoading, isSuccess }] = useDeleteOneEmployeeMutation();
+  // console.log(error)
+  // console.log(useDeleteOneEmployeeMutation())
+  const tokenHolder = useSelector((state) => state.user_reducer?.users);
+
+  const deleteEmployee = async ({ employeeId, branchId }) =>{
+    try{
+        const res = await axios.delete((`/organisation/employee/delete?
+                id=${employeeId}&branchId=${branchId}`),
+        {headers: {
+          Authorization: `Bearer ${tokenHolder}`
+        },
+        data: {
+          employeeId,
+          branchId
+        }
+      })
+      console.log(data)
+      return res.data;
+    }
+    catch (error) {
+      console.error(error.response.data);
+      throw error;
+    }
+  }
+  
 
   const handleDelete = async () => {
   Swal.fire({
@@ -216,6 +268,8 @@ const ButtonComp = ({employeeId, branchId}) => {
     }
   });
 };
+
+
      
 
   return (
@@ -224,7 +278,7 @@ const ButtonComp = ({employeeId, branchId}) => {
         <IoMdMore />
       </div>
       {open && (
-         <div className="bg-white absolute right-16 size-[140px] mt-[10px] text-[13px] flex justify-between py-[7px] px-1 flex-col border border-gray-100 rounded-lg shadow-md ">
+         <div className="bg-white absolute right-10 size-[140px] mt-[10px] text-[13px] flex justify-between py-[7px] px-1 flex-col border border-gray-100 rounded-lg shadow-md ">
          <div className="flex items-center gap-1 py-2 pl-1 hover:bg-gray-100 hover:rounded-md hover:cursor-pointer">
            <div>
              <CiEdit />

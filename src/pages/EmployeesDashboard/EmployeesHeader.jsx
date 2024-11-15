@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { LuBellRing } from "react-icons/lu";
-import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { useAdminProfileQuery } from '../service/AdminProfile/AdminProfileRTK';
+import { useEmployeeProfileQuery } from '../../service/employee/EmployeesProfileRTK';
 
-const Header = () => {
+const EmployeesHeader = () => {
+  const [isNotificationPopupVisible, setIsNotificationPopupVisible] = useState(false);
   const [isProfilePopupVisible, setIsProfilePopupVisible] = useState(false);
-  const [currentDate, setCurrentDate] = useState(''); // Define currentDate state
+  const [currentDate, setCurrentDate] = useState('');
+
   const tokenHolder = useSelector((state) => state.user_reducer?.users);
+  const { data, error, isLoading } = useEmployeeProfileQuery();
 
-  const { data, error, isLoading } = useAdminProfileQuery();
-  console.log(data);
-  console.log(error);
-
-  // Set current date on component load
   useEffect(() => {
     const date = new Date();
     const formattedDate = date.toLocaleDateString(undefined, {
@@ -22,13 +19,9 @@ const Header = () => {
       month: 'long',
       day: 'numeric',
     });
-    setCurrentDate(formattedDate); // Set currentDate state
-  }, []);
-  useEffect(() => {
-      data;
+    setCurrentDate(formattedDate);
   }, []);
 
-  // Toggle profile popup
   const toggleProfilePopup = () => {
     setIsProfilePopupVisible(!isProfilePopupVisible);
   };
@@ -38,14 +31,14 @@ const Header = () => {
       <div className='h-[100%] flex gap-2 items-center cursor-pointer' onClick={toggleProfilePopup}>
         <div className='w-8 h-8 bg-slate-400 rounded-full flex justify-center items-center'>
           {data?.data.avatar ? (
-            <img src={data?.data.avatar} className='w-8 h-8 bg-slate-400 rounded-full' />
+            <img src={data?.data.avatar} className='w-8 h-8 rounded-full object-fit-cover' />
           ) : (
-            <p>{data?.data.fullName.charAt(0).toUpperCase()}</p>
+            <p>{data?.data.firstName?.charAt(0).toUpperCase()}{data?.data.lastName?.charAt(0).toUpperCase()}</p>
           )}
         </div>
         <div>
           <div className='text-sm md:text-base text-white'>
-            {data ? data?.data.fullName.toUpperCase() : 'Updating...'}
+            {data ? `${data?.data.firstName.toUpperCase()} ${data?.data.lastName.toUpperCase()}` : 'Loading...'}
           </div>
           <div className='text-xs md:text-sm text-gray-50'>Hello, Welcome back</div>
         </div>
@@ -63,21 +56,27 @@ const Header = () => {
       {isProfilePopupVisible && data?.data && (
         <div className='absolute top-12 left-1/2 transform -translate-x-1/2 w-[90%] md:max-w-lg bg-white rounded-lg shadow-2xl p-6 z-30'>
           <div className='text-gray-800 font-semibold text-lg mb-4'>User Profile</div>
-          <p className='my-4'>Hello, {data.data.fullName.toUpperCase()}! Here’s your account summary:</p>
+          <div className='my-4 text-gray-700 text-sm'>
+            <p>Hello, {data.data.firstName.toUpperCase()}! Here’s your account summary:</p>
+          </div>
           <div className='flex gap-4'>
             <div className='w-16 h-16 md:w-24 md:h-24 bg-slate-400 rounded-full'>
               {data?.data.avatar ? (
-                <img src={data?.data.avatar} className='w-full h-full rounded-full' />
+                <img src={data?.data.avatar} className='w-full h-[100%] rounded-full' />
               ) : (
                 <p>{data?.data.firstName?.charAt(0).toUpperCase()}{data?.data.lastName?.charAt(0).toUpperCase()}</p>
               )}
             </div>
             <div>
               <div className='text-gray-800 font-semibold text-md:text-base'>
-                {data.data.fullName.toUpperCase()}
+                {data.data.firstName.toUpperCase()} {data.data.lastName.toUpperCase()}
               </div>
               <div className='text-gray-500 text-xs md:text-sm'>{data.data.email}</div>
               <div className='text-gray-500 text-xs md:text-sm'>Date: {currentDate}</div>
+              <div className='flex items-center gap-2'>
+                <h4 className='text-xs md:text-sm text-gray-500'>Active:</h4>
+                <div className='w-[10px] h-[10px] rounded-full bg-green-500 mt-[3px]'></div>
+              </div>
             </div>
           </div>
           <div className='mt-4'>
@@ -94,4 +93,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default EmployeesHeader;

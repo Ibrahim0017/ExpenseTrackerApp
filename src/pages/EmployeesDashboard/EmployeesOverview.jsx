@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Profile from "../Admin Pages/Profile";
 import ExpenseDetail from "../admin_expense/adminexpensedetail/ExpenseDetail";
 import EmployeeDetail from "../EmployeePages/EmployeeDetail";
+import EmployeesProfile from "./EmployeesProfile";
 import EmployeeExpense from "../admin_expense/EmployeeExpense";
 const EmployeesOverview = () => {
   return (
@@ -12,7 +13,7 @@ const EmployeesOverview = () => {
           <Route path="/expense" element={<EmployeeExpense />} />
           <Route path="/myprofile" element={<EmployeeDetail />} />
           <Route path="/expense/detail/:id" element={<ExpenseDetail />} />
-          <Route path="/settings" element={<Profile />} />
+          <Route path="/emsettings" element={<EmployeesProfile />} />
         </Routes>
       </div>
     </>

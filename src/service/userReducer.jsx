@@ -14,7 +14,7 @@ const userReducer = createSlice({
         },
         UserLogin: (state, {payload}) =>{
             state.users = payload
-        }
+        },
     }
 })
 

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addOtpId } from "../../service/userReducer";
 import imageA from '../../assets/2d35b83df65a5b188eed0847f0cabdc5.jpg'
 import Swal from 'sweetalert2'
+import logoImg from "../../assets/Logo1.svg"
  
 
 const AdminSignup = () => {
@@ -31,7 +32,7 @@ const AdminSignup = () => {
         let res = await axios.post("https://expense-tracker-ruug.onrender.com/api/organisation/register", values)
         setIsLoading(res.values)
         console.log(res)
-        navigate("otpinput/");
+        navigate("/sign-up/admin/otpinput/");
         console.log(res.data.data)
         dispatch(addOtpId(res.data.data))
         Swal.fire({
@@ -63,12 +64,12 @@ const AdminSignup = () => {
  
 
   return (
-    <div className="w-full flex justify-center items-center h-[100vh] ">
-      <div className="w-full flex justify-center items-center">
-        <form className="w-[70%]" onSubmit={handleSubmit}>
-          <p>Logo</p>
-          <h1 className="font-bold text-[30px] font-[calibri]">
-            Get Started with DIU
+    <div className="w-full flex justify-center items-cente h-[100vh] ">
+      <div className="w-full h-full flex justify-center items-center py-3">
+        <form className="w-[70%] mt-2" onSubmit={handleSubmit}>
+          <img src={logoImg} className=""/>
+          <h1 className="font-bold text-[27px] font-[calibri] tablet:text-[25px]">
+            Get Started with Xpense Trakaa
           </h1>
           <p className="text-[17px] text-[#BBBEC8] font-[calibri]">
             Manage Expenses easily now
@@ -152,7 +153,7 @@ const AdminSignup = () => {
           </div>
         </form>
       </div>
-      <div className="w-full h-full mobileTab:hidden">
+      <div className="w-full h-full mobileTab:hidden bg-blue-300">
       <img src={imageA} className="w-full h-full object-cover mobileTab:hidden" />
       </div>
     </div>

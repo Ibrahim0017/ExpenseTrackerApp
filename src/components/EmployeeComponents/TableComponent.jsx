@@ -1,25 +1,50 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 // import { BsThreeDots } from "react-icons/bs";
 import { Link } from 'react-router-dom';
-import imagea from "../../assets/WhatsApp Image 2024-09-03 at 10.04.20.jpeg";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoMdMore } from "react-icons/io";
-import { useGetAllExpensesQuery } from "../../service/expense/ExpenseRTK";
 import moment from "moment";
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import {useSelector} from "react-redux";
 
 const TableComponent = () => {
 
 
 
   const {id} = useParams()
-  const { data, error, isLoading } = useGetAllExpensesQuery();
+  const [data, setData] = useState(null)
 
-  console.log(data)
-  console.log(error)
-  
+  const tokenHolder = useSelector((state) => state.user_reducer?.users);
+
+  const getAllExpenses = async() =>{
+
+    try{
+    const res = await axios.get('https://expense-tracker-ruug.onrender.com/api/expense', 
+      {headers: {
+        Authorization: `Bearer ${tokenHolder}`
+      }},
+    )
+    console.log(res, "hh")
+    setData(res.data.data)
+  }
+    catch(errors){
+        console.log(errors)
+    }
+  }
+
+  useEffect(() =>{
+    getAllExpenses()
+  }, [])
+
   const [branchId, setBranchId] = useState(id); 
-  const filteredExpenses = data && data.data.filter((expense) => expense.branch._id === branchId);
+  const filteredExpenses = data ? data.filter((expense) => {
+  // Check for null/undefined branch and _id
+  return expense?.branch?._id === branchId;
+}) : []; 
+
+  
+  console.log(data)
   
 
 
@@ -53,7 +78,7 @@ const TableComponent = () => {
                       <p>{value?.employee?.lastName.charAt(0).toUpperCase()}</p>
                     )}
                   </div>
-                 <Link to={`/admin/employeedetail/${value._id}`}>
+                 <Link to={`/admin/employeedetail/${value?._id}`}>
                  <p className="font-[calibri] font-medium cursor-pointer">
                  {(value?.employee?.lastName.slice(0, 1).toUpperCase()) + (value?.employee?.lastName.slice(1))}
                  {(value?.employee?.firstName.slice(0, 1).toUpperCase()) + (value?.employee?.firstName.slice(1))} 

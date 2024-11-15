@@ -55,7 +55,7 @@ const BranchPage = () => {
     useEffect(() => {
       if (data) {
          setFilteredBranches(data);
-      }
+      } 
     }, [data]);
   
     const handleSearch = (e) => {
@@ -123,7 +123,7 @@ const BranchPage = () => {
       </div>
       
       <div>
-        <p>{data?.data?.length}hr</p>
+        <p>{data?.length} Branch(es) Found</p>
         <div className='grid gap-3 grid-cols-cardGrid mt-4'>
           {filteredBranches?.map((props, index)=> (
                <div className=' w-full bg-white py-4 flex flex-col items-center shadow-md pt-3 rounded-md'  key={index} >
@@ -142,11 +142,11 @@ const BranchPage = () => {
                <div className='w-[90%] mt-2'>
                <div className='w-full flex justify-between mt-2'>
                 <p className=' font-medium text-gray-800 text-[17px]'>No of Employees:  </p>
-                <p className='font-medium'>{data?.data?.employee?.length}</p>
+                <p className='font-medium'>{props?.employee?.length}</p>
                 </div>
                 <div className='flex justify-between mt-2'>
                 <p className=' font-medium text-gray-800 text-[17px]'>No of Expense: </p>
-                <p className=' font-medium'>{data?.data?.expense?.length}</p>
+                <p className=' font-medium'>{props  ?.expense?.length}</p>
                 </div>
                </div> 
               </div>

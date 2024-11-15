@@ -115,7 +115,7 @@ const SignInInput = () => {
             <div className="text-[14px] flex items-center flex-wrap">
               {" "}
               Don't have an account?{" "}
-              <Link to="/signUp">
+              <Link to="/sign-up/staff">
                 <div className="cursor-pointer font-medium text-[14px] ml-1">
                   Sign Up
                 </div>

@@ -2,7 +2,7 @@ import { TbLetterX } from "react-icons/tb";
 
 const ExpenseEdit = ({handleButtonOpen}) => {
   return (
-    <div className='w-[60%] h-[350px] bg-white border flex flex-col items-center pt-6'>
+    <div className='w-[70%] h-[350px] bg-white border flex flex-col items-center pt-6'>
          <div className="w-full flex justify-center pb-3  border-b border-[#BBBEC8] ">
           <div className="w-[95%]  flex justify-between">
             <div className="text-[20px] font-semibold">Edit Expense</div>

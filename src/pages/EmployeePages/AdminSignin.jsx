@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserLogin } from "../../service/userReducer";
 import useForm from "../../handler/useForm";
 import Swal from 'sweetalert2'
+import logoImg from "../../assets/Logo1.svg"
 
 const AdminSignin = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +42,7 @@ const AdminSignin = () => {
         setIsLoading(false)
         Swal.fire({
           title: "Successful!",
-          text: "Welcome to Xpense Traka",
+          text: "Welcome to Xpense Trakaa",
           icon: "success"
         });
         
@@ -61,9 +62,9 @@ const AdminSignin = () => {
     <div className="w-full flex justify-center items-center h-[100vh] ">
       <div className="w-full flex justify-center items-center">
         <form className="w-[70%]" onSubmit={handleSubmit}>
-          <p>Logo</p>
-          <h1 className="font-bold text-[30px] font-[calibri]">
-            Welcome to DIU
+        <img src={logoImg} className=""/>
+          <h1 className="font-bold text-[27px] font-[calibri] tablet:text-[25px]">
+            Welcome to Xpense Trakaa
           </h1>
           <p className="text-[17px] text-[#BBBEC8] font-[calibri]">
             Manage Expenses easily now
@@ -110,7 +111,7 @@ const AdminSignin = () => {
             <p className="text-[14px] text-[#a0a2a8] ">
               Don't have an account?
             </p>{" "}
-            <Link to="/adminsignup">
+            <Link to="/sign-up/admin">
               <p className="font-medium text-[15px] cursor-pointer">Register</p>
             </Link>
           </div>

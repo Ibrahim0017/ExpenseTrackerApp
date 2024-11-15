@@ -1,7 +1,7 @@
 import { createApi,fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 
-export const adminProfileRTK = createApi({
+export const EmployeesProfileRTK = createApi({
     baseQuery:fetchBaseQuery({
         baseUrl: 'https://expense-tracker-ruug.onrender.com/api',
         prepareHeaders: (headers, { getState }) => {
@@ -11,22 +11,16 @@ export const adminProfileRTK = createApi({
             }
           },
     }),
-    reducerPath: 'admin',
+    reducerPath: 'employee',
     endpoints: (builder)=>({
-        adminProfile: builder.query({
+        employeeProfile: builder.query({
             query:()=>({
-                url: "/organisation/profile",
+                url: "/employee/profile",
                 method: "GET",
             
             })
         }),
-        getAllEmployee: builder.query({
-            query: ()=>({
-                url: 'profile',
-                method: "GET"
-            })
-        })
     })
 })
 
-export const {useAdminProfileQuery,useGetAllEmployeeQuery} = adminProfileRTK
+export const {useEmployeeProfileQuery} = EmployeesProfileRTK
