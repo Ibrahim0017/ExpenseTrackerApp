@@ -1,24 +1,48 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { useGetAllEmployeeQuery } from "../../service/employee/EmployeeRTK";
+// import { useGetAllEmployeeQuery } from "../../service/employee/EmployeeRTK";
 import moment from "moment";
 import { useParams } from 'react-router-dom';
 import { CiEdit } from "react-icons/ci";
 import { IoKeyOutline } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoMdMore } from "react-icons/io";
+import {useSelector} from "react-redux";
+import axios from 'axios';
 
 const EmployeeTable = () => {
   
   const {id} = useParams()
-  const { data, error, isLoading } = useGetAllEmployeeQuery();
+  const [data, setData] = useState()
+
+  const tokenHolder = useSelector((state) => state.user_reducer?.users);
+
+  const getAllEmployees = async() =>{
+
+    try{
+    const res = await axios.get('https://expense-tracker-ruug.onrender.com/api/organisation/employee/all', 
+      {headers: {
+        Authorization: `Bearer ${tokenHolder}`
+      }},
+    )
+    console.log(res, "hh")
+    setData(res.data.data)
+  }
+    catch(errors){
+        console.log(errors)
+    }
+  }
+
+  useEffect(() =>{
+    getAllEmployees()
+  }, [])
 
   const [branchId, setBranchId] = useState(id); 
-  const filteredEmployees = data && data.data.filter((employee) => employee.branch._id === branchId);
+  const filteredEmployees = data?.filter((employee) => employee?.branch._id === branchId);
 
   
   console.log(data)
-  console.log(error)
+  // console.log(error)
 
 
   return (
@@ -30,7 +54,7 @@ const EmployeeTable = () => {
               <th className="px-3 py-3 font-[calibri] text-[17px]"> Date Created</th>
               <th className="px-3 py-3 font-[calibri] text-[17px]"> Email </th>
               <th className="px-3 py-3 font-[calibri] text-[17px]">Branch Name</th>
-              <th className="px-3 py-3 font-[calibri] text-[17px]">Expense</th>
+              <th className="px-3 py-3 font-[calibri] text-[17px]">Phone</th>
               <th className="px-3 py-3 font-[calibri] text-[17px]"> </th>
             </tr>
           </thead>
