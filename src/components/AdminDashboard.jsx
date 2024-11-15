@@ -12,7 +12,6 @@ const AdminDashboard = () => {
   // console.log(data)
   // console.log(error)
   const expenseChartRef = useRef(null);
-  const [data, setData] = useState(null);
   const tokenHolder = useSelector((state) => state.user_reducer?.users);
   const [data, setData] = useState()
   const [branchData, setBranchData] = useState()
@@ -53,10 +52,29 @@ const AdminDashboard = () => {
     }
   }
 
-  useEffect(() => {
-    numEmployee();
-  }, []);
+  useEffect(() =>{
+    getAllBranches()
+  }, [])
+  
+  const getAllExpense = async() =>{
 
+    try{
+    const res = await axios.get('https://expense-tracker-ruug.onrender.com/api/organisation/expense', 
+      {headers: {
+        Authorization: `Bearer ${tokenHolder}`
+      }},
+    )
+    console.log(res)
+    setExpenseData(res.data.data)
+  }
+    catch(errors){
+        console.log(errors)
+    }
+  }
+
+  useEffect(() =>{
+    getAllExpense()
+  }, [])
   
 
   // Configure Expense Chart
@@ -117,7 +135,7 @@ const AdminDashboard = () => {
         /></Link>
         <StatsCard
           title="Total Expense"
-          value='$299,494'
+          value={data?.expense?.length || 'Loading...'}
           bgGradient="bg-gradient-to-r from-green-500 to-green-700"
           margin="my-1"
         />
