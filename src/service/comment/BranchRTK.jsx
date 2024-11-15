@@ -11,7 +11,7 @@ export const commentRTK = createApi({
       }
     },
   }),
-  reducerPath: "expense",
+  reducerPath: "comment",
   endpoints: (builder) => ({
     comment: builder.mutation({
       query: (body) => ({
@@ -19,12 +19,14 @@ export const commentRTK = createApi({
         method: "POST",
         body,
       }),
+      invalidatesTags: ['comment']
     }),
     getAllComment: builder.query({
       query: () => ({
         url: "/comment",
         method: "GET",
       }),
+      prepareHeaders:['comment']
     }),
   }),
 });

@@ -22,7 +22,7 @@ export const adminProfileRTK = createApi({
         }),
         getAllEmployee: builder.query({
             query: ()=>({
-                url: '/organisation/admin/all',
+                url: 'profile',
                 method: "GET"
             })
         })

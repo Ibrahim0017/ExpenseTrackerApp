@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import image from "../../assets/young-handsome-man-posing-with-hat_23-2148884336.jpg";
 import ViewMore from "../../components/ViewMore";
 import axios from "axios";
@@ -7,10 +7,11 @@ import axios from "axios";
 import ExpenseDetail from './adminexpensedetail/ExpenseDetail';
 import { useGetAllExpensesQuery } from '../../service/expense/ExpenseRTK';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
-const OrderTable = ({id}) => {
+const OrderTable = ({filteredExpenses}) => {
     // const [posts, setPosts] = useState([]);
     // const [loading, setLoading] = useState(false);
     // const [currentPage, setCurrentPage] = useState(1);
@@ -30,32 +31,7 @@ const OrderTable = ({id}) => {
     // const indexOfLastPost = currentPage + postsPerPage
     // const indexOfFirstPost = indexOfLastPost - postsPerPage
     // const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
-
-    // const paginate = (pageNumber) => setCurrentPage(pageNumber);
-    const {data,isLoading,error} = useGetAllExpensesQuery()
-    const [values, setValues] = useState({
-      staffname: "",
-      expensename: "",
-      quantity: "",
-      price: "",
-      reasonforexpense: "",
-      branch: "",
-      expensedate: "",
-      date: ""
-
-    })
-
-    console.log(data)
-    console.log(error)
-
-    const handleChange = (event) => {
-      const { name, value } = event.target
-      setValues({ ...values, [name]: value })
-    }
-    const uploadExpense = (e) => {
-      e.preventDefault()
-      data(values)
-    }
+    
 
   return (
     <div className="w-full mt-[20px] overflow-x-auto">
@@ -73,7 +49,7 @@ const OrderTable = ({id}) => {
           </tr>
         </thead>
         <tbody>
-          {data && data.data && data?.data.map((value, index) => (
+          {filteredExpenses?.map((value, index) => (
             <tr className="text-[14px] border-b hover:border-none font-medium hover:cursor-pointer hover:shadow-md transition-all duration-300 ease-in-out hover:bg-gray-50" key={index}>
             <td className="text-[14px] flex gap-2 items-center font-medium px-3 py-3 ">
               <div className="size-10 rounded-full">

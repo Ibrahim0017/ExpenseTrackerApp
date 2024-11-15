@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import OrderTable from './OrderTable' 
 import UploadExpense from '../../components/UploadExpense';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const AdminExpensePage = () => {
 
@@ -9,7 +11,42 @@ const AdminExpensePage = () => {
   //   setPopUp(!popUp)
   // }
   const [showModal, setShowModal] = useState(false)
+  const [data,setData]=useState()
+  const [query, setQuery] = useState("")
+  const tokenHolder = useSelector((state) => state.user_reducer?.users);
 
+  const getAllExpenses = async() =>{
+
+    try{
+    const res = await axios.get('https://expense-tracker-ruug.onrender.com/api/expense', 
+      {headers: {
+        Authorization: `Bearer ${tokenHolder}`
+      }},
+    )
+    console.log(res)
+    setData(res.data.data)
+  }
+    catch(errors){
+        console.log(errors)
+    }
+  }
+
+  const keys = ["title"]
+  const search = (e) => {
+    const result = e?.filter((item) =>
+      keys.some((key) => {
+        const value = item[key];
+        return typeof value === "string" && value.toLowerCase().includes(query);
+      })
+    );
+    return query ? (result?.length ? result : null) : data
+  }
+
+  const searchData = search(data)
+
+  useEffect(()=>{
+    getAllExpenses()
+  },[])
 
   return (
     <div className='w-full flex my-[20px] flex-col justify-center bg-white p-5'>
@@ -24,7 +61,7 @@ const AdminExpensePage = () => {
         
        <div className='flex w-full h-14 gap-8 py-2'>
      <div className='w-full h-full'>
-     <input type="text" placeholder='Search staff...' className='w-full text-[14px] h-full placeholder:text-gray-500 border rounded-[5px] outline-none pl-[10px] px-[30px]' />
+     <input type="text" placeholder='Search staff...' className='w-full text-[14px] h-full placeholder:text-gray-500 border rounded-[5px] outline-none pl-[10px] px-[30px]' onChange={(e)=>setQuery(e.target.value)}/>
      </div>
        <div className='w-full h-full flex justify-end'><button onClick={() => setShowModal(true)} className='hover:bg-blue-800 h-full rounded-md px-[20px] border-none text-[14px] flex items-center bg-blue-700  text-white font-medium '> 
         <div className='font-semibold'>+</div>
@@ -35,7 +72,7 @@ const AdminExpensePage = () => {
 
         { showModal && <UploadExpense onClose={() => setShowModal(false)}/> }
        </div>
-       <OrderTable/>
+       <OrderTable filteredExpenses={searchData}/>
     </div>
   )
 }   
