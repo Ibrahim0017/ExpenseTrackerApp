@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import OrderTable from "./OrderTable";
 import UploadExpense from "../../components/UploadExpense";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useEmployeeProfileQuery } from "../../service/employee/EmployeeRTK";
+import EmployeeTable from "./EmployeeTable";
 
 const EmployeeExpense = () => {
   const [showModal, setShowModal] = useState(false);
@@ -88,7 +88,7 @@ const EmployeeExpense = () => {
 
         {showModal && <UploadExpense onClose={() => setShowModal(false)} />}
       </div>
-      <OrderTable filteredExpenses={searchData} />
+      <EmployeeTable filteredExpenses={searchData} />
     </div>
   );
 };

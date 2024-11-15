@@ -8,6 +8,7 @@ import {
 } from "../../../service/comment/BranchRTK";
 import { useEmployeeProfileQuery } from "../../../service/employee/EmployeeRTK";
 import moment from "moment";
+import { useAdminProfileQuery } from "../../../service/AdminProfile/AdminProfileRTK";
 
 const ExpenseDetail = () => {
   const [message, setMessage] = useState();
@@ -17,6 +18,7 @@ const ExpenseDetail = () => {
   console.log(error);
   const [comment, { isLoading }] = useCommentMutation();
   const { data: profileData } = useEmployeeProfileQuery();
+  const { data: organisation } = useAdminProfileQuery();
   const { data: commentData, error: isError } = useGetAllCommentQuery();
   const filterComment = commentData?.data.filter((el) => el.expense === id);
   console.log(filterComment);
@@ -138,7 +140,7 @@ const ExpenseDetail = () => {
                     <div className="flex flex-col" key={index}>
                       <div
                         className={`flex ${
-                          props.senderId === profileData?.data._id
+                          props.senderId === profileData?.data._id || props.senderId === organisation?.data._id
                             ? "justify-end"
                             : null
                         }`}

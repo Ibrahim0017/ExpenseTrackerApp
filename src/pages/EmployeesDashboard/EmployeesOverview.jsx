@@ -4,7 +4,6 @@ import Profile from "../Admin Pages/Profile";
 import ExpenseDetail from "../admin_expense/adminexpensedetail/ExpenseDetail";
 import EmployeeDetail from "../EmployeePages/EmployeeDetail";
 import EmployeeExpense from "../admin_expense/EmployeeExpense";
-
 const EmployeesOverview = () => {
   return (
     <>
@@ -12,7 +11,7 @@ const EmployeesOverview = () => {
         <Routes>
           <Route path="/expense" element={<EmployeeExpense />} />
           <Route path="/myprofile" element={<EmployeeDetail />} />
-          {/* <Route path="/expense" element={<Emp />} /> */}
+          <Route path="/expense/detail/:id" element={<ExpenseDetail />} />
           <Route path="/settings" element={<Profile />} />
         </Routes>
       </div>
