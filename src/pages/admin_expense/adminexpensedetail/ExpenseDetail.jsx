@@ -84,7 +84,6 @@ const ExpenseDetail = () => {
                 </tr>
               </tbody>
             </table>
-            
           </div>
         </div>
         <div className="w-full py-[10px] tablet:w-full">
@@ -140,14 +139,16 @@ const ExpenseDetail = () => {
                     <div className="flex flex-col" key={index}>
                       <div
                         className={`flex ${
-                          props.senderId === profileData?.data._id || props.senderId === organisation?.data._id
+                          props.senderId === profileData?.data._id ||
+                          props.senderId === organisation?.data._id
                             ? "justify-end"
                             : null
                         }`}
                       >
                         <div
                           className={`${
-                            props.senderId === profileData?.data._id
+                            props.senderId === profileData?.data._id ||
+                            props.senderId === organisation?.data._id
                               ? "bg-gray-300 text-black"
                               : "bg-blue-500 text-white"
                           } rounded-md mt-3 max-w-lg p-2`}
@@ -163,8 +164,6 @@ const ExpenseDetail = () => {
                     </div>
                   ))}
                 </div>
-
-             
               </div>
 
               <div className="mt-[30px]">
