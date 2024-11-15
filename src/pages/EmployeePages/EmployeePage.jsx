@@ -15,6 +15,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { MdKeyboardBackspace } from "react-icons/md";
 import {useSelector} from "react-redux";
 import axios from 'axios';
+import { data } from "autoprefixer";
 
 
 
@@ -70,9 +71,9 @@ const EmployeePage = () => {
     setSearchTerm(searchValue);
 
     if (searchValue === "") {
-      setFilteredEmployees(data?.data);
+      setFilteredEmployees(data);
     } else {
-      const filteredData = data.data.filter((employee) => {
+      const filteredData = data.filter((employee) => {
         return (
           employee.firstName.toLowerCase().includes(searchValue) ||
           employee.lastName.toLowerCase().includes(searchValue) ||
@@ -153,7 +154,7 @@ const EmployeePage = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredEmployees.map((value, index)  => (
+            {filteredEmployees?.map((value, index)  => (
               <tr
                 className={`border border-gray-50 ${
                   index % 2 !== 0 ? "bg-gray-50" : "bg-white"
@@ -205,17 +206,41 @@ const EmployeePage = () => {
 };
 
 const ButtonComp = ({employeeId, branchId}) => {
+
   const [open, setOpen] = useState(false);
 
-  console.log(branchId)
-  console.log(employeeId)
+  // console.log(branchId)
+  // console.log(employeeId)
   const handleOpen = () => {
     setOpen(!open);
   };
 
-  const [ deleteEmployee, {error, isLoading, isSuccess }] = useDeleteOneEmployeeMutation();
-  console.log(error)
+  // const [ deleteEmployee, {error, isLoading, isSuccess }] = useDeleteOneEmployeeMutation();
+  // console.log(error)
   // console.log(useDeleteOneEmployeeMutation())
+  const tokenHolder = useSelector((state) => state.user_reducer?.users);
+
+  const deleteEmployee = async ({ employeeId, branchId }) =>{
+    try{
+        const res = await axios.delete((`/organisation/employee/delete?
+                id=${employeeId}&branchId=${branchId}`),
+        {headers: {
+          Authorization: `Bearer ${tokenHolder}`
+        },
+        data: {
+          employeeId,
+          branchId
+        }
+      })
+      console.log(data)
+      return res.data;
+    }
+    catch (error) {
+      console.error(error.response.data);
+      throw error;
+    }
+  }
+  
 
   const handleDelete = async () => {
   Swal.fire({
@@ -243,6 +268,8 @@ const ButtonComp = ({employeeId, branchId}) => {
     }
   });
 };
+
+
      
 
   return (
@@ -251,7 +278,7 @@ const ButtonComp = ({employeeId, branchId}) => {
         <IoMdMore />
       </div>
       {open && (
-         <div className="bg-white absolute right-16 size-[140px] mt-[10px] text-[13px] flex justify-between py-[7px] px-1 flex-col border border-gray-100 rounded-lg shadow-md ">
+         <div className="bg-white absolute right-10 size-[140px] mt-[10px] text-[13px] flex justify-between py-[7px] px-1 flex-col border border-gray-100 rounded-lg shadow-md ">
          <div className="flex items-center gap-1 py-2 pl-1 hover:bg-gray-100 hover:rounded-md hover:cursor-pointer">
            <div>
              <CiEdit />

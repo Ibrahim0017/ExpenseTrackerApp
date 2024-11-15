@@ -11,7 +11,7 @@ const BranchDetail = () => {
 
 
     const [toggle, setToggle] = useState('Detail')
-    const [data, setData] = useState(false)
+    const [data, setData] = useState()
     const tokenHolder = useSelector((state) => state.user_reducer?.users);
 
     const handleToggle = (key) =>{
@@ -40,7 +40,7 @@ const BranchDetail = () => {
 const getOneBranch = async() =>{
 
     try{
-    const res = await axios.get(`https://expense-tracker-ruug.onrender.com/api/organisation/branch/${id}`, 
+    const res = await axios.get(`https://expense-tracker-ruug.onrender.com/api/branch/${id}`, 
       {headers: {
         Authorization: `Bearer ${tokenHolder}`
       }},
@@ -57,7 +57,7 @@ const getOneBranch = async() =>{
     getOneBranch()
   }, [])
 
-  console.log(data, "gg")
+  console.log(data)
 
 
   return (
