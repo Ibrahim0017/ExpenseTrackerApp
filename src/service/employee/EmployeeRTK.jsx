@@ -28,7 +28,16 @@ export const employeeRTK = createApi({
       }),
     }),
     getAllEmployee: builder.query({
-      query: () => "/organisation/employee/all",
+      query: () => ({
+        url: "/organisation/employee/all",
+        method: "GET",
+      }),
+    }),
+    employeeProfile: builder.query({
+      query: () => ({
+        url: `/employee/profile`,
+        method: "GET",
+      }),
     }),
     getOneEmployee: builder.query({
       query: (id) => ({
@@ -59,4 +68,5 @@ export const {
   useGetOneEmployeeQuery,
   useGetOneBranchQuery,
   useDeleteOneEmployeeMutation,
+  useEmployeeProfileQuery,
 } = employeeRTK;

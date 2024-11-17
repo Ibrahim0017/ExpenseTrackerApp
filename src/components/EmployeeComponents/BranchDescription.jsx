@@ -1,16 +1,83 @@
-import React from 'react'
-import { useGetOneBranchQuery } from "../../service/employee/EmployeeRTK";
+import {useState, useEffect} from 'react'
+// import { useGetOneBranchQuery } from "../../service/employee/EmployeeRTK";
 import { useParams } from 'react-router-dom';
 import moment from "moment";
+import {useSelector} from "react-redux";
+import axios from 'axios';
 
 const BranchDescription = () => {
   
-
+  const [data, setData] = useState()
+  const tokenHolder = useSelector((state) => state.user_reducer?.users);
   const {id} = useParams()
 
-  const { data, error, isLoading } = useGetOneBranchQuery(id);
-  console.log(data)
-  console.log(error)
+  const currencyFormatter = new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN",
+    minimumFractionDigits: 0,
+  });
+
+
+
+  // const { data, error, isLoading } = useGetOneBranchQuery(id);
+  const getOneBranch = async() =>{
+
+    try{
+    const res = await axios.get(`https://expense-tracker-ruug.onrender.com/api/branch/${id}`, 
+      {headers: {
+        Authorization: `Bearer ${tokenHolder}`
+      }},
+    )
+    console.log(res.data, "hh")
+    setData(res.data)
+  }
+    catch(errors){
+        console.log(errors)
+    }
+  }
+
+  useEffect(() =>{
+    getOneBranch()
+  }, [])
+
+  // console.log(data)
+
+  const [expensedata, setExpenseData] = useState(null)
+
+  const getAllExpenses = async() =>{
+
+    try{
+    const res = await axios.get('https://expense-tracker-ruug.onrender.com/api/expense', 
+      {headers: {
+        Authorization: `Bearer ${tokenHolder}`
+      }},
+    )
+    // console.log(res, "hh")
+    setExpenseData(res.data.data)
+  }
+    catch(errors){
+        console.log(errors)
+    }
+  }
+
+  useEffect(() =>{
+    getAllExpenses()
+  }, [])
+
+  // console.log(expensedata, "jj")
+
+  
+  const [branchId, setBranchId] = useState(id); 
+  const filteredExpenses = expensedata ? expensedata.filter((expense) => {
+  // Check for null/undefined branch and _id
+  return expense?.branch?._id === branchId;
+}) : []; 
+
+let totalAmount = 0;
+filteredExpenses.forEach((expense) => {
+  totalAmount += expense.price;
+});
+
 
 
   return (
@@ -30,12 +97,12 @@ const BranchDescription = () => {
                  </div>
                  <div className=' w-full flex justify-between mt-2'>
                  <div className=' w-full '>
-                 <b className='text-gray-800'>Total Expense</b>
-                 <p>{data?.data.expense?.length}</p>
+                 <b className='text-gray-800'>Phone</b>
+                 <p>{data?.data.phone}</p>
                  </div>
                  <div className=' w-full'>
                  <b className='text-gray-800'>Total Amount</b>
-                 <p>200</p>
+                 <p> {currencyFormatter.format(totalAmount)}</p>
                  </div>
                  </div>
                  </div>

@@ -1,13 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { LuBellRing } from "react-icons/lu";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useAdminProfileQuery } from '../service/AdminProfile/AdminProfileRTK';
+import { IoIosMenu } from "react-icons/io";
+import SelectMenu from './SelectMenu';
+import { FiHome, FiUsers, FiDollarSign, FiFileText, FiSettings } from 'react-icons/fi'; // Import icons
+import { IoGitBranchOutline } from 'react-icons/io5';
 
 const Header = () => {
   const [isProfilePopupVisible, setIsProfilePopupVisible] = useState(false);
   const [currentDate, setCurrentDate] = useState(''); // Define currentDate state
   const tokenHolder = useSelector((state) => state.user_reducer?.users);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  // Toggle menu open/close
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
+  // Close the menu when clicking outside
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
+  };
+  console.log(isMenuOpen)
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup the event listener on unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   const { data, error, isLoading } = useAdminProfileQuery();
   console.log(data);
@@ -23,6 +54,9 @@ const Header = () => {
       day: 'numeric',
     });
     setCurrentDate(formattedDate); // Set currentDate state
+  }, []);
+  useEffect(() => {
+      data;
   }, []);
 
   // Toggle profile popup
@@ -41,13 +75,14 @@ const Header = () => {
           )}
         </div>
         <div>
-          <div className='text-sm md:text-base text-white'>
+          <div className='text-sm  text-white mobileTab-text-[7px]'>
             {data ? data?.data.fullName.toUpperCase() : 'Updating...'}
           </div>
           <div className='text-xs md:text-sm text-gray-50'>Hello, Welcome back</div>
         </div>
       </div>
 
+      <div className='flex gap-3'>
       <div className='h-[100%] flex items-center gap-3'>
         <input
           type='text'
@@ -55,6 +90,10 @@ const Header = () => {
           placeholder='Search'
           aria-label='Search'
         />
+      </div>
+      <div className='text-white cursor-pointer text-3xl items-center hidden mobileTab:flex '    onClick={toggleMenu}>
+      <IoIosMenu />
+      </div>
       </div>
 
       {isProfilePopupVisible && data?.data && (
@@ -78,15 +117,33 @@ const Header = () => {
             </div>
           </div>
           <div className='mt-4'>
-            <button
+            <bu tton
               onClick={toggleProfilePopup}
               className='w-full text-white bg-blue-500 hover:bg-red-600 text-sm py-2 rounded-md'
             >
               Close Profile
-            </button>
+            </bu>
           </div>
         </div>
       )}
+      {
+        isMenuOpen && (
+          <div className='absolute top-16 left-[100px] flex-col transform hidden -translate-x-1/2 w-[200px] mobileTab:max-w-lg mobileTab:flex bg-white rounded-lg shadow-2xl p-6 z-30 h-[100vh]'  ref={menuRef}>
+           <h1 className='text-[14px]'>Menu</h1>
+        <SelectMenu text='Dashboard' path='/admin/admin_dashboard' Icon={FiHome} />
+        <SelectMenu text='Employee' path='/admin/employee' Icon={FiUsers} />
+        <SelectMenu text='Expense' path='/admin/expense' Icon={FiDollarSign} />
+        <SelectMenu text='Branches' path='/admin/branches' Icon={IoGitBranchOutline} />
+        {/* <SelectMenu text='Transaction' path='/admin/transaction' Icon={FiFileText} />
+        <SelectMenu text='Reports' path='/admin/reports' Icon={FiFileText} /> */}
+        <div className='border border-white my-3'></div>
+        <h1 className='text-[14px]'>Support</h1>
+        {/* <SelectMenu text='FAQs' path='/admin/faqs' Icon={FiFileText} />
+        <SelectMenu text='Contact Us' path='/admin/contact' Icon={FiFileText} /> */}
+        <SelectMenu text='Settings' path='/admin/settings' Icon={FiSettings} />
+          </div>
+        )
+      }
     </div>
   );
 };

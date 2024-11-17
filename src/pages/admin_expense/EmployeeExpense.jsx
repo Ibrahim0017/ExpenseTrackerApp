@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react";
-import OrderTable from "./OrderTable";
+import { useEffect, useState } from "react";
 import UploadExpense from "../../components/UploadExpense";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useAdminProfileQuery } from "../../service/AdminProfile/AdminProfileRTK";
+import { useEmployeeProfileQuery } from "../../service/employee/EmployeeRTK";
+import EmployeeTable from "./EmployeeTable";
 
-const AdminExpensePage = () => {
-  // const [popUp, setPopUp] = useState(false);
-  // const toggleModal = () => {
-  //   setPopUp(!popUp)
-  // }
+const EmployeeExpense = () => {
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState();
   const [query, setQuery] = useState("");
   const tokenHolder = useSelector((state) => state.user_reducer?.users);
-  const { data: organisationData } = useAdminProfileQuery();
 
+  const { data: profileData } = useEmployeeProfileQuery();
+
+  console.log(profileData);
   const getAllExpenses = async () => {
     try {
       const res = await axios.get(
@@ -26,15 +24,18 @@ const AdminExpensePage = () => {
           },
         }
       );
+      console.log(res);
       setData(res.data.data);
     } catch (errors) {
       console.log(errors);
     }
   };
 
-  const filteredData = data?.filter(
-    (el) => el.branch?.organisation === organisationData._id
+  const filterByEmployee = data?.filter(
+    (el) => el.employee?._id === profileData?.data._id
   );
+
+  console.log(filterByEmployee)
 
   const keys = ["title"];
   const search = (e) => {
@@ -44,10 +45,10 @@ const AdminExpensePage = () => {
         return typeof value === "string" && value.toLowerCase().includes(query);
       })
     );
-    return query ? (result?.length ? result : null) : filteredData;
+    return query ? (result?.length ? result : null) : e;
   };
 
-  const searchData = search(filteredData);
+  const searchData = search(filterByEmployee);
 
   useEffect(() => {
     getAllExpenses();
@@ -73,7 +74,7 @@ const AdminExpensePage = () => {
                 onChange={(e) => setQuery(e.target.value)}
               />
             </div>
-            {/* <div className="w-full h-full flex justify-end">
+            <div className="w-full h-full flex justify-end">
               <button
                 onClick={() => setShowModal(true)}
                 className="hover:bg-blue-800 h-full rounded-md px-[20px] border-none text-[14px] flex items-center bg-blue-700  text-white font-medium "
@@ -81,15 +82,15 @@ const AdminExpensePage = () => {
                 <div className="font-semibold">+</div>
                 Add expense{" "}
               </button>
-            </div> */}
+            </div>
           </div>
         </div>
 
-        {/* {showModal && <UploadExpense onClose={() => setShowModal(false)} />} */}
+        {showModal && <UploadExpense onClose={() => setShowModal(false)} />}
       </div>
-      <OrderTable filteredExpenses={searchData} />
+      <EmployeeTable filteredExpenses={searchData} />
     </div>
   );
 };
 
-export default AdminExpensePage;
+export default EmployeeExpense;

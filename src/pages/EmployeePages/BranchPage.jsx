@@ -11,6 +11,7 @@ import { CiEdit } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdKeyboardBackspace } from "react-icons/md";
+import { useAdminProfileQuery } from "../../service/AdminProfile/AdminProfileRTK";
 
 const BranchPage = () => {
 
@@ -23,6 +24,14 @@ const BranchPage = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredBranches, setFilteredBranches] = useState([]);
 
+    const { data: organisationData } = useAdminProfileQuery();
+
+    const filteredData = data?.filter(
+      (el) => el.organisation._id === organisationData?.data._id
+    );  
+
+    
+console.log(organisationData)
     const handleSearchOpen = () =>{
       setSearchOpen(!searchOpen)
     }
@@ -54,8 +63,8 @@ const BranchPage = () => {
 
     useEffect(() => {
       if (data) {
-         setFilteredBranches(data);
-      }
+         setFilteredBranches(filteredData);
+      } 
     }, [data]);
   
     const handleSearch = (e) => {
@@ -63,20 +72,20 @@ const BranchPage = () => {
       setSearchTerm(searchValue);
   
       if (searchValue === "") {
-        setFilteredBranches(data);
+        setFilteredBranches(filteredData);
       } else {
-        const filteredData = data.filter((branch) => {
+        const newfilteredData = filteredData?.filter((branch) => {
           return (
             branch.name.toLowerCase().includes(searchValue) ||
             branch.address.toLowerCase().includes(searchValue) 
           );
         });
-        setFilteredBranches(filteredData);
+        setFilteredBranches(newfilteredData);
       }
     };
 
 
-
+console.log(filteredBranches)
 
   return (
     <>
@@ -123,7 +132,7 @@ const BranchPage = () => {
       </div>
       
       <div>
-        <p>{data?.length} Branch(es) Found</p>
+        <p>{filteredData?.length} Branch(es) Found</p>
         <div className='grid gap-3 grid-cols-cardGrid mt-4'>
           {filteredBranches?.map((props, index)=> (
                <div className=' w-full bg-white py-4 flex flex-col items-center shadow-md pt-3 rounded-md'  key={index} >

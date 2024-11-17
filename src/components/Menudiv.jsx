@@ -6,7 +6,7 @@ import { IoGitBranchOutline } from 'react-icons/io5';
 const Menudiv = () => {
   return (
     <>
-      <div className='h-[90%] w-full bg-white flex flex-col p-2'>
+      <div className='h-[90%] w-full bg-white flex flex-col p-2 mobileTab:hidden'>
         <h1 className='text-[14px]'>Menu</h1>
         <SelectMenu text='Dashboard' path='/admin/admin_dashboard' Icon={FiHome} />
         <SelectMenu text='Employee' path='/admin/employee' Icon={FiUsers} />

@@ -7,7 +7,7 @@ import { IoMdMore } from "react-icons/io";
 import { Link } from "react-router-dom";
 import CreateEmployee from "../../components/EmployeeComponents/CreateEmployee";
 // import imagea from "../../assets/WhatsApp Image 2024-09-03 at 10.04.20.jpeg";
-import { useGetAllEmployeeQuery } from "../../service/employee/EmployeeRTK";
+// import { useGetAllEmployeeQuery } from "../../service/employee/EmployeeRTK";
 import { useDeleteOneEmployeeMutation } from "../../service/employee/EmployeeRTK";
 import moment from "moment";
 import Swal from "sweetalert2";
@@ -15,24 +15,24 @@ import { IoSearchOutline } from "react-icons/io5";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { data } from "autoprefixer";
+import { useAdminProfileQuery } from "../../service/AdminProfile/AdminProfileRTK";
 
 const EmployeePage = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState();
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const tokenHolder = useSelector((state) => state.user_reducer?.users);
   const [filteredEmployees, setFilteredEmployees] = useState([]);
 
+  const { data: organisationData } = useAdminProfileQuery();
+
   const handleSearchOpen = () => {
     setSearchOpen(!searchOpen);
   };
 
-  const { data, error, isLoading } = useGetAllEmployeeQuery();
-
-  console.log(data);
-  console.log(error)
-
-  const getAllEmployee = async () => {
+  const getAllEmployees = async () => {
     try {
       const res = await axios.get(
         "https://expense-tracker-ruug.onrender.com/api/organisation/employee/all",
@@ -42,45 +42,47 @@ const EmployeePage = () => {
           },
         }
       );
-
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
+      console.log(res, "hh");
+      setData(res.data.data);
+    } catch (errors) {
+      console.log(errors);
     }
   };
 
+  const filteredData = data?.filter(
+    (el) => el.organisation === organisationData?.data._id
+  );
+  console.log(filteredData, "hello");
+
   useEffect(() => {
-    getAllEmployee();
-    if (data && data.data) {
-      setFilteredEmployees(data.data);
-    }
+    getAllEmployees();
   }, []);
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
+  useEffect(() => {
+    if (data) {
+      setFilteredEmployees(filteredData);
+    }
+  }, [data]);
 
   const handleSearch = (e) => {
     const searchValue = e.target.value.toLowerCase();
     setSearchTerm(searchValue);
 
     if (searchValue === "") {
-      setFilteredEmployees(data.data);
+      setFilteredEmployees(filteredData);
     } else {
-      const filteredData = data.data.filter((employee) => {
+      const newfilteredData = filteredData?.filter((employee) => {
         return (
           employee.firstName.toLowerCase().includes(searchValue) ||
           employee.lastName.toLowerCase().includes(searchValue) ||
           employee.email.toLowerCase().includes(searchValue)
         );
       });
-      setFilteredEmployees(filteredData);
+      setFilteredEmployees(newfilteredData);
     }
   };
 
-  console.log(data);
-  console.log(error);
+  console.log(organisationData);
 
   const handleButtonOpen = () => {
     setIsOpen(!isOpen);
@@ -161,7 +163,7 @@ const EmployeePage = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredEmployees.map((value, index) => (
+              {filteredEmployees?.map((value, index) => (
                 <tr
                   className={`border border-gray-50 ${
                     index % 2 !== 0 ? "bg-gray-50" : "bg-white"
@@ -227,19 +229,36 @@ const EmployeePage = () => {
   );
 };
 
-const ButtonComp = ({ employeeId, branchId }) => {
+const ButtonComp = ({ employeeId }) => {
   const [open, setOpen] = useState(false);
 
-  console.log(branchId);
-  console.log(employeeId);
+  // console.log(branchId)
+  // console.log(employeeId)
   const handleOpen = () => {
     setOpen(!open);
   };
 
-  const [deleteEmployee, { error, isLoading, isSuccess }] =
-    useDeleteOneEmployeeMutation();
-  console.log(error);
+  // const [ deleteEmployee, {error, isLoading, isSuccess }] = useDeleteOneEmployeeMutation();
+  // console.log(error)
   // console.log(useDeleteOneEmployeeMutation())
+  const tokenHolder = useSelector((state) => state.user_reducer?.users);
+
+  const deleteEmployee = async ({ employeeId }) => {
+    try {
+      const res = await axios.delete(
+        `https://expense-tracker-ruug.onrender.com/api/organisation/employee/delete?id=${employeeId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${tokenHolder}`,
+          },
+        }
+      );
+      return res.data;
+    } catch (error) {
+      console.error(error.response.data);
+      throw error;
+    }
+  };
 
   const handleDelete = async () => {
     Swal.fire({
@@ -252,7 +271,7 @@ const ButtonComp = ({ employeeId, branchId }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((willDelete) => {
       if (willDelete.isConfirmed) {
-        deleteEmployee({ employeeId, branchId })
+        deleteEmployee({ employeeId })
           .then((response) => {
             console.log("Delete response:", response);
             Swal.fire({
@@ -274,7 +293,7 @@ const ButtonComp = ({ employeeId, branchId }) => {
         <IoMdMore />
       </div>
       {open && (
-        <div className="bg-white absolute right-16 size-[140px] mt-[10px] text-[13px] flex justify-between py-[7px] px-1 flex-col border border-gray-100 rounded-lg shadow-md ">
+        <div className="bg-white absolute right-10 size-[140px] mt-[10px] text-[13px] flex justify-between py-[7px] px-1 flex-col border border-gray-100 rounded-lg shadow-md ">
           <div className="flex items-center gap-1 py-2 pl-1 hover:bg-gray-100 hover:rounded-md hover:cursor-pointer">
             <div>
               <CiEdit />

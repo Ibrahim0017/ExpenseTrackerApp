@@ -32,11 +32,11 @@ const useForm = () => {
                         setErrors(newObj)
                     }
                     break;
-                case 'phoneNumber':
+                case 'phone':
                     if(value.length != 11) {
                         setErrors({...errors, [name]: 'Incorrect phone number'})
                     } else{
-                        let newObj = omit('phoneNumber', errors)
+                        let newObj = omit('phone', errors)
                         setErrors(newObj)
                     }
                     break;
