@@ -163,7 +163,7 @@ const AdminDashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-        <div className="bg-white p-4 rounded-lg shadow-md h-full md:col-span-2 lg:col-span-1">
+        <div className="bg-white p-4 rounded-lg shadow-md h-[500px] md:col-span-2 lg:col-span-1 overflow-y-scroll">
           <h2 className="text-lg font-semibold mb-4">Transaction</h2>
           <div className="space-y-4">
           {
