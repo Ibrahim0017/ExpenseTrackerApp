@@ -30,8 +30,8 @@ const store = configureStore({
         [employeeRTK.reducerPath]: employeeRTK.reducer,
         [expenseRTK.reducerPath]: expenseRTK.reducer,
         [commentRTK.reducerPath]: commentRTK.reducer,
-        [adminProfileRTK .reducerPath]: adminProfileRTK .reducer,
-        [EmployeesProfileRTK .reducerPath]: EmployeesProfileRTK .reducer,
+        [adminProfileRTK.reducerPath]: adminProfileRTK.reducer,
+        [EmployeesProfileRTK.reducerPath]: EmployeesProfileRTK.reducer,
     },
 
   middleware: (getDefaultMiddleware) =>
@@ -39,7 +39,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(employeeRTK.middleware,expenseRTK.middleware,commentRTK.middleware, adminProfileRTK .middleware, EmployeesProfileRTK .middleware)
+    }).concat(employeeRTK.middleware,expenseRTK.middleware,commentRTK.middleware, adminProfileRTK.middleware, EmployeesProfileRTK.middleware)
 });
 
 export default store;
